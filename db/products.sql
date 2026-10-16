@@ -7,7 +7,14 @@ INSERT INTO products (slug, name, summary, price, image_url, buy_url, category, 
  149000,
  'https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m9xy0imjdtsq82@resize_w600_nl',
  'https://s.shopee.vn/1qcr5HVhNJ',
- 'mat-ong', 1, 1)
+ 'mat-ong', 1, 1),
+('mat-ong-hoa-vai-san-vlog-1l',
+ 'Mật ong hoa vải nguyên chất 1 lít – San Vlog',
+ 'Mật ong hoa vải Bắc Giang lấy trực tiếp tại vườn, đã hạ thuỷ phần nên sánh đặc. Màu vàng óng, thơm nhẹ, vị ngọt thanh.',
+ 225000,
+ 'https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mijpw80m6jur61@resize_w600_nl',
+ 'https://s.shopee.vn/5q8zr2FAhm',
+ 'mat-ong', 2, 1)
 ON CONFLICT(slug) DO UPDATE SET
   name = excluded.name, summary = excluded.summary, price = excluded.price,
   image_url = excluded.image_url, buy_url = excluded.buy_url,
