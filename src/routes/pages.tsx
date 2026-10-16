@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import { PostGrid, ProductGrid } from '../components/Cards'
 import { listPosts, listProducts } from '../lib/db'
+import { OWNER, TCM_SOURCE } from '../lib/site'
 
 const app = new Hono<{ Bindings: CloudflareBindings }>()
 
@@ -86,15 +87,39 @@ app.get('/gioi-thieu', (c) =>
         Chúng tôi muốn mang đến những bài viết sâu, dễ đọc và có nguồn tham khảo rõ ràng: từ lịch sử, văn hoá, cách
         nuôi trồng, thu hái, đến công dụng theo y học cổ truyền và những gì khoa học hiện đại đã kiểm chứng.
       </p>
-      <h2>Cách chúng tôi làm nội dung</h2>
+
+      <h2 id="tac-gia">Người sáng lập</h2>
       <p>
-        Mỗi bài viết được tổng hợp từ sách chuyên ngành, nghiên cứu khoa học và nguồn báo chí uy tín, có ghi nguồn ở cuối
-        bài. Xem chi tiết tại <a href="/chinh-sach-bien-tap">Chính sách biên tập</a>.
+        Trang do <strong>{OWNER.name}</strong> sáng lập và trực tiếp biên tập nội dung. Mỗi bài viết đều được nghiên
+        cứu từ nhiều nguồn, đối chiếu thông tin và ghi rõ tài liệu tham khảo để bạn đọc có thể tự kiểm chứng.
       </p>
+
+      <h2>Nguồn tham khảo về Đông y</h2>
+      <p>
+        Các nội dung liên quan đến y học cổ truyền được tham khảo từ{' '}
+        <a href={TCM_SOURCE.url} target="_blank" rel="noopener">
+          {TCM_SOURCE.name}
+        </a>{' '}
+        cùng các sách chuyên ngành như <em>Những cây thuốc và vị thuốc Việt Nam</em> của GS. Đỗ Tất Lợi. Xem chi tiết tại{' '}
+        <a href="/chinh-sach-bien-tap">Chính sách biên tập</a>.
+      </p>
+
+      <h2>Về sản phẩm</h2>
+      <p>
+        Chúng tôi không trực tiếp sản xuất hay bán hàng. Các sản phẩm giới thiệu trên trang được chọn lọc từ các gian
+        hàng trên <strong>Shopee</strong>; khi bấm "Mua trên Shopee", bạn sẽ đặt hàng và thanh toán trực tiếp với gian
+        hàng đó trên Shopee. {AFFILIATE_NOTE}
+      </p>
+
       <h2>Liên hệ</h2>
-      <p>
-        Mọi góp ý về nội dung hoặc hợp tác, vui lòng gửi qua trang <a href="/lien-he">Liên hệ</a>.
-      </p>
+      <ul>
+        <li>
+          Điện thoại / Zalo: <a href={`tel:${OWNER.phone}`}>{OWNER.phoneDisplay}</a>
+        </li>
+        <li>
+          Email: <a href={`mailto:${OWNER.email}`}>{OWNER.email}</a>
+        </li>
+      </ul>
     </article>,
     {
       title: 'Giới thiệu',
@@ -111,9 +136,19 @@ app.get('/chinh-sach-bien-tap', (c) =>
   c.render(
     <article class="prose">
       <h1>Chính sách biên tập</h1>
-      <p>Chúng tôi đặt độ chính xác lên hàng đầu, vì nội dung về sức khoẻ ảnh hưởng trực tiếp tới người đọc.</p>
+      <p>
+        Chúng tôi đặt độ chính xác lên hàng đầu, vì nội dung về sức khoẻ ảnh hưởng trực tiếp tới người đọc. Nội dung do{' '}
+        <a href="/gioi-thieu#tac-gia">{OWNER.name}</a> biên tập.
+      </p>
       <h2>Nguồn tham khảo</h2>
       <ul>
+        <li>
+          Nội dung Đông y (tính vị, quy kinh, công năng, bài thuốc) tham khảo từ{' '}
+          <a href={TCM_SOURCE.url} target="_blank" rel="noopener">
+            {TCM_SOURCE.name}
+          </a>
+          .
+        </li>
         <li>Sách chuyên ngành về dược liệu và y học cổ truyền, như <em>Những cây thuốc và vị thuốc Việt Nam</em> của GS. Đỗ Tất Lợi.</li>
         <li>Nghiên cứu khoa học đã bình duyệt và các tổng quan hệ thống (ví dụ Cochrane).</li>
         <li>Khuyến cáo của cơ quan y tế và cơ quan quản lý nhà nước.</li>

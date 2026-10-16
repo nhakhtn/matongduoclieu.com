@@ -1,6 +1,7 @@
 import type { Child } from 'hono/jsx'
 import { raw } from 'hono/html'
 import type { Crumb } from '../lib/seo'
+import { OWNER } from '../lib/site'
 
 export type SeoProps = {
   title?: string
@@ -105,6 +106,11 @@ export const Layout = (props: Props) => {
             <div>
               <strong>{siteName}</strong>
               <p>Thông tin và sản phẩm về mật ong và dược liệu Việt Nam.</p>
+              <p>
+                Điện thoại / Zalo: <a href={`tel:${OWNER.phone}`}>{OWNER.phoneDisplay}</a>
+                <br />
+                Email: <a href={`mailto:${OWNER.email}`}>{OWNER.email}</a>
+              </p>
             </div>
             <div class="footer-links">
               <a href="/bai-viet">Tất cả bài viết</a>

@@ -6,6 +6,7 @@ import { getCategory } from '../lib/categories'
 import { getPost, listPosts, listProducts } from '../lib/db'
 import { formatDate, mediaUrl } from '../lib/format'
 import { articleJsonLd } from '../lib/seo'
+import { OWNER } from '../lib/site'
 
 const app = new Hono<{ Bindings: CloudflareBindings }>()
 
@@ -48,7 +49,13 @@ app.get('/:slug', async (c) => {
         <header class="post-header">
           <h1>{post.title}</h1>
           <p class="post-meta">
-            {post.author && <>Tác giả: {post.author} · </>}
+            Tác giả:{' '}
+            {post.author && post.author !== OWNER.name ? (
+              post.author
+            ) : (
+              <a href="/gioi-thieu#tac-gia">{OWNER.name}</a>
+            )}{' '}
+            ·
             Đăng ngày <time datetime={post.published_at ?? undefined}>{formatDate(post.published_at)}</time>
             {updated && <> · Cập nhật {formatDate(post.updated_at)}</>}
           </p>

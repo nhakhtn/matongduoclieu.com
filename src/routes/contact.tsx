@@ -1,5 +1,6 @@
 import { Hono } from 'hono'
 import { createContact } from '../lib/db'
+import { OWNER } from '../lib/site'
 
 const app = new Hono<{ Bindings: CloudflareBindings }>()
 
@@ -11,6 +12,18 @@ app.get('/', (c) => {
   return c.render(
     <>
       <h1>Liên hệ</h1>
+      <ul class="contact-list">
+        <li>
+          Điện thoại / Zalo: <a href={`tel:${OWNER.phone}`}>{OWNER.phoneDisplay}</a> ·{' '}
+          <a href={OWNER.zalo} target="_blank" rel="noopener">
+            Nhắn Zalo
+          </a>
+        </li>
+        <li>
+          Email: <a href={`mailto:${OWNER.email}`}>{OWNER.email}</a>
+        </li>
+      </ul>
+      <p>Hoặc để lại lời nhắn, chúng tôi sẽ gọi lại cho bạn:</p>
       {ok && <p class="notice success">Cảm ơn bạn! Chúng tôi sẽ liên hệ lại sớm.</p>}
       {error && <p class="notice error">Vui lòng nhập họ tên và số điện thoại hợp lệ.</p>}
       <form method="post" action="/lien-he" class="form">
@@ -31,7 +44,14 @@ app.get('/', (c) => {
         </button>
       </form>
     </>,
-    { title: 'Liên hệ' }
+    {
+      title: 'Liên hệ',
+      description: `Liên hệ ${c.env.SITE_NAME}: điện thoại/Zalo ${OWNER.phoneDisplay}, email ${OWNER.email}.`,
+      breadcrumbs: [
+        { name: 'Trang chủ', path: '/' },
+        { name: 'Liên hệ', path: '/lien-he' },
+      ],
+    }
   )
 })
 

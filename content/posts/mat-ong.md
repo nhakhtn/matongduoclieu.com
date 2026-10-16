@@ -4,7 +4,7 @@ title: Mật Ong!
 excerpt: Hành trình hàng nghìn năm của mật ong: từ hang đá tiền sử, lăng mộ Ai Cập, kinh sách tôn giáo, Đông y đến rừng tràm U Minh và cao nguyên đá Hà Giang.
 category: mat-ong
 cover: posts/mat-ong/01-nectar.webp
-author:
+author: Nguyễn Đoàn Đức Nhã
 ---
 
 Có những thứ đi cùng loài người lâu đến mức ta quên mất chúng kỳ diệu thế nào. Mật ong là một trong số đó. Trước khi biết trồng lúa, nặn gốm hay viết chữ, tổ tiên chúng ta đã trèo vách đá, hun khói tổ ong để lấy một thứ ngọt mà thiên nhiên không cho không. Hàng nghìn năm sau, mật ong vẫn ở đó: trong căn bếp, trong tủ thuốc, trong lời ru, câu tục ngữ, và trong những lễ tế thiêng liêng nhất của nhiều nền văn minh.

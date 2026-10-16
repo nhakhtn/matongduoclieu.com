@@ -99,5 +99,7 @@ time { color: var(--muted); font-size: 0.88rem; }
 .footer-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
 .footer-grid p { margin: 4px 0 0; }
 .footer-links { display: flex; flex-direction: column; gap: 4px; }
-.footer-links a { color: var(--muted); }
+.footer-links a, .footer-grid a { color: var(--muted); }
+.contact-list { list-style: none; padding: 0; font-size: 1.05rem; }
+.contact-list li { margin-bottom: 6px; }
 .copyright { margin-top: 16px; font-size: 0.82rem; }

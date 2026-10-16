@@ -25,15 +25,17 @@ Trạng thái: ✅ xong · 🔄 đang làm · ✅ chưa làm · 🙋 cần bạn
 
 | # | Việc | Trạng thái |
 |---|---|---|
-| 2.1 | Trang **Giới thiệu** thật: ai đứng sau site, câu chuyện, nguồn hàng | 🙋 |
-| 2.2 | Tên tác giả, người duyệt chuyên môn (nếu có) hiển thị ở mỗi bài | 🙋 |
+| 2.1 | Trang **Giới thiệu** thật: ai đứng sau site, câu chuyện, nguồn hàng | ✅ |
+| 2.2 | Tên tác giả, người duyệt chuyên môn (nếu có) hiển thị ở mỗi bài | ✅ |
 | 2.3 | Trang **Chính sách biên tập**: cách nghiên cứu, nguồn tham khảo, cập nhật | ✅ |
 | 2.4 | Trang **Miễn trừ trách nhiệm y khoa** và **Công khai liên kết tiếp thị** (Shopee affiliate) | ✅ |
-| 2.5 | Thông tin liên hệ rõ ràng (số điện thoại/Zalo, email, địa chỉ nếu có) | 🙋 |
+| 2.5 | Thông tin liên hệ rõ ràng (số điện thoại/Zalo, email, địa chỉ nếu có) | ✅ |
 
 ## Giai đoạn 3: Nội dung
 
 Mô hình **cụm chủ đề**: mỗi chủ đề lớn có một bài trụ cột dài và sâu, xung quanh là các bài vệ tinh trả lời câu hỏi cụ thể, tất cả liên kết qua lại với nhau.
+
+**Nguồn Đông y:** mọi nội dung y học cổ truyền tham khảo từ [Hội Đông y Việt Nam](https://hoidongy.org.vn/), kết hợp sách chuyên ngành (Đỗ Tất Lợi). **Tác giả:** Nguyễn Đoàn Đức Nhã.
 
 **Nhịp độ đề xuất:** 2–3 bài mỗi tuần. Mỗi bài đều qua quy trình: nghiên cứu nguồn → viết → ảnh có giấy phép → xuất bản → liên kết nội bộ.
 
@@ -58,7 +60,7 @@ Mô hình **cụm chủ đề**: mỗi chủ đề lớn có một bài trụ c�
 
 | # | Việc | Trạng thái |
 |---|---|---|
-| 4.1 | Chọn khoảng 10 sản phẩm, lấy link affiliate Shopee | 🙋 |
+| 4.1 | Chọn khoảng 10 sản phẩm, lấy link affiliate Shopee (nguồn hàng: Shopee) | 🙋 |
 | 4.2 | Thẻ sản phẩm: ảnh, mô tả ngắn, giá tham khảo, nút "Mua trên Shopee" (link `rel="sponsored nofollow"`) | ✅ |
 | 4.3 | Gắn sản phẩm liên quan vào cuối từng bài viết | ✅ |
 | 4.4 | Thống kê lượt bấm mua theo sản phẩm | 🔄 Đã đếm lượt bấm trong D1, chưa có trang xem thống kê |
