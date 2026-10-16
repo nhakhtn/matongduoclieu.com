@@ -40,9 +40,10 @@ Mô hình **cụm chủ đề**: mỗi chủ đề lớn có một bài trụ c�
 **Nhịp độ đề xuất:** 2–3 bài mỗi tuần. Mỗi bài đều qua quy trình: nghiên cứu nguồn → viết → ảnh có giấy phép → xuất bản → liên kết nội bộ.
 
 ### Cụm Mật ong (trụ cột: "Mật Ong!" ✅)
-- Mật ong bạc hà Hà Giang: chỉ dẫn địa lý Mèo Vạc, mùa hoa, cách nhận biết
+- 🔜 **Viết tiếp:** Mật ong bạc hà Hà Giang: chỉ dẫn địa lý Mèo Vạc, mùa hoa, cách nhận biết
+- 🔜 **Viết tiếp:** Mật ong hoa vải (Lục Ngạn, Bắc Giang): mùa hoa, đặc điểm, so với mật hoa nhãn
 - Mật ong U Minh và nghề gác kèo ong (nhãn hiệu tập thể "Mật ong U Minh Hạ")
-- Mật ong hoa nhãn, hoa cà phê, hoa vải: khác nhau thế nào
+- Mật ong hoa nhãn, hoa cà phê: khác nhau thế nào
 - Vì sao mật ong kết tinh? Kết tinh có phải mật giả?
 - Các mẹo thử mật ong thật giả: mẹo nào đúng, mẹo nào sai (góc nhìn khoa học)
 - Mật ong và trẻ dưới 1 tuổi
