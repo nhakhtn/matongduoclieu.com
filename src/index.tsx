@@ -5,6 +5,7 @@ import { CATEGORIES } from './lib/categories'
 import { listPosts, recordProductClick } from './lib/db'
 import { isoDate } from './lib/seo'
 import { renderer } from './renderer'
+import admin from './routes/admin'
 import blog from './routes/blog'
 import contact from './routes/contact'
 import media from './routes/media'
@@ -84,6 +85,7 @@ app.route('/', pages)
 app.route('/bai-viet', blog)
 app.route('/chu-de', topics)
 app.route('/lien-he', contact)
+app.route('/quan-tri', admin)
 
 app.notFound((c) => {
   c.status(404)

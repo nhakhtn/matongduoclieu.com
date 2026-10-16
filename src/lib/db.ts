@@ -57,6 +57,22 @@ export async function recordProductClick(db: D1Database, slug: string): Promise<
   return row?.buy_url ?? null
 }
 
+export type Contact = {
+  id: number
+  name: string
+  phone: string
+  message: string
+  created_at: string
+}
+
+export async function listContacts(db: D1Database, limit = 200): Promise<Contact[]> {
+  const { results } = await db
+    .prepare('SELECT id, name, phone, message, created_at FROM contacts ORDER BY id DESC LIMIT ?')
+    .bind(limit)
+    .all<Contact>()
+  return results
+}
+
 export async function createContact(
   db: D1Database,
   data: { name: string; phone: string; message: string }

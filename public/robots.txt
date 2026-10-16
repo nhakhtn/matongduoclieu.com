@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /mua/
+Disallow: /quan-tri/
 
 Sitemap: https://matongduoclieu.com/sitemap.xml
