@@ -28,8 +28,9 @@ img { max-width: 100%; height: auto; }
 .main-nav a { text-decoration: none; color: var(--text); }
 .main-nav a:hover { color: var(--honey); }
 
-main { padding-block: 24px 48px; min-height: 60vh; }
-.breadcrumbs { font-size: 0.88rem; color: var(--muted); margin-bottom: 16px; }
+/* main.container: .container đặt padding 0 16px nên phải ghi đè với độ ưu tiên cao hơn */
+main.container { padding-top: 28px; padding-bottom: 72px; min-height: 60vh; }
+.breadcrumbs { font-size: 0.88rem; color: var(--muted); margin-bottom: 20px; }
 .breadcrumbs a { color: var(--muted); }
 .lead { font-size: 1.08rem; color: var(--muted); max-width: 720px; }
 .empty { color: var(--muted); font-style: italic; }
@@ -99,7 +100,7 @@ time { color: var(--muted); font-size: 0.88rem; }
 .notice.error { background: #fbe4e1; }
 
 /* Footer */
-.site-footer { border-top: 1px solid var(--border); background: var(--card); padding-block: 24px; color: var(--muted); font-size: 0.9rem; }
+.site-footer { border-top: 1px solid var(--border); background: var(--card); padding-block: 36px 28px; color: var(--muted); font-size: 0.9rem; }
 .footer-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
 .footer-grid p { margin: 4px 0 0; }
 .footer-links { display: flex; flex-direction: column; gap: 4px; }
