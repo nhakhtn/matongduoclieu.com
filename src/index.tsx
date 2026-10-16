@@ -29,6 +29,16 @@ app.use(async (c, next) => {
 })
 
 app.use(secureHeaders())
+
+// /gioi-thieu/ → /gioi-thieu (một số ứng dụng tự thêm dấu / cuối đường dẫn)
+app.use(async (c, next) => {
+  const url = new URL(c.req.url)
+  if (url.pathname.length > 1 && url.pathname.endsWith('/')) {
+    url.pathname = url.pathname.replace(/\/+$/, '')
+    return c.redirect(url.toString(), 301)
+  }
+  await next()
+})
 app.route('/media', media)
 
 // Link mua sản phẩm: đếm lượt bấm rồi chuyển sang Shopee
