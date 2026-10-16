@@ -1,0 +1,2 @@
+# Copy thành .dev.vars để dùng khi chạy local (không commit)
+# ADMIN_TOKEN=change-me

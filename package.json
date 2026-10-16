@@ -1,0 +1,23 @@
+{
+  "name": "matongduoclieu-com",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy --minify",
+    "typecheck": "tsc --noEmit",
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "db:migrate:local": "wrangler d1 migrations apply matongduoclieu-db --local",
+    "db:migrate:remote": "wrangler d1 migrations apply matongduoclieu-db --remote",
+    "db:seed:local": "wrangler d1 execute matongduoclieu-db --local --file=./db/seed.sql"
+  },
+  "dependencies": {
+    "hono": "^4.13.13",
+    "marked": "^18.1.1"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "wrangler": "^4.151.1"
+  }
+}

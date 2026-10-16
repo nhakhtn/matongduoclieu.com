@@ -1,0 +1,52 @@
+:root {
+  --honey: #c98a12;
+  --honey-dark: #9a6708;
+  --text: #2b2118;
+  --muted: #6f6253;
+  --bg: #fffaf0;
+  --card: #ffffff;
+  --border: #eadcc2;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+}
+a { color: var(--honey-dark); }
+img { max-width: 100%; height: auto; }
+.container { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+
+.site-header { background: var(--card); border-bottom: 1px solid var(--border); }
+.site-header .container { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; padding-block: 12px; }
+.logo { font-weight: 700; font-size: 1.25rem; text-decoration: none; color: var(--honey-dark); }
+nav { display: flex; flex-wrap: wrap; gap: 16px; }
+nav a { text-decoration: none; color: var(--text); }
+nav a:hover { color: var(--honey); }
+
+main { padding-block: 32px; min-height: 60vh; }
+.hero { text-align: center; padding: 48px 0; }
+.hero h1 { font-size: 2.25rem; margin: 0 0 8px; }
+
+.btn { display: inline-block; background: var(--honey); color: #fff; border: 0; padding: 10px 20px; border-radius: 8px; text-decoration: none; font: inherit; cursor: pointer; }
+.btn:hover { background: var(--honey-dark); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+.card h3 { margin-top: 0; }
+
+.post-item { border-bottom: 1px solid var(--border); padding-block: 16px; }
+.post-item h2 { margin: 0; }
+time { color: var(--muted); font-size: 0.9rem; }
+.prose { max-width: 720px; }
+
+.form { display: grid; gap: 12px; max-width: 480px; }
+.form label { display: grid; gap: 4px; }
+.form input, .form textarea { font: inherit; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+.notice { padding: 10px 14px; border-radius: 8px; }
+.notice.success { background: #e8f5e4; }
+.notice.error { background: #fbe4e1; }
+
+.site-footer { border-top: 1px solid var(--border); padding-block: 24px; color: var(--muted); font-size: 0.9rem; }
