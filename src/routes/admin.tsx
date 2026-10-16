@@ -1,18 +1,108 @@
 import { Hono } from 'hono'
-import { basicAuth } from 'hono/basic-auth'
+import type { Context } from 'hono'
+import { deleteCookie, getSignedCookie, setSignedCookie } from 'hono/cookie'
 import { listContacts } from '../lib/db'
 import { formatDate } from '../lib/format'
 
-const app = new Hono<{ Bindings: CloudflareBindings }>()
+type Env = { Bindings: CloudflareBindings }
 
-// Đăng nhập bằng tài khoản "admin" và mật khẩu lưu trong secret ADMIN_PASSWORD
+const app = new Hono<Env>()
+
+const COOKIE = 'qt_session'
+const SESSION_DAYS = 7
+const MAX_FAILS = 10
+const LOCK_SECONDS = 15 * 60
+
+// trim(): giá trị nhập qua pipe trên Windows có thể kèm dấu xuống dòng
+const adminPassword = (c: Context<Env>) => c.env.ADMIN_PASSWORD?.trim() || null
+
+// So sánh thời gian không đổi để không lộ thông tin qua tốc độ phản hồi
+const safeEqual = (a: string, b: string) => {
+  const x = new TextEncoder().encode(a)
+  const y = new TextEncoder().encode(b)
+  let diff = x.length ^ y.length
+  for (let i = 0; i < Math.max(x.length, y.length); i++) diff |= (x[i] ?? 0) ^ (y[i] ?? 0)
+  return diff === 0
+}
+
+const failKey = (c: Context<Env>) => `login-fail:${c.req.header('cf-connecting-ip') ?? 'unknown'}`
+
+// Cookie được ký bằng mật khẩu: đổi mật khẩu là mọi phiên cũ hết hiệu lực
+async function isLoggedIn(c: Context<Env>, password: string) {
+  const value = await getSignedCookie(c, password, COOKIE)
+  return typeof value === 'string' && Number(value) > Date.now()
+}
+
 app.use('*', async (c, next) => {
   c.header('X-Robots-Tag', 'noindex, nofollow')
   c.header('Cache-Control', 'no-store')
-  // trim(): giá trị nhập qua pipe trên Windows có thể kèm dấu xuống dòng
-  const password = c.env.ADMIN_PASSWORD?.trim()
-  if (!password) return c.text('Chưa cấu hình mật khẩu quản trị (ADMIN_PASSWORD).', 503)
-  return basicAuth({ username: 'admin', password, realm: 'Quan tri' })(c, next)
+  await next()
+})
+
+const LoginForm = ({ error }: { error?: string }) => (
+  <section class="login-box">
+    <h1>Đăng nhập quản trị</h1>
+    {error && <p class="notice error">{error}</p>}
+    <form method="post" action="/quan-tri/dang-nhap" class="form">
+      <label>
+        Mật khẩu
+        <input type="password" name="password" required autofocus autocomplete="current-password" />
+      </label>
+      <button class="btn" type="submit">
+        Đăng nhập
+      </button>
+    </form>
+  </section>
+)
+
+app.get('/dang-nhap', async (c) => {
+  const password = adminPassword(c)
+  if (password && (await isLoggedIn(c, password))) return c.redirect('/quan-tri/lien-he')
+  return c.render(<LoginForm error={password ? undefined : 'Chưa cấu hình mật khẩu quản trị.'} />, {
+    title: 'Đăng nhập quản trị',
+    noindex: true,
+  })
+})
+
+app.post('/dang-nhap', async (c) => {
+  const password = adminPassword(c)
+  const render = (error: string, status: 401 | 429 | 503) => {
+    c.status(status)
+    return c.render(<LoginForm error={error} />, { title: 'Đăng nhập quản trị', noindex: true })
+  }
+  if (!password) return render('Chưa cấu hình mật khẩu quản trị.', 503)
+
+  const key = failKey(c)
+  const fails = Number((await c.env.CACHE.get(key)) ?? 0)
+  if (fails >= MAX_FAILS) return render('Sai mật khẩu quá nhiều lần. Vui lòng thử lại sau 15 phút.', 429)
+
+  const form = await c.req.parseBody()
+  if (!safeEqual(String(form.password ?? ''), password)) {
+    await c.env.CACHE.put(key, String(fails + 1), { expirationTtl: LOCK_SECONDS })
+    return render('Mật khẩu không đúng.', 401)
+  }
+
+  await c.env.CACHE.delete(key)
+  await setSignedCookie(c, COOKIE, String(Date.now() + SESSION_DAYS * 86400_000), password, {
+    path: '/quan-tri',
+    httpOnly: true,
+    secure: true,
+    sameSite: 'Strict',
+    maxAge: SESSION_DAYS * 86400,
+  })
+  return c.redirect('/quan-tri/lien-he', 303)
+})
+
+app.post('/dang-xuat', (c) => {
+  deleteCookie(c, COOKIE, { path: '/quan-tri', secure: true })
+  return c.redirect('/quan-tri/dang-nhap', 303)
+})
+
+// Các trang còn lại yêu cầu đã đăng nhập
+app.use('*', async (c, next) => {
+  const password = adminPassword(c)
+  if (!password || !(await isLoggedIn(c, password))) return c.redirect('/quan-tri/dang-nhap')
+  await next()
 })
 
 app.get('/', (c) => c.redirect('/quan-tri/lien-he'))
@@ -21,7 +111,14 @@ app.get('/lien-he', async (c) => {
   const contacts = await listContacts(c.env.DB, 200)
   return c.render(
     <>
-      <h1>Lời nhắn liên hệ</h1>
+      <div class="admin-bar">
+        <h1>Lời nhắn liên hệ</h1>
+        <form method="post" action="/quan-tri/dang-xuat">
+          <button class="btn btn-outline" type="submit">
+            Đăng xuất
+          </button>
+        </form>
+      </div>
       <p class="lead">{contacts.length ? `${contacts.length} lời nhắn gần nhất.` : 'Chưa có lời nhắn nào.'}</p>
       <div class="contact-table">
         {contacts.map((m) => (
