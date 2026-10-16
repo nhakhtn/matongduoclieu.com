@@ -12,7 +12,8 @@
     "db:migrate:remote": "wrangler d1 migrations apply matongduoclieu-db --remote",
     "db:seed:local": "wrangler d1 execute matongduoclieu-db --local --file=./db/seed.sql",
     "post:local": "node scripts/publish-post.mjs",
-    "post:publish": "node scripts/publish-post.mjs --remote"
+    "post:publish": "node scripts/publish-post.mjs --remote",
+    "admin:password": "node scripts/set-admin-password.mjs"
   },
   "dependencies": {
     "hono": "^4.13.13",

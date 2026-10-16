@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import type { Context } from 'hono'
 import { deleteCookie, getSignedCookie, setSignedCookie } from 'hono/cookie'
+import { getSetting, hashPassword, newSessionKey, setSettings, verifyPassword } from '../lib/auth'
 import { listContacts } from '../lib/db'
 import { formatDate } from '../lib/format'
 
@@ -12,25 +13,27 @@ const COOKIE = 'qt_session'
 const SESSION_DAYS = 7
 const MAX_FAILS = 10
 const LOCK_SECONDS = 15 * 60
-
-// trim(): giá trị nhập qua pipe trên Windows có thể kèm dấu xuống dòng
-const adminPassword = (c: Context<Env>) => c.env.ADMIN_PASSWORD?.trim() || null
-
-// So sánh thời gian không đổi để không lộ thông tin qua tốc độ phản hồi
-const safeEqual = (a: string, b: string) => {
-  const x = new TextEncoder().encode(a)
-  const y = new TextEncoder().encode(b)
-  let diff = x.length ^ y.length
-  for (let i = 0; i < Math.max(x.length, y.length); i++) diff |= (x[i] ?? 0) ^ (y[i] ?? 0)
-  return diff === 0
-}
+const MIN_LENGTH = 10
 
 const failKey = (c: Context<Env>) => `login-fail:${c.req.header('cf-connecting-ip') ?? 'unknown'}`
 
-// Cookie được ký bằng mật khẩu: đổi mật khẩu là mọi phiên cũ hết hiệu lực
-async function isLoggedIn(c: Context<Env>, password: string) {
-  const value = await getSignedCookie(c, password, COOKIE)
+// Khoá ký cookie nằm trong DB và được tạo lại khi đổi mật khẩu,
+// nên đổi mật khẩu là mọi phiên cũ hết hiệu lực
+async function isLoggedIn(c: Context<Env>) {
+  const sessionKey = await getSetting(c.env.DB, 'session_key')
+  if (!sessionKey) return false
+  const value = await getSignedCookie(c, sessionKey, COOKIE)
   return typeof value === 'string' && Number(value) > Date.now()
+}
+
+async function startSession(c: Context<Env>, sessionKey: string) {
+  await setSignedCookie(c, COOKIE, String(Date.now() + SESSION_DAYS * 86400_000), sessionKey, {
+    path: '/quan-tri',
+    httpOnly: true,
+    secure: true,
+    sameSite: 'Strict',
+    maxAge: SESSION_DAYS * 86400,
+  })
 }
 
 app.use('*', async (c, next) => {
@@ -55,41 +58,57 @@ const LoginForm = ({ error }: { error?: string }) => (
   </section>
 )
 
+const AdminBar = ({ title }: { title: string }) => (
+  <div class="admin-bar">
+    <h1>{title}</h1>
+    <div class="admin-actions">
+      <a class="btn btn-outline" href="/quan-tri/lien-he">
+        Lời nhắn
+      </a>
+      <a class="btn btn-outline" href="/quan-tri/doi-mat-khau">
+        Đổi mật khẩu
+      </a>
+      <form method="post" action="/quan-tri/dang-xuat">
+        <button class="btn" type="submit">
+          Đăng xuất
+        </button>
+      </form>
+    </div>
+  </div>
+)
+
 app.get('/dang-nhap', async (c) => {
-  const password = adminPassword(c)
-  if (password && (await isLoggedIn(c, password))) return c.redirect('/quan-tri/lien-he')
-  return c.render(<LoginForm error={password ? undefined : 'Chưa cấu hình mật khẩu quản trị.'} />, {
+  if (await isLoggedIn(c)) return c.redirect('/quan-tri/lien-he')
+  const configured = await getSetting(c.env.DB, 'admin_password_hash')
+  return c.render(<LoginForm error={configured ? undefined : 'Chưa cấu hình mật khẩu quản trị.'} />, {
     title: 'Đăng nhập quản trị',
     noindex: true,
   })
 })
 
 app.post('/dang-nhap', async (c) => {
-  const password = adminPassword(c)
   const render = (error: string, status: 401 | 429 | 503) => {
     c.status(status)
     return c.render(<LoginForm error={error} />, { title: 'Đăng nhập quản trị', noindex: true })
   }
-  if (!password) return render('Chưa cấu hình mật khẩu quản trị.', 503)
+  const [hash, sessionKey] = await Promise.all([
+    getSetting(c.env.DB, 'admin_password_hash'),
+    getSetting(c.env.DB, 'session_key'),
+  ])
+  if (!hash || !sessionKey) return render('Chưa cấu hình mật khẩu quản trị.', 503)
 
   const key = failKey(c)
   const fails = Number((await c.env.CACHE.get(key)) ?? 0)
   if (fails >= MAX_FAILS) return render('Sai mật khẩu quá nhiều lần. Vui lòng thử lại sau 15 phút.', 429)
 
   const form = await c.req.parseBody()
-  if (!safeEqual(String(form.password ?? ''), password)) {
+  if (!(await verifyPassword(String(form.password ?? ''), hash))) {
     await c.env.CACHE.put(key, String(fails + 1), { expirationTtl: LOCK_SECONDS })
     return render('Mật khẩu không đúng.', 401)
   }
 
   await c.env.CACHE.delete(key)
-  await setSignedCookie(c, COOKIE, String(Date.now() + SESSION_DAYS * 86400_000), password, {
-    path: '/quan-tri',
-    httpOnly: true,
-    secure: true,
-    sameSite: 'Strict',
-    maxAge: SESSION_DAYS * 86400,
-  })
+  await startSession(c, sessionKey)
   return c.redirect('/quan-tri/lien-he', 303)
 })
 
@@ -100,8 +119,7 @@ app.post('/dang-xuat', (c) => {
 
 // Các trang còn lại yêu cầu đã đăng nhập
 app.use('*', async (c, next) => {
-  const password = adminPassword(c)
-  if (!password || !(await isLoggedIn(c, password))) return c.redirect('/quan-tri/dang-nhap')
+  if (!(await isLoggedIn(c))) return c.redirect('/quan-tri/dang-nhap')
   await next()
 })
 
@@ -111,14 +129,7 @@ app.get('/lien-he', async (c) => {
   const contacts = await listContacts(c.env.DB, 200)
   return c.render(
     <>
-      <div class="admin-bar">
-        <h1>Lời nhắn liên hệ</h1>
-        <form method="post" action="/quan-tri/dang-xuat">
-          <button class="btn btn-outline" type="submit">
-            Đăng xuất
-          </button>
-        </form>
-      </div>
+      <AdminBar title="Lời nhắn liên hệ" />
       <p class="lead">{contacts.length ? `${contacts.length} lời nhắn gần nhất.` : 'Chưa có lời nhắn nào.'}</p>
       <div class="contact-table">
         {contacts.map((m) => (
@@ -140,6 +151,57 @@ app.get('/lien-he', async (c) => {
     </>,
     { title: 'Quản trị: Liên hệ', noindex: true }
   )
+})
+
+const PasswordPage = ({ error, ok }: { error?: string; ok?: boolean }) => (
+  <>
+    <AdminBar title="Đổi mật khẩu" />
+    <section class="login-box admin-form">
+      {ok && <p class="notice success">Đã đổi mật khẩu. Các thiết bị khác đã bị đăng xuất.</p>}
+      {error && <p class="notice error">{error}</p>}
+      <form method="post" action="/quan-tri/doi-mat-khau" class="form">
+        <label>
+          Mật khẩu hiện tại
+          <input type="password" name="current" required autocomplete="current-password" />
+        </label>
+        <label>
+          Mật khẩu mới (ít nhất {MIN_LENGTH} ký tự)
+          <input type="password" name="next" required minlength={MIN_LENGTH} autocomplete="new-password" />
+        </label>
+        <label>
+          Nhập lại mật khẩu mới
+          <input type="password" name="confirm" required minlength={MIN_LENGTH} autocomplete="new-password" />
+        </label>
+        <button class="btn" type="submit">
+          Đổi mật khẩu
+        </button>
+      </form>
+    </section>
+  </>
+)
+
+app.get('/doi-mat-khau', (c) =>
+  c.render(<PasswordPage ok={c.req.query('ok') === '1'} />, { title: 'Đổi mật khẩu', noindex: true })
+)
+
+app.post('/doi-mat-khau', async (c) => {
+  const render = (error: string) => {
+    c.status(400)
+    return c.render(<PasswordPage error={error} />, { title: 'Đổi mật khẩu', noindex: true })
+  }
+  const form = await c.req.parseBody()
+  const current = String(form.current ?? '')
+  const next = String(form.next ?? '')
+  const hash = await getSetting(c.env.DB, 'admin_password_hash')
+
+  if (!hash || !(await verifyPassword(current, hash))) return render('Mật khẩu hiện tại không đúng.')
+  if (next.length < MIN_LENGTH) return render(`Mật khẩu mới phải có ít nhất ${MIN_LENGTH} ký tự.`)
+  if (next !== String(form.confirm ?? '')) return render('Hai lần nhập mật khẩu mới không khớp.')
+
+  const sessionKey = newSessionKey()
+  await setSettings(c.env.DB, { admin_password_hash: await hashPassword(next), session_key: sessionKey })
+  await startSession(c, sessionKey) // giữ đăng nhập trên thiết bị đang dùng
+  return c.redirect('/quan-tri/doi-mat-khau?ok=1', 303)
 })
 
 export default app

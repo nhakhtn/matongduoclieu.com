@@ -108,6 +108,9 @@ time { color: var(--muted); font-size: 0.88rem; }
 .login-box { max-width: 380px; margin: 40px auto; }
 .admin-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; max-width: 720px; }
 .admin-bar h1 { margin: 0; }
+.admin-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.admin-actions form { margin: 0; }
+.admin-form { margin: 24px 0 0; }
 .contact-table { display: grid; gap: 12px; max-width: 720px; }
 .contact-item p { margin: 6px 0 0; }
 .contact-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
