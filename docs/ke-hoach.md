@@ -51,7 +51,7 @@ Mô hình **cụm chủ đề**: mỗi chủ đề lớn có một bài trụ c�
 
 ### Cụm Dược liệu (mỗi vị một bài trụ cột)
 - ✅ **Nhân sâm**: "Nhân Sâm: Huyền Thoại Của Rễ Cây Hình Người" (`content/posts/nhan-sam.md`)
-- **Nhung hươu**: lịch sử, cách thu hoạch, bào chế, lưu ý
+- ✅ **Nhung hươu**: "Nhung Hươu: Báu Vật Từ Chiếc Sừng Mùa Xuân" (`content/posts/nhung-huou.md`)
 - ✅ **Quế**: "Quế: Hương Thơm Của Những Con Đường Gia Vị" (`content/posts/que.md`)
 - Đông trùng hạ thảo, linh chi, tam thất, hà thủ ô đỏ, cam thảo, gừng, nghệ, táo đỏ, kỷ tử
 - Bài nối hai cụm: "Mật ong trong bào chế dược liệu" (luyện mật làm hoàn, chích mật), "Sâm ngâm mật ong", "Gừng mật ong"…
