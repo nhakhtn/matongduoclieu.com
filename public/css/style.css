@@ -41,6 +41,12 @@ main { padding-block: 32px; min-height: 60vh; }
 .post-item h2 { margin: 0; }
 time { color: var(--muted); font-size: 0.9rem; }
 .prose { max-width: 720px; }
+.prose figure { margin: 28px 0; }
+.prose figure img { display: block; width: 100%; border-radius: 10px; background: var(--border); }
+.prose figure.narrow { max-width: 420px; margin-inline: auto; }
+.prose figcaption { margin-top: 8px; font-size: 0.92rem; color: var(--muted); line-height: 1.5; }
+.prose figcaption small { display: block; margin-top: 2px; font-size: 0.8rem; opacity: 0.85; }
+.prose figcaption a { color: inherit; }
 
 .form { display: grid; gap: 12px; max-width: 480px; }
 .form label { display: grid; gap: 4px; }
