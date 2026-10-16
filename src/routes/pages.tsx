@@ -20,7 +20,7 @@ app.get('/', async (c) => {
     <>
       <section class="hero">
         <h1>{c.env.SITE_NAME}</h1>
-        <p>Mật ong nguyên chất kết hợp dược liệu thiên nhiên.</p>
+        <p>Thông tin và sản phẩm về mật ong và dược liệu Việt Nam.</p>
         <a class="btn" href="/lien-he">
           Liên hệ đặt hàng
         </a>
@@ -42,7 +42,7 @@ app.get('/', async (c) => {
         ))}
       </ul>
     </>,
-    { description: 'Mật ong dược liệu nguyên chất – giới thiệu sản phẩm và kiến thức sức khoẻ.' }
+    { description: 'Kiến thức và sản phẩm về mật ong và dược liệu Việt Nam.' }
   )
 })
 
@@ -50,7 +50,7 @@ app.get('/gioi-thieu', (c) =>
   c.render(
     <>
       <h1>Giới thiệu</h1>
-      <p>Viết câu chuyện thương hiệu, nguồn gốc mật ong và dược liệu tại đây.</p>
+      <p>Viết câu chuyện thương hiệu, nguồn gốc các sản phẩm mật ong và dược liệu tại đây.</p>
     </>,
     { title: 'Giới thiệu' }
   )

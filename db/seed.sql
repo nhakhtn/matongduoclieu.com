@@ -1,8 +1,8 @@
 -- Dữ liệu mẫu cho môi trường local
 INSERT INTO posts (slug, title, excerpt, content_md, published, published_at) VALUES
-('mat-ong-duoc-lieu-la-gi', 'Mật ong dược liệu là gì?',
- 'Tìm hiểu mật ong dược liệu và điểm khác biệt so với mật ong thông thường.',
- '## Mật ong dược liệu
+('bai-viet-mau', 'Bài viết mẫu',
+ 'Bài viết mẫu dùng khi chạy local.',
+ '## Bài viết mẫu
 
 Đây là bài viết mẫu. Hãy thay nội dung này bằng bài viết thật.
 
