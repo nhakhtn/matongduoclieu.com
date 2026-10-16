@@ -11,7 +11,9 @@
 
   "vars": {
     "SITE_NAME": "Mật Ong & Dược Liệu",
-    "SITE_URL": "https://matongduoclieu.com"
+    "SITE_URL": "https://matongduoclieu.com",
+    // Mã xác minh Google Search Console (thẻ meta), để trống nếu xác minh qua DNS
+    "GOOGLE_SITE_VERIFICATION": ""
   },
 
   // Tạo bằng: npx wrangler d1 create matongduoclieu-db  -> dán database_id vào đây
@@ -30,5 +32,9 @@
   // Tạo bằng: npx wrangler kv namespace create CACHE  -> dán id vào đây
   "kv_namespaces": [{ "binding": "CACHE", "id": "06b07df825744c5f85976f90dfd2d45d" }],
 
-  "routes": [{ "pattern": "matongduoclieu.com", "custom_domain": true }]
+  "routes": [
+    { "pattern": "matongduoclieu.com", "custom_domain": true },
+    // www được Worker chuyển hướng 301 về tên miền chính
+    { "pattern": "www.matongduoclieu.com", "custom_domain": true }
+  ]
 }

@@ -49,9 +49,30 @@ npm run deploy
 
 Sau đó bật `routes` (custom domain) trong `wrangler.jsonc` để gắn tên miền matongduoclieu.com.
 
+## Viết và đăng bài
+
+Bài viết là file Markdown trong `content/posts/`, đầu file có front matter:
+
+```
+---
+slug: mat-ong
+title: Mật Ong!
+excerpt: Mô tả ngắn hiện trên Google và khi chia sẻ
+category: mat-ong            # mat-ong | duoc-lieu
+cover: posts/mat-ong/01-nectar.webp   # key ảnh trong R2 (tuỳ chọn)
+author:                      # tên tác giả (tuỳ chọn)
+---
+```
+
+```bash
+npm run post:local   -- content/posts/mat-ong.md   # thử trên D1 local
+npm run post:publish -- content/posts/mat-ong.md   # đăng lên D1 thật + xoá cache
+```
+
 ## Ghi chú
 
+- Kế hoạch phát triển và tiến độ: [`docs/ke-hoach.md`](docs/ke-hoach.md).
 - Sau khi sửa `wrangler.jsonc`, chạy `npm run cf-typegen` để cập nhật kiểu binding.
-- Upload ảnh: `npx wrangler r2 object put matongduoclieu-media/products/abc.jpg --file=abc.jpg --remote`,
-  rồi đặt `image_key = 'products/abc.jpg'` trong D1.
-- Cache KV: sau khi sửa nội dung, trang tự cập nhật sau tối đa 5 phút (hoặc xoá key `page:<path>`).
+- Upload ảnh: `npx wrangler r2 object put matongduoclieu-media/posts/<slug>/anh.webp --file=anh.webp --content-type=image/webp --remote`.
+- Sản phẩm Shopee: điền `buy_url` trong bảng `products`; nút mua đi qua `/mua/<slug>` để đếm lượt bấm (cột `clicks`).
+- Cache KV: trang tự cập nhật sau tối đa 5 phút (hoặc xoá key `page:<path>`).
