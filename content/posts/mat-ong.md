@@ -165,7 +165,7 @@ Việt Nam có nhiều loài ong mật: **ong nội** (*Apis cerana*) là loài 
 
 ### Bản đồ mùa hoa
 
-Mỗi vùng đất có một loại mật riêng: **mật hoa cà phê** của Tây Nguyên, **mật hoa nhãn** của Hưng Yên, **mật hoa vải** của Bắc Giang, **mật hoa cao su** của miền Đông Nam Bộ, **mật hoa tràm** của rừng U Minh, và **mật hoa bạc hà** của cao nguyên đá. Người nuôi ong ngoại thường di chuyển đàn ong theo mùa hoa, đi khắp đất nước, một nghề vất vả mà ít người thấy.
+Mỗi vùng đất có một loại mật riêng: **mật hoa cà phê** của Tây Nguyên, **mật hoa nhãn** của Hưng Yên, [**mật hoa vải**](/bai-viet/mat-ong-hoa-vai) của Bắc Giang, **mật hoa cao su** của miền Đông Nam Bộ, **mật hoa tràm** của rừng U Minh, và [**mật hoa bạc hà**](/bai-viet/mat-ong-bac-ha-ha-giang) của cao nguyên đá. Người nuôi ong ngoại thường di chuyển đàn ong theo mùa hoa, đi khắp đất nước, một nghề vất vả mà ít người thấy.
 
 ### Gác kèo ong U Minh Hạ
 
@@ -187,7 +187,7 @@ Trên cao nguyên đá Hà Giang (nay thuộc tỉnh Tuyên Quang), cây bạc h
   <figcaption>Đèo Mã Pì Lèng (Mèo Vạc) trên cao nguyên đá, vùng đất của mật ong bạc hà.<small>Ảnh: Khánh Hmoong / <a href="https://commons.wikimedia.org/wiki/File:Ma_Pi_Leng_Pass_winding_road_Ha_Giang_Vietnam.jpg">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a></small></figcaption>
 </figure>
 
- Năm 2013, mật ong bạc hà được Cục Sở hữu trí tuệ cấp **chỉ dẫn địa lý "Mèo Vạc"**, áp dụng cho các xã thuộc bốn huyện cũ là Đồng Văn, Mèo Vạc, Yên Minh và Quản Bạ. Với nhiều hộ dân vùng cao, nuôi ong mang lại thu nhập cao hơn hẳn so với trồng ngô trên núi đá.
+ Năm 2013, mật ong bạc hà được Cục Sở hữu trí tuệ cấp **chỉ dẫn địa lý "Mèo Vạc"** (xem bài [Mật Ong Bạc Hà Hà Giang](/bai-viet/mat-ong-bac-ha-ha-giang)), áp dụng cho các xã thuộc bốn huyện cũ là Đồng Văn, Mèo Vạc, Yên Minh và Quản Bạ. Với nhiều hộ dân vùng cao, nuôi ong mang lại thu nhập cao hơn hẳn so với trồng ngô trên núi đá.
 
 ### Mật ong và thị trường thế giới
 
