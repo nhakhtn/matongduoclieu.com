@@ -59,11 +59,11 @@ Mô hình **cụm chủ đề**: mỗi chủ đề lớn có một bài trụ c�
 
 ## Giai đoạn 4: Sản phẩm Shopee
 
-> ⏸ **Tạm hoãn** (theo yêu cầu ngày 16/10/2026): ưu tiên xây nội dung trước, làm sản phẩm sau.
+> ▶ Đã bắt đầu lại (16/10/2026): thêm dần sản phẩm vào `db/products.sql`.
 
 | # | Việc | Trạng thái |
 |---|---|---|
-| 4.1 | Chọn khoảng 10 sản phẩm, lấy link affiliate Shopee (nguồn hàng: Shopee) | 🙋 |
+| 4.1 | Chọn khoảng 10 sản phẩm, lấy link affiliate Shopee (nguồn hàng: Shopee) | 🔄 1/10 — danh sách trong `db/products.sql` |
 | 4.2 | Thẻ sản phẩm: ảnh, mô tả ngắn, giá tham khảo, nút "Mua trên Shopee" (link `rel="sponsored nofollow"`) | ✅ |
 | 4.3 | Gắn sản phẩm liên quan vào cuối từng bài viết | ✅ |
 | 4.4 | Thống kê lượt bấm mua theo sản phẩm | 🔄 Đã đếm lượt bấm trong D1, chưa có trang xem thống kê |

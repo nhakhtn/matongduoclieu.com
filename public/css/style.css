@@ -93,7 +93,8 @@ section { margin-top: 40px; }
 .product-card { display: flex; flex-direction: column; gap: 6px; }
 .product-card img { aspect-ratio: 1; object-fit: cover; border-radius: 8px; width: 100%; }
 .product-card p { margin: 0; color: var(--muted); font-size: 0.92rem; flex: 1; }
-.product-card .price { color: var(--shopee); }
+.product-card .price { color: var(--shopee); font-size: 1.1rem; }
+.price-note { color: var(--muted); font-size: 0.78rem; margin-top: -4px; }
 .product-card .btn { margin-top: 6px; }
 .disclosure { margin-top: 24px; font-size: 0.85rem; color: var(--muted); }
 

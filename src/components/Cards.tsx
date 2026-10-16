@@ -86,6 +86,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
       <h3>{product.name}</h3>
       <p>{product.summary}</p>
       <strong class="price">{formatPrice(product.price)}</strong>
+      {product.buy_url && product.price != null && <small class="price-note">Giá tham khảo, có thể thay đổi trên Shopee</small>}
       {product.buy_url && (
         <a class="btn btn-shopee" href={`/mua/${product.slug}`} target="_blank" rel="sponsored nofollow noopener">
           Mua trên Shopee
