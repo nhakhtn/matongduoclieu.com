@@ -1,0 +1,35 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "matongduoclieu-com",
+  "main": "src/index.tsx",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+
+  // File tĩnh trong ./public (css, favicon, robots.txt...)
+  "assets": { "directory": "./public", "binding": "ASSETS" },
+
+  "vars": {
+    "SITE_NAME": "Mật Ong Dược Liệu",
+    "SITE_URL": "https://matongduoclieu.com"
+  },
+
+  // Tạo bằng: npx wrangler d1 create matongduoclieu-db  -> dán database_id vào đây
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "matongduoclieu-db",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+
+  // Tạo bằng: npx wrangler r2 bucket create matongduoclieu-media
+  "r2_buckets": [{ "binding": "MEDIA", "bucket_name": "matongduoclieu-media" }],
+
+  // Tạo bằng: npx wrangler kv namespace create CACHE  -> dán id vào đây
+  "kv_namespaces": [{ "binding": "CACHE", "id": "00000000000000000000000000000000" }]
+
+  // Khi gắn tên miền:
+  // "routes": [{ "pattern": "matongduoclieu.com", "custom_domain": true }]
+}
