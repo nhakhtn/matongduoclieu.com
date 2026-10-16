@@ -50,7 +50,7 @@ Mô hình **cụm chủ đề**: mỗi chủ đề lớn có một bài trụ c�
 - Sữa ong chúa, phấn hoa, keo ong: là gì, khác gì mật ong
 
 ### Cụm Dược liệu (mỗi vị một bài trụ cột)
-- **Nhân sâm**: sâm Ngọc Linh, sâm Hàn Quốc, sâm Mỹ, phân biệt và cách dùng
+- ✅ **Nhân sâm**: "Nhân Sâm: Huyền Thoại Của Rễ Cây Hình Người" (`content/posts/nhan-sam.md`)
 - **Nhung hươu**: lịch sử, cách thu hoạch, bào chế, lưu ý
 - **Quế**: quế Trà Bồng, quế Yên Bái, quế Thanh; quế Cassia và quế Ceylon
 - Đông trùng hạ thảo, linh chi, tam thất, hà thủ ô đỏ, cam thảo, gừng, nghệ, táo đỏ, kỷ tử

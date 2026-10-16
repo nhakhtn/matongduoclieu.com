@@ -84,6 +84,10 @@ time { color: var(--muted); font-size: 0.88rem; }
 .prose figcaption { margin-top: 8px; font-size: 0.92rem; color: var(--muted); line-height: 1.5; }
 .prose figcaption small { display: block; margin-top: 2px; font-size: 0.8rem; opacity: 0.85; }
 .prose figcaption a { color: inherit; }
+.prose table { display: block; overflow-x: auto; border-collapse: collapse; margin: 20px 0; font-size: 0.95rem; }
+.prose th, .prose td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+.prose th { background: #f6ecd6; }
+.prose tr:nth-child(even) td { background: #fffdf7; }
 .related { border-top: 1px solid var(--border); padding-top: 24px; }
 
 /* Forms */
