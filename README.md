@@ -1,6 +1,6 @@
 # matongduoclieu.com
 
-Website giới thiệu + blog cho Mật Ong Dược Liệu, viết bằng TypeScript chạy trên Cloudflare Workers.
+Website thông tin và sản phẩm về mật ong và dược liệu (Mật Ong & Dược Liệu), viết bằng TypeScript chạy trên Cloudflare Workers.
 
 - **Hono + JSX** render HTML phía server (tốt cho SEO)
 - **D1**: bài viết, sản phẩm, liên hệ

@@ -10,7 +10,7 @@
   "assets": { "directory": "./public", "binding": "ASSETS" },
 
   "vars": {
-    "SITE_NAME": "Mật Ong Dược Liệu",
+    "SITE_NAME": "Mật Ong & Dược Liệu",
     "SITE_URL": "https://matongduoclieu.com"
   },
 
