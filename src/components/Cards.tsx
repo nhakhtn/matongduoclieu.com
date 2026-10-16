@@ -33,7 +33,50 @@ export const PostGrid = ({ posts }: { posts: Post[] }) =>
     <p class="empty">Bài viết đang được biên soạn, mời bạn quay lại sau.</p>
   )
 
-const productImage = (p: Product) => (p.image_key ? mediaUrl(p.image_key) : p.image_url)
+// Thẻ lớn nằm ngang cho bài nổi bật ở trang chủ
+export const FeaturedPost = ({ post }: { post: Post }) => (
+  <article class="featured-post">
+    {post.cover_key && (
+      <a href={`/bai-viet/${post.slug}`} class="featured-image">
+        <img src={mediaUrl(post.cover_key)} alt="" />
+      </a>
+    )}
+    <div class="featured-body">
+      <a class="tag" href={`/chu-de/${post.category}`}>
+        {getCategory(post.category)?.name ?? post.category}
+      </a>
+      <h3>
+        <a href={`/bai-viet/${post.slug}`}>{post.title}</a>
+      </h3>
+      <p>{post.excerpt}</p>
+      <a class="read-more" href={`/bai-viet/${post.slug}`}>
+        Đọc bài viết ›
+      </a>
+    </div>
+  </article>
+)
+
+// Danh sách gọn (ảnh nhỏ + tiêu đề) cho các cột chuyên mục
+export const PostList = ({ posts }: { posts: Post[] }) =>
+  posts.length ? (
+    <ul class="post-list-compact">
+      {posts.map((p) => (
+        <li>
+          <a href={`/bai-viet/${p.slug}`}>
+            {p.cover_key ? <img src={mediaUrl(p.cover_key)} alt="" loading="lazy" /> : <span class="thumb-placeholder" />}
+            <span>
+              <strong>{p.title}</strong>
+              <time datetime={p.published_at ?? undefined}>{formatDate(p.published_at)}</time>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p class="empty">Bài viết đang được biên soạn.</p>
+  )
+
+const productImage =(p: Product) => (p.image_key ? mediaUrl(p.image_key) : p.image_url)
 
 export const ProductCard = ({ product }: { product: Product }) => {
   const image = productImage(product)

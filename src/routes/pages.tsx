@@ -1,5 +1,5 @@
 import { Hono } from 'hono'
-import { PostGrid, ProductGrid } from '../components/Cards'
+import { FeaturedPost, PostList, ProductGrid } from '../components/Cards'
 import { listPosts, listProducts } from '../lib/db'
 import { OWNER, TCM_SOURCE } from '../lib/site'
 
@@ -9,36 +9,57 @@ const AFFILIATE_NOTE =
   'Một số liên kết trên trang là liên kết tiếp thị Shopee: khi bạn mua qua liên kết này, chúng tôi có thể nhận hoa hồng mà giá bạn trả không thay đổi.'
 
 app.get('/', async (c) => {
-  const [honey, herbs, products] = await Promise.all([
-    listPosts(c.env.DB, 6, 'mat-ong'),
-    listPosts(c.env.DB, 6, 'duoc-lieu'),
+  const [latest, honey, herbs, products] = await Promise.all([
+    listPosts(c.env.DB, 1),
+    listPosts(c.env.DB, 5, 'mat-ong'),
+    listPosts(c.env.DB, 5, 'duoc-lieu'),
     listProducts(c.env.DB),
   ])
+  const featured = latest[0]
   return c.render(
     <>
       <section class="hero">
-        <h1>{c.env.SITE_NAME}</h1>
-        <p>Thông tin và sản phẩm về mật ong và dược liệu Việt Nam.</p>
-        <div class="hero-actions">
-          <a class="btn" href="/chu-de/mat-ong">Tìm hiểu mật ong</a>
-          <a class="btn btn-outline" href="/chu-de/duoc-lieu">Tìm hiểu dược liệu</a>
+        <div class="hero-text">
+          <p class="eyebrow">Lịch sử · Văn hoá · Đông y · Khoa học</p>
+          <h1>{c.env.SITE_NAME}</h1>
+          <p class="hero-lead">
+            Những câu chuyện chuyên sâu về mật ong và các vị dược liệu quý của Việt Nam: từ nguồn gốc, văn hoá, đến
+            cách dùng đúng theo y học cổ truyền và khoa học hiện đại.
+          </p>
+          <div class="hero-actions">
+            <a class="btn" href="/chu-de/mat-ong">Tìm hiểu mật ong</a>
+            <a class="btn btn-outline" href="/chu-de/duoc-lieu">Tìm hiểu dược liệu</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="/media/posts/mat-ong/02-comb.webp" width="1200" height="900" alt="Cầu ong với các lỗ tổ chứa mật đã được bịt nắp sáp" />
         </div>
       </section>
 
-      <section>
-        <div class="section-head">
-          <h2>Mật ong</h2>
-          <a href="/chu-de/mat-ong">Xem tất cả ›</a>
-        </div>
-        <PostGrid posts={honey} />
-      </section>
+      {featured && (
+        <section>
+          <div class="section-head">
+            <h2>Bài mới nhất</h2>
+          </div>
+          <FeaturedPost post={featured} />
+        </section>
+      )}
 
-      <section>
-        <div class="section-head">
-          <h2>Dược liệu</h2>
-          <a href="/chu-de/duoc-lieu">Xem tất cả ›</a>
+      <section class="topic-columns">
+        <div class="topic-column">
+          <div class="section-head">
+            <h2>Mật ong</h2>
+            <a href="/chu-de/mat-ong">Xem tất cả ›</a>
+          </div>
+          <PostList posts={honey} />
         </div>
-        <PostGrid posts={herbs} />
+        <div class="topic-column">
+          <div class="section-head">
+            <h2>Dược liệu</h2>
+            <a href="/chu-de/duoc-lieu">Xem tất cả ›</a>
+          </div>
+          <PostList posts={herbs} />
+        </div>
       </section>
 
       {products.length > 0 && (
