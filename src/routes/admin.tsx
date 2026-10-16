@@ -9,7 +9,8 @@ const app = new Hono<{ Bindings: CloudflareBindings }>()
 app.use('*', async (c, next) => {
   c.header('X-Robots-Tag', 'noindex, nofollow')
   c.header('Cache-Control', 'no-store')
-  const password = c.env.ADMIN_PASSWORD
+  // trim(): giá trị nhập qua pipe trên Windows có thể kèm dấu xuống dòng
+  const password = c.env.ADMIN_PASSWORD?.trim()
   if (!password) return c.text('Chưa cấu hình mật khẩu quản trị (ADMIN_PASSWORD).', 503)
   return basicAuth({ username: 'admin', password, realm: 'Quan tri' })(c, next)
 })
