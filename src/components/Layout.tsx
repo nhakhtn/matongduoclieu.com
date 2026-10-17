@@ -12,6 +12,8 @@ export type SeoProps = {
   jsonLd?: object[]
   breadcrumbs?: Crumb[]
   noindex?: boolean
+  /** Mục menu cần làm nổi khi đường dẫn không tự khớp (vd. bài viết → /chu-de/mat-ong) */
+  section?: string
 }
 
 type Props = SeoProps & {
@@ -92,7 +94,8 @@ export const Layout = (props: Props) => {
             </a>
             <nav class="main-nav" aria-label="Menu chính">
               {nav.map((item) => {
-                const active = item.href === '/' ? path === '/' : path.startsWith(item.href)
+                const active =
+                  item.href === props.section || (item.href === '/' ? path === '/' : path.startsWith(item.href))
                 return (
                   <a href={item.href} class={active ? 'active' : undefined} aria-current={active ? 'page' : undefined}>
                     {item.label}

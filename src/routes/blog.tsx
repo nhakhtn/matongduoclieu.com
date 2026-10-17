@@ -81,6 +81,7 @@ app.get('/:slug', async (c) => {
       title: post.title,
       description: post.excerpt,
       type: 'article',
+      section: `/chu-de/${post.category}`,
       image: post.cover_key ? mediaUrl(post.cover_key) : undefined,
       jsonLd: [articleJsonLd(c.env.SITE_URL, post)],
       breadcrumbs: [
