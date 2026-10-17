@@ -28,7 +28,14 @@ INSERT INTO products (slug, name, summary, price, image_url, buy_url, category, 
  50000,
  'https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m47rdc6zfnrb95@resize_w600_nl',
  'https://s.shopee.vn/1qcsK6TLHP',
- 'duoc-lieu', 10, 1)
+ 'duoc-lieu', 10, 1),
+('que-cay-cao-vo-anh-duong',
+ 'Quế cây cạo vỏ (quế điếu) – Dược Liệu Ánh Dương',
+ 'Thanh quế đã cạo vỏ ngoài, khô và thơm, dùng nấu ăn, pha trà, trang trí. Có gói 50g, 100g, 200g, 250g; giá hiển thị là gói 50g.',
+ 18000,
+ 'https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-luuukm16o6qt75@resize_w600_nl',
+ 'https://s.shopee.vn/2qVPWBwjKA',
+ 'duoc-lieu', 11, 1)
 ON CONFLICT(slug) DO UPDATE SET
   name = excluded.name, summary = excluded.summary, price = excluded.price,
   image_url = excluded.image_url, buy_url = excluded.buy_url,

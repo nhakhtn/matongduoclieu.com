@@ -63,7 +63,7 @@ Mô hình **cụm chủ đề**: mỗi chủ đề lớn có một bài trụ c�
 
 | # | Việc | Trạng thái |
 |---|---|---|
-| 4.1 | Chọn khoảng 10 sản phẩm, lấy link affiliate Shopee (nguồn hàng: Shopee) | 🔄 4/10 — danh sách trong `db/products.sql` |
+| 4.1 | Chọn khoảng 10 sản phẩm, lấy link affiliate Shopee (nguồn hàng: Shopee) | 🔄 5/10 — danh sách trong `db/products.sql` |
 | 4.2 | Thẻ sản phẩm: ảnh, mô tả ngắn, giá tham khảo, nút "Mua trên Shopee" (link `rel="sponsored nofollow"`) | ✅ |
 | 4.3 | Gắn sản phẩm liên quan vào cuối từng bài viết | ✅ |
 | 4.4 | Thống kê lượt bấm mua theo sản phẩm | 🔄 Đã đếm lượt bấm trong D1, chưa có trang xem thống kê |
