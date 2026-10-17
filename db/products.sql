@@ -14,7 +14,14 @@ INSERT INTO products (slug, name, summary, price, image_url, buy_url, category, 
  225000,
  'https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mijpw80m6jur61@resize_w600_nl',
  'https://s.shopee.vn/5q8zr2FAhm',
- 'mat-ong', 2, 1)
+ 'mat-ong', 2, 1),
+('mat-ong-hoa-nhan-hnt-200g',
+ 'Mật ong hoa nhãn nguyên chất 200g – HNT Natural Product',
+ 'Mật ong hoa nhãn từ Khoái Châu, Hưng Yên, lọ thuỷ tinh 200g. Mật hoa nhãn tự nhiên ít đóng đường. Gian hàng Shopee Mall.',
+ 58120,
+ 'https://down-vn.img.susercontent.com/file/ff14c146a01c5b1ff4622e89a51ed0c7@resize_w600_nl',
+ 'https://s.shopee.vn/6L5HgBL2uL',
+ 'mat-ong', 3, 1)
 ON CONFLICT(slug) DO UPDATE SET
   name = excluded.name, summary = excluded.summary, price = excluded.price,
   image_url = excluded.image_url, buy_url = excluded.buy_url,
