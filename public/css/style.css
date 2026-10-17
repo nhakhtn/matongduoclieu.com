@@ -21,12 +21,19 @@ img { max-width: 100%; height: auto; }
 .container { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
 
 /* Header */
-.site-header { background: var(--card); border-bottom: 1px solid var(--border); }
-.site-header .container { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; padding-block: 12px; }
-.logo { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 1.2rem; text-decoration: none; color: var(--honey-dark); }
-.main-nav { display: flex; flex-wrap: wrap; gap: 6px 16px; }
-.main-nav a { text-decoration: none; color: var(--text); }
-.main-nav a:hover { color: var(--honey); }
+.site-header { position: sticky; top: 0; z-index: 10; background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); box-shadow: 0 2px 12px rgba(120, 80, 10, 0.06); }
+.site-header .container { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; min-height: 72px; padding-block: 10px; }
+.logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.32rem; letter-spacing: -0.01em; text-decoration: none; color: var(--honey-dark); }
+.main-nav { display: flex; gap: 4px; }
+.main-nav a { padding: 8px 14px; border-radius: 999px; font-size: 1rem; font-weight: 600; text-decoration: none; color: var(--text); white-space: nowrap; transition: background 0.15s, color 0.15s; }
+.main-nav a:hover { background: #fbefd6; color: var(--honey-dark); }
+.main-nav a.active { background: var(--honey); color: #fff; }
+@media (max-width: 900px) {
+  .site-header .container { min-height: 0; }
+  .main-nav { width: 100%; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 0 16px 2px; }
+  .main-nav::-webkit-scrollbar { display: none; }
+  .main-nav a { padding: 7px 12px; font-size: 0.95rem; }
+}
 
 /* main.container: .container đặt padding 0 16px nên phải ghi đè với độ ưu tiên cao hơn */
 main.container { padding-top: 28px; padding-bottom: 72px; min-height: 60vh; }

@@ -87,13 +87,18 @@ export const Layout = (props: Props) => {
         <header class="site-header">
           <div class="container">
             <a href="/" class="logo">
-              <img src="/favicon.svg" alt="" width="28" height="28" />
+              <img src="/favicon.svg" alt="" width="34" height="34" />
               {siteName}
             </a>
-            <nav class="main-nav">
-              {nav.map((item) => (
-                <a href={item.href}>{item.label}</a>
-              ))}
+            <nav class="main-nav" aria-label="Menu chính">
+              {nav.map((item) => {
+                const active = item.href === '/' ? path === '/' : path.startsWith(item.href)
+                return (
+                  <a href={item.href} class={active ? 'active' : undefined} aria-current={active ? 'page' : undefined}>
+                    {item.label}
+                  </a>
+                )
+              })}
             </nav>
           </div>
         </header>
