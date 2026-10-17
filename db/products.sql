@@ -21,7 +21,14 @@ INSERT INTO products (slug, name, summary, price, image_url, buy_url, category, 
  58120,
  'https://down-vn.img.susercontent.com/file/ff14c146a01c5b1ff4622e89a51ed0c7@resize_w600_nl',
  'https://s.shopee.vn/6L5HgBL2uL',
- 'mat-ong', 3, 1)
+ 'mat-ong', 3, 1),
+('que-vo-kho-yen-bai-500g',
+ 'Quế vỏ khô Yên Bái 500g',
+ 'Vỏ quế Yên Bái phơi nắng tự nhiên, gói 500g. Dùng làm gia vị nấu ăn, pha trà quế.',
+ 50000,
+ 'https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m47rdc6zfnrb95@resize_w600_nl',
+ 'https://s.shopee.vn/1qcsK6TLHP',
+ 'duoc-lieu', 10, 1)
 ON CONFLICT(slug) DO UPDATE SET
   name = excluded.name, summary = excluded.summary, price = excluded.price,
   image_url = excluded.image_url, buy_url = excluded.buy_url,
