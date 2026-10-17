@@ -44,7 +44,7 @@ Mật ong là một trong số rất ít thực phẩm tự nhiên có thể gi�
 
 Chuyện "người ta tìm thấy mật ong vẫn ăn được trong lăng mộ Ai Cập" được kể lại rất nhiều, nhưng thực ra tư liệu gốc khá mờ nhạt. Điều chắc chắn hơn là: mật ong bảo quản kín, khô ráo có thể giữ chất lượng rất lâu. Ngược lại, nếu để hở, mật sẽ hút ẩm từ không khí và có thể lên men chua.
 
-Một điều nữa nhiều người hiểu lầm: **mật ong kết tinh (đóng đường) là hiện tượng tự nhiên**, không phải dấu hiệu mật bị pha đường. Mật giàu glucose và để ở nơi mát sẽ kết tinh nhanh hơn. Chỉ cần ngâm hũ vào nước ấm là mật lại lỏng.
+Một điều nữa nhiều người hiểu lầm: **mật ong kết tinh (đóng đường) là hiện tượng tự nhiên**, không phải dấu hiệu mật bị pha đường. Mật giàu glucose và để ở nơi mát sẽ kết tinh nhanh hơn. Chỉ cần ngâm hũ vào nước ấm là mật lại lỏng. Xem giải thích chi tiết trong bài [Mật Ong Bị Kết Tinh Có Phải Mật Giả?](/bai-viet/mat-ong-ket-tinh)
 
 <figure>
   <img src="/media/posts/mat-ong/03-crystal.webp" width="1200" height="940" alt="Mật ong kết tinh trong hũ và ảnh phóng đại tinh thể" loading="lazy">

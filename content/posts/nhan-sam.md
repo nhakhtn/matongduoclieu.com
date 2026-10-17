@@ -142,7 +142,7 @@ Từ cùng một củ nhân sâm tươi, cách chế biến tạo ra hai sản p
 - **Hồng sâm:** chọn những củ to, đẹp, rửa sạch rồi **hấp khoảng 1 giờ 20 đến 1 giờ 30 phút**, sau đó sấy khô, bỏ rễ con, nắn lại hình và phơi nắng. Củ có màu nâu đỏ, chắc, bảo quản được lâu.
 - **Bạch sâm:** làm từ những củ không đạt tiêu chuẩn làm hồng sâm, cắt bỏ rễ con, cạo vỏ rồi phơi khô. Củ có màu trắng ngà.
 
-Quá trình hấp nóng làm biến đổi một phần thành phần saponin trong củ sâm, nên hồng sâm và bạch sâm có đặc tính hơi khác nhau.
+Quá trình hấp nóng làm biến đổi một phần thành phần saponin trong củ sâm, nên hồng sâm và bạch sâm có đặc tính hơi khác nhau. Đọc thêm: [Hồng Sâm Là Gì? Hồng Sâm Và Bạch Sâm Khác Nhau Thế Nào](/bai-viet/hong-sam).
 
 ## Nhân sâm trong Đông y
 

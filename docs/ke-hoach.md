@@ -42,9 +42,9 @@ Mô hình **cụm chủ đề**: mỗi chủ đề lớn có một bài trụ c�
 ### Cụm Mật ong (trụ cột: "Mật Ong!" ✅)
 - ✅ Mật ong bạc hà Hà Giang (`content/posts/mat-ong-bac-ha.md`)
 - ✅ Mật ong hoa vải (`content/posts/mat-ong-hoa-vai.md`)
+- ✅ Mật ong kết tinh có phải mật giả? (`content/posts/mat-ong-ket-tinh.md`)
 - Mật ong U Minh và nghề gác kèo ong (nhãn hiệu tập thể "Mật ong U Minh Hạ")
 - Mật ong hoa nhãn, hoa cà phê: khác nhau thế nào
-- Vì sao mật ong kết tinh? Kết tinh có phải mật giả?
 - Các mẹo thử mật ong thật giả: mẹo nào đúng, mẹo nào sai (góc nhìn khoa học)
 - Mật ong và trẻ dưới 1 tuổi
 - Mật ong cho người tiểu đường
@@ -52,6 +52,7 @@ Mô hình **cụm chủ đề**: mỗi chủ đề lớn có một bài trụ c�
 
 ### Cụm Dược liệu (mỗi vị một bài trụ cột)
 - ✅ **Nhân sâm**: "Nhân Sâm: Huyền Thoại Của Rễ Cây Hình Người" (`content/posts/nhan-sam.md`)
+  - ✅ Vệ tinh: Hồng sâm và bạch sâm (`content/posts/hong-sam.md`)
 - ✅ **Nhung hươu**: "Nhung Hươu: Báu Vật Từ Chiếc Sừng Mùa Xuân" (`content/posts/nhung-huou.md`)
 - ✅ **Quế**: "Quế: Hương Thơm Của Những Con Đường Gia Vị" (`content/posts/que.md`)
 - Đông trùng hạ thảo, linh chi, tam thất, hà thủ ô đỏ, cam thảo, gừng, nghệ, táo đỏ, kỷ tử
