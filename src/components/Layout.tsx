@@ -1,9 +1,8 @@
 import type { Child } from 'hono/jsx'
 import { raw } from 'hono/html'
 import type { Crumb } from '../lib/seo'
-import { OWNER } from '../lib/site'
 import type { SiteConfig } from '../lib/site-config'
-import { copyrightText, faviconUrl, productsEnabled } from '../lib/site-config'
+import { copyrightText, faviconUrl, phoneDisplay, phoneIntl, productsEnabled } from '../lib/site-config'
 import type { SiteNav } from '../types'
 
 export type SeoProps = {
@@ -121,11 +120,19 @@ export const Layout = (props: Props) => {
             <div>
               <strong>{siteName}</strong>
               <div class="footer-about">{raw(site.footer_html)}</div>
-              {site.footer_contact === '1' && (
+              {site.footer_contact === '1' && (site.phone || site.email) && (
               <p>
-                Điện thoại / Zalo: <a href={`tel:${OWNER.phone}`}>{OWNER.phoneDisplay}</a>
-                <br />
-                Email: <a href={`mailto:${OWNER.email}`}>{OWNER.email}</a>
+                {site.phone && (
+                  <>
+                    Điện thoại{site.zalo === '1' && ' / Zalo'}: <a href={`tel:${phoneIntl(site.phone)}`}>{phoneDisplay(site.phone)}</a>
+                    <br />
+                  </>
+                )}
+                {site.email && (
+                  <>
+                    Email: <a href={`mailto:${site.email}`}>{site.email}</a>
+                  </>
+                )}
               </p>
               )}
             </div>

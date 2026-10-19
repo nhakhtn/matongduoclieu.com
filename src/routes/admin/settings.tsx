@@ -2,7 +2,6 @@ import { Hono } from 'hono'
 import { marked } from 'marked'
 import { setSettings } from '../../lib/auth'
 import { mediaUrl } from '../../lib/format'
-import { OWNER } from '../../lib/site'
 import type { SiteConfig } from '../../lib/site-config'
 import { faviconUrl, getSiteConfig } from '../../lib/site-config'
 import { AdminShell, readForm } from './ui'
@@ -106,12 +105,57 @@ const SettingsForm = ({ site }: { site: SiteConfig }) => (
         </textarea>
       </label>
       <label class="checkbox">
-        <input type="checkbox" name="footer_contact" checked={site.footer_contact === '1'} /> Hiện số điện thoại/Zalo (
-        {OWNER.phoneDisplay}) và email
+        <input type="checkbox" name="footer_contact" checked={site.footer_contact === '1'} /> Hiện số điện thoại và email
+        (lấy từ mục Liên hệ & tác giả)
       </label>
       <label>
         Dòng copyright ({'{năm}'} = năm hiện tại, {'{tên}'} = tên trang web)
         <input name="copyright" maxlength={300} value={site.copyright} />
+      </label>
+    </fieldset>
+
+    <fieldset class="admin-fieldset">
+      <legend>Liên hệ &amp; tác giả</legend>
+      <div class="form-row">
+        <label>
+          Tên tác giả chính / chủ site
+          <input name="owner_name" maxlength={100} value={site.owner_name} />
+        </label>
+        <label>
+          Vai trò
+          <input name="owner_role" maxlength={150} value={site.owner_role} />
+        </label>
+      </div>
+      <div class="form-row">
+        <label>
+          Số điện thoại (để trống sẽ ẩn)
+          <input name="phone" type="tel" maxlength={20} value={site.phone} />
+        </label>
+        <label>
+          Email (để trống sẽ ẩn)
+          <input name="email" type="email" maxlength={120} value={site.email} />
+        </label>
+      </div>
+      <label class="checkbox">
+        <input type="checkbox" name="zalo" checked={site.zalo === '1'} /> Số điện thoại này có Zalo (hiện nút "Nhắn Zalo")
+      </label>
+      <label>
+        Facebook (link trang, để trống sẽ ẩn)
+        <input name="facebook" type="url" maxlength={300} value={site.facebook} placeholder="https://facebook.com/..." />
+      </label>
+      <label>
+        Địa chỉ (để trống sẽ ẩn)
+        <input name="address" maxlength={300} value={site.address} />
+      </label>
+      <label>
+        Lời giới thiệu trên trang Liên hệ (Markdown, không bắt buộc)
+        <textarea name="contact_intro_md" rows={3} maxlength={2000}>
+          {site.contact_intro_md}
+        </textarea>
+      </label>
+      <label class="checkbox">
+        <input type="checkbox" name="contact_form" checked={site.contact_form === '1'} /> Hiện form để lại lời nhắn (xem ở mục
+        Lời nhắn)
       </label>
     </fieldset>
 
@@ -139,6 +183,7 @@ app.get('/', async (c) => {
 app.post('/', async (c) => {
   const f = await readForm(c.req)
   const footer_md = f.text('footer_md')
+  const contact_intro_md = f.text('contact_intro_md')
   const homeProducts = Math.min(20, Math.max(0, f.int('home_products', 4)))
   const values: Record<string, string> = {
     name: f.s('name'),
@@ -155,12 +200,31 @@ app.post('/', async (c) => {
     footer_html: footer_md ? await marked.parse(footer_md) : '',
     footer_contact: f.bool('footer_contact') ? '1' : '0',
     copyright: f.s('copyright'),
+    owner_name: f.s('owner_name'),
+    owner_role: f.s('owner_role'),
+    phone: f.s('phone'),
+    email: f.s('email'),
+    zalo: f.bool('zalo') ? '1' : '0',
+    facebook: f.s('facebook'),
+    address: f.s('address'),
+    contact_intro_md,
+    contact_intro_html: contact_intro_md ? await marked.parse(contact_intro_md) : '',
+    contact_form: f.bool('contact_form') ? '1' : '0',
   }
-  if (!values.name) {
+  const error = !values.name
+    ? 'Vui lòng nhập tên trang web.'
+    : values.phone && !/^\+?[\d\s.-]{8,20}$/.test(values.phone)
+      ? 'Số điện thoại không hợp lệ.'
+      : values.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)
+        ? 'Email không hợp lệ.'
+        : values.facebook && !/^https:\/\//.test(values.facebook)
+          ? 'Link Facebook phải bắt đầu bằng https://'
+          : undefined
+  if (error) {
     c.status(400)
     const site = { ...(await getSiteConfig(c.env.DB, c.env.SITE_NAME)), ...values } as SiteConfig
     return c.render(
-      <AdminShell title="Cài đặt site" active={BASE} error="Vui lòng nhập tên trang web.">
+      <AdminShell title="Cài đặt site" active={BASE} error={error}>
         <SettingsForm site={site} />
       </AdminShell>,
       { title: 'Quản trị: Cài đặt site', noindex: true }

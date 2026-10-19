@@ -30,7 +30,7 @@ export const renderer = jsxRenderer<AppEnv>(
     const { SITE_URL } = c.env
     const site = c.get('site') ?? { ...DEFAULT_SITE_CONFIG, name: c.env.SITE_NAME }
     const jsonLd = [
-      organizationJsonLd(SITE_URL, site.name, faviconUrl(site)),
+      organizationJsonLd(SITE_URL, site, faviconUrl(site)),
       websiteJsonLd(SITE_URL, site.name),
       ...(seo.breadcrumbs ? [breadcrumbJsonLd(SITE_URL, seo.breadcrumbs)] : []),
       ...(seo.jsonLd ?? []),

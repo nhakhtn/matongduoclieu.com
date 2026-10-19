@@ -1,4 +1,5 @@
 import { mediaUrl } from './format'
+import { OWNER } from './site'
 
 // Cấu hình site sửa được trong /quan-tri/cai-dat, lưu ở bảng settings với key "site.<tên>".
 // Chỉ đọc các key "site.*" để không bao giờ lẫn mã băm mật khẩu / khoá phiên ra trang công khai.
@@ -17,6 +18,16 @@ export type SiteConfig = {
   footer_html: string
   footer_contact: string
   copyright: string
+  owner_name: string
+  owner_role: string
+  phone: string
+  email: string
+  zalo: string
+  address: string
+  facebook: string
+  contact_intro_md: string
+  contact_intro_html: string
+  contact_form: string
 }
 
 export const DEFAULT_SITE_CONFIG: Omit<SiteConfig, 'name'> = {
@@ -35,6 +46,16 @@ export const DEFAULT_SITE_CONFIG: Omit<SiteConfig, 'name'> = {
   footer_html: '<p>Thông tin và sản phẩm về mật ong và dược liệu Việt Nam.</p>\n',
   footer_contact: '1',
   copyright: '© {năm} {tên}. Nội dung chỉ mang tính tham khảo, không thay thế tư vấn y khoa.',
+  owner_name: OWNER.name,
+  owner_role: OWNER.role,
+  phone: OWNER.phone,
+  email: OWNER.email,
+  zalo: '1',
+  address: '',
+  facebook: '',
+  contact_intro_md: '',
+  contact_intro_html: '',
+  contact_form: '1',
 }
 
 export const SITE_CONFIG_KEYS = ['name', ...Object.keys(DEFAULT_SITE_CONFIG)] as (keyof SiteConfig)[]
@@ -57,6 +78,22 @@ export const faviconUrl = (config: Pick<SiteConfig, 'favicon_key'>) =>
   config.favicon_key ? mediaUrl(config.favicon_key) : '/favicon.svg'
 
 export const productsEnabled = (config: Pick<SiteConfig, 'products_enabled'>) => config.products_enabled !== '0'
+
+const phoneDigits = (phone: string) => phone.replace(/D/g, '')
+
+/** 0787767083 → "0787 767 083" */
+export const phoneDisplay = (phone: string) => {
+  const d = phoneDigits(phone)
+  return d.length === 10 ? `${d.slice(0, 4)} ${d.slice(4, 7)} ${d.slice(7)}` : phone
+}
+
+/** 0787767083 → "+84787767083" (dùng cho tel: và dữ liệu Google) */
+export const phoneIntl = (phone: string) => {
+  const d = phoneDigits(phone)
+  return d.startsWith('0') ? `+84${d.slice(1)}` : d ? `+${d}` : ''
+}
+
+export const zaloUrl = (phone: string) => `https://zalo.me/${phoneDigits(phone)}`
 
 /** Thay {năm} và {tên} trong dòng copyright */
 export const copyrightText = (config: SiteConfig) =>

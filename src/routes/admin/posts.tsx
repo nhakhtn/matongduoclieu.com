@@ -12,7 +12,6 @@ import {
 import type { PostCategory } from '../../lib/db'
 import { listPostCategories } from '../../lib/db'
 import { formatDate, mediaUrl } from '../../lib/format'
-import { OWNER } from '../../lib/site'
 import { isValidSlug, slugify } from '../../lib/slug'
 import { AdminShell, Badge, DeleteButton, parseId, readForm } from './ui'
 
@@ -55,8 +54,8 @@ const PostForm = ({ values, categories }: { values: FormValues; categories: Post
         <input name="cover_key" value={values.cover_key ?? ''} data-preview-for="cover-preview" />
       </label>
       <label>
-        Tác giả
-        <input name="author" value={values.author ?? OWNER.name} />
+        Tác giả (để trống = tác giả chính trong Cài đặt site)
+        <input name="author" value={values.author ?? ''} />
       </label>
     </div>
     <div class="upload-widget" data-mode="key" data-target="cover_key">

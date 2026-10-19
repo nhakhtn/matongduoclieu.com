@@ -1,6 +1,7 @@
 import type { Post } from './db'
 import { mediaUrl } from './format'
-import { OWNER } from './site'
+import type { SiteConfig } from './site-config'
+import { phoneIntl } from './site-config'
 
 export type Crumb = { name: string; path: string }
 
@@ -9,31 +10,34 @@ export const absoluteUrl = (siteUrl: string, path: string) => new URL(path, site
 // D1 lưu "YYYY-MM-DD HH:MM:SS" theo UTC
 export const isoDate = (value: string | null) => (value ? value.replace(' ', 'T') + 'Z' : undefined)
 
-const ownerJsonLd = (siteUrl: string) => ({
+const ownerJsonLd = (siteUrl: string, site: SiteConfig) => ({
   '@type': 'Person',
   '@id': `${siteUrl}/#owner`,
-  name: OWNER.name,
-  jobTitle: OWNER.role,
+  name: site.owner_name,
+  jobTitle: site.owner_role || undefined,
   url: absoluteUrl(siteUrl, '/gioi-thieu#tac-gia'),
 })
 
-export const organizationJsonLd = (siteUrl: string, siteName: string, logo: string) => ({
+export const organizationJsonLd = (siteUrl: string, site: SiteConfig, logo: string) => ({
   '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': `${siteUrl}/#organization`,
-  name: siteName,
+  name: site.name,
   url: siteUrl,
   logo: absoluteUrl(siteUrl, logo),
-  email: OWNER.email,
-  telephone: OWNER.phoneIntl,
-  founder: ownerJsonLd(siteUrl),
-  contactPoint: {
-    '@type': 'ContactPoint',
-    contactType: 'customer support',
-    telephone: OWNER.phoneIntl,
-    email: OWNER.email,
-    availableLanguage: 'vi',
-  },
+  email: site.email || undefined,
+  telephone: phoneIntl(site.phone) || undefined,
+  founder: site.owner_name ? ownerJsonLd(siteUrl, site) : undefined,
+  contactPoint:
+    site.phone || site.email
+      ? {
+          '@type': 'ContactPoint',
+          contactType: 'customer support',
+          telephone: phoneIntl(site.phone) || undefined,
+          email: site.email || undefined,
+          availableLanguage: 'vi',
+        }
+      : undefined,
 })
 
 export const websiteJsonLd = (siteUrl: string, siteName: string) => ({
@@ -57,7 +61,7 @@ export const breadcrumbJsonLd = (siteUrl: string, crumbs: Crumb[]) => ({
   })),
 })
 
-export const articleJsonLd = (siteUrl: string, post: Post) => ({
+export const articleJsonLd = (siteUrl: string, post: Post, site: SiteConfig) => ({
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: post.title,
@@ -67,6 +71,7 @@ export const articleJsonLd = (siteUrl: string, post: Post) => ({
   datePublished: isoDate(post.published_at),
   dateModified: isoDate(post.updated_at),
   image: post.cover_key ? [absoluteUrl(siteUrl, mediaUrl(post.cover_key))] : undefined,
-  author: post.author && post.author !== OWNER.name ? { '@type': 'Person', name: post.author } : ownerJsonLd(siteUrl),
+  author:
+    post.author && post.author !== site.owner_name ? { '@type': 'Person', name: post.author } : ownerJsonLd(siteUrl, site),
   publisher: { '@id': `${siteUrl}/#organization` },
 })

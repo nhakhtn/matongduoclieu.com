@@ -7,7 +7,6 @@ import { productsEnabled } from '../lib/site-config'
 import type { AppEnv } from '../types'
 import { formatDate, mediaUrl } from '../lib/format'
 import { articleJsonLd } from '../lib/seo'
-import { OWNER } from '../lib/site'
 
 const app = new Hono<AppEnv>()
 
@@ -57,10 +56,10 @@ app.get('/:slug', async (c) => {
           <h1>{post.title}</h1>
           <p class="post-meta">
             Tác giả:{' '}
-            {post.author && post.author !== OWNER.name ? (
+            {post.author && post.author !== c.get('site').owner_name ? (
               post.author
             ) : (
-              <a href="/gioi-thieu#tac-gia">{OWNER.name}</a>
+              <a href="/gioi-thieu#tac-gia">{c.get('site').owner_name}</a>
             )}{' '}
             ·
             Đăng ngày <time datetime={post.published_at ?? undefined}>{formatDate(post.published_at)}</time>
@@ -90,7 +89,7 @@ app.get('/:slug', async (c) => {
       type: 'article',
       section: `/chu-de/${post.category}`,
       image: post.cover_key ? mediaUrl(post.cover_key) : undefined,
-      jsonLd: [articleJsonLd(c.env.SITE_URL, post)],
+      jsonLd: [articleJsonLd(c.env.SITE_URL, post, c.get('site'))],
       breadcrumbs: [
         { name: 'Trang chủ', path: '/' },
         ...(post.category_name ? [{ name: post.category_name, path: `/chu-de/${post.category}` }] : []),
