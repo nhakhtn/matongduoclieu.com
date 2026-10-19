@@ -4,6 +4,7 @@ title: Gác Kèo Ong: Nghề Ăn Ong Ở Rừng Tràm U Minh
 excerpt: Ở rừng tràm U Minh, người ta không nuôi ong trong thùng mà gác kèo để mời ong rừng về làm tổ. Lịch sử, kỹ thuật và văn hoá của nghề gác kèo ong, di sản văn hoá phi vật thể quốc gia, cùng những điều cần biết về mật ong U Minh.
 category: mat-ong
 cover: posts/mat-ong-u-minh/01-to-ong-khoai.webp
+products: mat-ong-rung-u-minh-oginbee-500ml
 author: Nguyễn Đoàn Đức Nhã
 ---
 
