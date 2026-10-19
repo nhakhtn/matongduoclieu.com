@@ -55,6 +55,20 @@ ON CONFLICT(slug) DO UPDATE SET
   image_url = excluded.image_url, buy_url = excluded.buy_url,
   category = excluded.category, sort_order = excluded.sort_order, active = excluded.active;
 
+-- Mật ong rừng tràm U Minh (OginBee): thêm ngày 19/10/2026
+INSERT INTO products (slug, name, summary, price, image_url, buy_url, category, sort_order, active) VALUES
+('mat-ong-rung-u-minh-oginbee-500ml',
+ 'Mật ong rừng tràm U Minh 500ml – OginBee',
+ 'Mật ong hoa tràm rừng U Minh Hạ (Cà Mau), lấy từ kèo ong theo lối gác kèo truyền thống. Chai 500ml, có chai thuỷ tinh hoặc chai nhựa. Mật không hạ độ ẩm nên hơi loãng, màu vàng hổ phách.',
+ 414797,
+ 'https://down-vn.img.susercontent.com/file/1edd8bc6d5ca6e67e7447f36f8a7d908@resize_w600_nl',
+ 'https://s.shopee.vn/50ZwynXbnx',
+ 'mat-ong', 4, 1)
+ON CONFLICT(slug) DO UPDATE SET
+  name = excluded.name, summary = excluded.summary, price = excluded.price,
+  image_url = excluded.image_url, buy_url = excluded.buy_url,
+  category = excluded.category, sort_order = excluded.sort_order, active = excluded.active;
+
 -- Khách thấy ngay bản mới (xem src/lib/page-cache.ts)
 INSERT INTO settings (key, value) VALUES ('cache_version', '1')
   ON CONFLICT(key) DO UPDATE SET value = CAST(CAST(value AS INTEGER) + 1 AS TEXT), updated_at = datetime('now');
