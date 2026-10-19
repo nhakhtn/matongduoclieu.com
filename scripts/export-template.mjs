@@ -54,9 +54,6 @@ pkg.cloudflare = {
         'Mã cài đặt: dùng một lần để đặt mật khẩu quản trị khi mở `/quan-tri` lần đầu. Chọn chuỗi khó đoán và **ghi nhớ lại**.',
     },
     SITE_NAME: { description: 'Tên blog (đổi được sau trong Quản trị → Cài đặt site).' },
-    SITE_URL: { description: 'Để trống. Khi gắn tên miền riêng thì điền, vd. `https://tenmien.com`.' },
-    MEDIA_BASE: { description: 'Để trống. Khi gắn tên miền cho kho ảnh R2 thì điền, vd. `https://anh.tenmien.com`.' },
-    GOOGLE_SITE_VERIFICATION: { description: 'Để trống, hoặc mã xác minh Google Search Console (thẻ meta).' },
   },
 }
 writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n')
