@@ -3,11 +3,13 @@ import { raw } from 'hono/html'
 import { marked } from 'marked'
 import { PostGrid, ProductGrid } from '../components/Cards'
 import { getPost, listPosts, listProducts } from '../lib/db'
+import { productsEnabled } from '../lib/site-config'
+import type { AppEnv } from '../types'
 import { formatDate, mediaUrl } from '../lib/format'
 import { articleJsonLd } from '../lib/seo'
 import { OWNER } from '../lib/site'
 
-const app = new Hono<{ Bindings: CloudflareBindings }>()
+const app = new Hono<AppEnv>()
 
 app.get('/', async (c) => {
   const posts = await listPosts(c.env.DB, 100)
@@ -33,7 +35,7 @@ app.get('/:slug', async (c) => {
 
   const [related, products] = await Promise.all([
     listPosts(c.env.DB, 4, post.category),
-    listProducts(c.env.DB, post.category),
+    productsEnabled(c.get('site')) ? listProducts(c.env.DB, post.category) : [],
   ])
 
   // Nội dung do quản trị viên viết nên được tin cậy; nếu sau này cho người dùng

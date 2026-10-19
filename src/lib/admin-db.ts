@@ -73,11 +73,12 @@ export async function adminDeletePost(db: D1Database, id: number) {
 export async function adminListPostCategories(db: D1Database) {
   const { results } = await db
     .prepare(
-      `SELECT c.id, c.slug, c.name, c.description, c.sort_order,
-         (SELECT COUNT(*) FROM posts p WHERE p.category = c.slug) AS post_count
+      `SELECT c.id, c.slug, c.name, c.description, c.sort_order, c.show_in_menu,
+         (SELECT COUNT(*) FROM posts p WHERE p.category = c.slug) AS post_count,
+         (SELECT COUNT(*) FROM posts p WHERE p.category = c.slug AND p.published = 1) AS published_count
        FROM post_categories c ORDER BY c.sort_order, c.id`
     )
-    .all<PostCategory & { post_count: number }>()
+    .all<PostCategory & { post_count: number; published_count: number }>()
   return results
 }
 
@@ -85,12 +86,12 @@ export function adminGetPostCategory(db: D1Database, id: number) {
   return db.prepare('SELECT * FROM post_categories WHERE id = ?').bind(id).first<PostCategory>()
 }
 
-export type PostCategoryInput = { slug: string; name: string; description: string; sort_order: number }
+export type PostCategoryInput = { slug: string; name: string; description: string; sort_order: number; show_in_menu: number }
 
 export async function adminCreatePostCategory(db: D1Database, c: PostCategoryInput) {
   await db
-    .prepare('INSERT INTO post_categories (slug, name, description, sort_order) VALUES (?, ?, ?, ?)')
-    .bind(c.slug, c.name, c.description, c.sort_order)
+    .prepare('INSERT INTO post_categories (slug, name, description, sort_order, show_in_menu) VALUES (?, ?, ?, ?, ?)')
+    .bind(c.slug, c.name, c.description, c.sort_order, c.show_in_menu)
     .run()
 }
 
@@ -100,8 +101,8 @@ export async function adminUpdatePostCategory(db: D1Database, id: number, c: Pos
   if (!old) return
   await db.batch([
     db
-      .prepare('UPDATE post_categories SET slug = ?, name = ?, description = ?, sort_order = ? WHERE id = ?')
-      .bind(c.slug, c.name, c.description, c.sort_order, id),
+      .prepare('UPDATE post_categories SET slug = ?, name = ?, description = ?, sort_order = ?, show_in_menu = ? WHERE id = ?')
+      .bind(c.slug, c.name, c.description, c.sort_order, c.show_in_menu, id),
     db.prepare('UPDATE posts SET category = ? WHERE category = ?').bind(c.slug, old.slug),
   ])
 }

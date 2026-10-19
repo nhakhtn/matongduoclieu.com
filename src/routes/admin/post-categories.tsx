@@ -9,7 +9,7 @@ import {
   isUniqueError,
 } from '../../lib/admin-db'
 import { isValidSlug, slugify } from '../../lib/slug'
-import { AdminShell, DeleteButton, parseId, readForm } from './ui'
+import { AdminShell, Badge, DeleteButton, parseId, readForm } from './ui'
 
 const app = new Hono<{ Bindings: CloudflareBindings }>()
 const BASE = '/quan-tri/chuyen-muc'
@@ -36,6 +36,10 @@ const CategoryForm = ({ values }: { values: FormValues }) => (
       Thứ tự hiển thị trên menu (số nhỏ đứng trước)
       <input name="sort_order" type="number" value={String(values.sort_order ?? 0)} />
     </label>
+    <label class="checkbox">
+      <input type="checkbox" name="show_in_menu" checked={values.show_in_menu !== 0} /> Hiện trên menu và trang chủ (chỉ hiện khi
+      đã có bài đăng)
+    </label>
     <div class="form-actions">
       <button class="btn" type="submit">
         {values.id ? 'Lưu thay đổi' : 'Tạo chuyên mục'}
@@ -53,6 +57,7 @@ async function parseCategoryForm(req: Parameters<typeof readForm>[0]) {
     slug: f.s('slug') || slugify(name),
     description: f.s('description'),
     sort_order: f.int('sort_order'),
+    show_in_menu: f.bool('show_in_menu'),
   }
   const error = !name
     ? 'Vui lòng nhập tên chuyên mục.'
@@ -76,7 +81,9 @@ app.get('/', async (c) => {
         </a>
       }
     >
-      <p class="muted">Mỗi chuyên mục tự xuất hiện trên menu và trang chủ.</p>
+      <p class="muted">
+        Chuyên mục tự xuất hiện trên menu và trang chủ khi đã có bài đăng (trừ khi bỏ chọn "Hiện trên menu").
+      </p>
       <table class="admin-table">
         <thead>
           <tr>
@@ -84,6 +91,7 @@ app.get('/', async (c) => {
             <th>Đường dẫn</th>
             <th>Số bài</th>
             <th>Thứ tự</th>
+            <th>Trên menu</th>
             <th></th>
           </tr>
         </thead>
@@ -98,6 +106,15 @@ app.get('/', async (c) => {
               <td class="muted">/chu-de/{cat.slug}</td>
               <td>{cat.post_count}</td>
               <td>{cat.sort_order}</td>
+              <td>
+                {!cat.show_in_menu ? (
+                  <Badge on={false} yes="" no="Đã ẩn" />
+                ) : cat.published_count > 0 ? (
+                  <Badge on yes="Đang hiện" no="" />
+                ) : (
+                  <span class="muted">Chờ có bài đăng</span>
+                )}
+              </td>
               <td class="row-actions">
                 <a href={`${BASE}/${cat.id}`}>Sửa</a>
                 <a href={`/chu-de/${cat.slug}`} target="_blank" rel="noopener">
@@ -116,7 +133,7 @@ app.get('/', async (c) => {
 app.get('/moi', (c) =>
   c.render(
     <AdminShell title="Thêm chuyên mục" active={BASE}>
-      <CategoryForm values={{}} />
+      <CategoryForm values={{ show_in_menu: 1 }} />
     </AdminShell>,
     { title: 'Thêm chuyên mục', noindex: true }
   )

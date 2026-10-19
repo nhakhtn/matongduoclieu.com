@@ -40,6 +40,7 @@ export type PostCategory = {
   name: string
   description: string
   sort_order: number
+  show_in_menu: number
 }
 
 export type ProductCategory = {
@@ -90,14 +91,26 @@ export async function listProducts(db: D1Database, category?: string): Promise<P
 
 export async function listPostCategories(db: D1Database): Promise<PostCategory[]> {
   const { results } = await db
-    .prepare('SELECT id, slug, name, description, sort_order FROM post_categories ORDER BY sort_order, id')
+    .prepare('SELECT id, slug, name, description, sort_order, show_in_menu FROM post_categories ORDER BY sort_order, id')
+    .all<PostCategory>()
+  return results
+}
+
+/** Chuyên mục hiện trên menu và trang chủ: đang bật "Hiện trên menu" và có ít nhất một bài đã đăng */
+export async function listNavCategories(db: D1Database): Promise<PostCategory[]> {
+  const { results } = await db
+    .prepare(
+      `SELECT c.id, c.slug, c.name, c.description, c.sort_order, c.show_in_menu FROM post_categories c
+       WHERE c.show_in_menu = 1 AND EXISTS (SELECT 1 FROM posts p WHERE p.category = c.slug AND p.published = 1)
+       ORDER BY c.sort_order, c.id`
+    )
     .all<PostCategory>()
   return results
 }
 
 export function getPostCategory(db: D1Database, slug: string): Promise<PostCategory | null> {
   return db
-    .prepare('SELECT id, slug, name, description, sort_order FROM post_categories WHERE slug = ?')
+    .prepare('SELECT id, slug, name, description, sort_order, show_in_menu FROM post_categories WHERE slug = ?')
     .bind(slug)
     .first<PostCategory>()
 }

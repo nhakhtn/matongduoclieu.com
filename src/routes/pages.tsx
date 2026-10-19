@@ -2,6 +2,7 @@ import { Hono } from 'hono'
 import { FeaturedPost, PostList, ProductGrid } from '../components/Cards'
 import { listPosts, listProductCategories, listProducts } from '../lib/db'
 import { mediaUrl } from '../lib/format'
+import { productsEnabled } from '../lib/site-config'
 import type { AppEnv } from '../types'
 
 const app = new Hono<AppEnv>()
@@ -12,7 +13,7 @@ const AFFILIATE_NOTE =
 app.get('/', async (c) => {
   const categories = c.get('nav').postCategories
   const site = c.get('site')
-  const productCount = Math.max(0, Number.parseInt(site.home_products, 10) || 0)
+  const productCount = productsEnabled(site) ? Math.max(0, Number.parseInt(site.home_products, 10) || 0) : 0
   const [latest, products, ...byCategory] = await Promise.all([
     listPosts(c.env.DB, 1),
     listProducts(c.env.DB),
@@ -83,6 +84,7 @@ app.get('/', async (c) => {
 })
 
 app.get('/san-pham', async (c) => {
+  if (!productsEnabled(c.get('site'))) return c.notFound()
   const [products, categories] = await Promise.all([listProducts(c.env.DB), listProductCategories(c.env.DB)])
   // Nhóm theo danh mục; sản phẩm thuộc danh mục không còn tồn tại xếp vào "Khác"
   const known = new Set(categories.map((cat) => cat.slug))

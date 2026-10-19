@@ -75,6 +75,11 @@ const SettingsForm = ({ site }: { site: SiteConfig }) => (
         Mô tả ảnh (alt, giúp Google hiểu ảnh)
         <input name="hero_image_alt" maxlength={200} value={site.hero_image_alt} />
       </label>
+      <label class="checkbox">
+        <input type="checkbox" name="products_enabled" checked={site.products_enabled !== '0'} /> Bật mục Sản phẩm
+        (bỏ chọn nếu chỉ viết bài, không làm affiliate: ẩn menu Sản phẩm, trang /san-pham, sản phẩm trong trang chủ và
+        cuối bài viết)
+      </label>
       <div class="form-row">
         <label>
           Số sản phẩm hiện ở trang chủ (0 để ẩn)
@@ -144,6 +149,7 @@ app.post('/', async (c) => {
     hero_image_key: f.s('hero_image_key'),
     hero_image_alt: f.s('hero_image_alt'),
     home_products: String(homeProducts),
+    products_enabled: f.bool('products_enabled') ? '1' : '0',
     home_description: f.text('home_description'),
     footer_md,
     footer_html: footer_md ? await marked.parse(footer_md) : '',

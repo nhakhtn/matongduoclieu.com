@@ -3,7 +3,7 @@ import { raw } from 'hono/html'
 import type { Crumb } from '../lib/seo'
 import { OWNER } from '../lib/site'
 import type { SiteConfig } from '../lib/site-config'
-import { copyrightText, faviconUrl } from '../lib/site-config'
+import { copyrightText, faviconUrl, productsEnabled } from '../lib/site-config'
 import type { SiteNav } from '../types'
 
 export type SeoProps = {
@@ -29,10 +29,10 @@ type Props = SeoProps & {
 }
 
 // Menu: Trang chủ, các chuyên mục bài viết, Sản phẩm, các trang tĩnh bật "hiện ở menu", Liên hệ
-const menuItems = (nav: SiteNav) => [
+const menuItems = (nav: SiteNav, site: SiteConfig) => [
   { href: '/', label: 'Trang chủ' },
   ...nav.postCategories.map((c) => ({ href: `/chu-de/${c.slug}`, label: c.name })),
-  { href: '/san-pham', label: 'Sản phẩm' },
+  ...(productsEnabled(site) ? [{ href: '/san-pham', label: 'Sản phẩm' }] : []),
   ...nav.pages.filter((p) => p.show_in_menu).map((p) => ({ href: `/${p.slug}`, label: p.title })),
   { href: '/lien-he', label: 'Liên hệ' },
 ]
@@ -100,7 +100,7 @@ export const Layout = (props: Props) => {
               {siteName}
             </a>
             <nav class="main-nav" aria-label="Menu chính">
-              {menuItems(props.nav).map((item) => {
+              {menuItems(props.nav, site).map((item) => {
                 const active =
                   item.href === props.section || (item.href === '/' ? path === '/' : path.startsWith(item.href))
                 return (

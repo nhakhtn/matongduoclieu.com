@@ -2,7 +2,7 @@ import type { MiddlewareHandler } from 'hono'
 import { jsxRenderer } from 'hono/jsx-renderer'
 import type { SeoProps } from './components/Layout'
 import { Layout } from './components/Layout'
-import { listNavPages, listPostCategories } from './lib/db'
+import { listNavCategories, listNavPages } from './lib/db'
 import { breadcrumbJsonLd, organizationJsonLd, websiteJsonLd } from './lib/seo'
 import { DEFAULT_SITE_CONFIG, faviconUrl, getSiteConfig } from './lib/site-config'
 import type { AppEnv } from './types'
@@ -17,7 +17,7 @@ declare module 'hono' {
 export const loadNav: MiddlewareHandler<AppEnv> = async (c, next) => {
   const [site, postCategories, pages] = await Promise.all([
     getSiteConfig(c.env.DB, c.env.SITE_NAME),
-    listPostCategories(c.env.DB),
+    listNavCategories(c.env.DB),
     listNavPages(c.env.DB),
   ])
   c.set('site', site)

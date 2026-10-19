@@ -12,6 +12,7 @@ export type SiteConfig = {
   hero_image_key: string
   hero_image_alt: string
   home_products: string
+  products_enabled: string
   footer_md: string
   footer_html: string
   footer_contact: string
@@ -29,6 +30,7 @@ export const DEFAULT_SITE_CONFIG: Omit<SiteConfig, 'name'> = {
   hero_image_key: 'posts/mat-ong/02-comb.webp',
   hero_image_alt: 'Cầu ong với các lỗ tổ chứa mật đã được bịt nắp sáp',
   home_products: '4',
+  products_enabled: '1',
   footer_md: 'Thông tin và sản phẩm về mật ong và dược liệu Việt Nam.',
   footer_html: '<p>Thông tin và sản phẩm về mật ong và dược liệu Việt Nam.</p>\n',
   footer_contact: '1',
@@ -53,6 +55,8 @@ export async function getSiteConfig(db: D1Database, fallbackName: string): Promi
 
 export const faviconUrl = (config: Pick<SiteConfig, 'favicon_key'>) =>
   config.favicon_key ? mediaUrl(config.favicon_key) : '/favicon.svg'
+
+export const productsEnabled = (config: Pick<SiteConfig, 'products_enabled'>) => config.products_enabled !== '0'
 
 /** Thay {năm} và {tên} trong dòng copyright */
 export const copyrightText = (config: SiteConfig) =>

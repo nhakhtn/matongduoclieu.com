@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
 import { secureHeaders } from 'hono/secure-headers'
-import { listPostCategories, listPosts, listPublishedPages, recordProductClick } from './lib/db'
+import { listNavCategories, listPosts, listPublishedPages, recordProductClick } from './lib/db'
 import { getSetting } from './lib/auth'
 import { mediaUrl } from './lib/format'
 import { isoDate } from './lib/seo'
@@ -46,6 +46,7 @@ app.route('/media', media)
 
 // Link mua sản phẩm: đếm lượt bấm rồi chuyển sang Shopee
 app.get('/mua/:slug', async (c) => {
+  if ((await getSetting(c.env.DB, 'site.products_enabled')) === '0') return c.notFound()
   const url = await recordProductClick(c.env.DB, c.req.param('slug'))
   if (!url) return c.redirect('/san-pham', 302)
   c.header('X-Robots-Tag', 'noindex, nofollow')
@@ -61,16 +62,17 @@ app.get('/favicon.ico', async (c) => {
 
 app.get('/sitemap.xml', async (c) => {
   const base = c.env.SITE_URL
-  const [posts, categories, staticList] = await Promise.all([
+  const [posts, categories, staticList, productsSetting] = await Promise.all([
     listPosts(c.env.DB, 5000),
-    listPostCategories(c.env.DB),
+    listNavCategories(c.env.DB),
     listPublishedPages(c.env.DB),
+    getSetting(c.env.DB, 'site.products_enabled'),
   ])
   const entries: { path: string; lastmod?: string }[] = [
     { path: '/' },
     ...categories.map((cat) => ({ path: `/chu-de/${cat.slug}` })),
     { path: '/bai-viet' },
-    { path: '/san-pham' },
+    ...(productsSetting === '0' ? [] : [{ path: '/san-pham' }]),
     ...staticList.map((p) => ({ path: `/${p.slug}`, lastmod: isoDate(p.updated_at) })),
     { path: '/lien-he' },
     ...posts.map((p) => ({ path: `/bai-viet/${p.slug}`, lastmod: isoDate(p.updated_at) })),
