@@ -1,8 +1,9 @@
 import { Hono } from 'hono'
 import { createContact } from '../lib/db'
 import { OWNER } from '../lib/site'
+import type { AppEnv } from '../types'
 
-const app = new Hono<{ Bindings: CloudflareBindings }>()
+const app = new Hono<AppEnv>()
 
 const PHONE_RE = /^(\+?84|0)\d{9,10}$/
 
@@ -46,7 +47,7 @@ app.get('/', (c) => {
     </>,
     {
       title: 'Liên hệ',
-      description: `Liên hệ ${c.env.SITE_NAME}: điện thoại/Zalo ${OWNER.phoneDisplay}, email ${OWNER.email}.`,
+      description: `Liên hệ ${c.get('site').name}: điện thoại/Zalo ${OWNER.phoneDisplay}, email ${OWNER.email}.`,
       breadcrumbs: [
         { name: 'Trang chủ', path: '/' },
         { name: 'Liên hệ', path: '/lien-he' },

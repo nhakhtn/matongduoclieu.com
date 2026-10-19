@@ -7,6 +7,7 @@ const SECTIONS = [
   { href: '/quan-tri/danh-muc-san-pham', label: 'Danh mục sản phẩm' },
   { href: '/quan-tri/trang', label: 'Trang' },
   { href: '/quan-tri/anh', label: 'Thư viện ảnh' },
+  { href: '/quan-tri/cai-dat', label: 'Cài đặt site' },
   { href: '/quan-tri/lien-he', label: 'Lời nhắn' },
   { href: '/quan-tri/doi-mat-khau', label: 'Đổi mật khẩu' },
 ]

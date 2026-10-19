@@ -2,6 +2,8 @@ import type { Child } from 'hono/jsx'
 import { raw } from 'hono/html'
 import type { Crumb } from '../lib/seo'
 import { OWNER } from '../lib/site'
+import type { SiteConfig } from '../lib/site-config'
+import { copyrightText, faviconUrl } from '../lib/site-config'
 import type { SiteNav } from '../types'
 
 export type SeoProps = {
@@ -18,7 +20,7 @@ export type SeoProps = {
 }
 
 type Props = SeoProps & {
-  siteName: string
+  site: SiteConfig
   siteUrl: string
   path: string
   googleVerification?: string
@@ -57,7 +59,9 @@ export const Breadcrumbs = ({ items }: { items: Crumb[] }) => (
 )
 
 export const Layout = (props: Props) => {
-  const { siteName, siteUrl, path, title, description, children } = props
+  const { site, siteUrl, path, title, description, children } = props
+  const siteName = site.name
+  const icon = faviconUrl(site)
   const fullTitle = title ? `${title} | ${siteName}` : siteName
   const canonical = new URL(path, siteUrl).toString()
   const image = new URL(props.image ?? DEFAULT_IMAGE, siteUrl).toString()
@@ -71,7 +75,8 @@ export const Layout = (props: Props) => {
         {description && <meta name="description" content={description} />}
         {props.noindex && <meta name="robots" content="noindex" />}
         <link rel="canonical" href={canonical} />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href={icon} />
+        <link rel="apple-touch-icon" href={icon} />
         <meta name="theme-color" content="#c98a12" />
 
         <meta property="og:site_name" content={siteName} />
@@ -91,7 +96,7 @@ export const Layout = (props: Props) => {
         <header class="site-header">
           <div class="container">
             <a href="/" class="logo">
-              <img src="/favicon.svg" alt="" width="34" height="34" />
+              <img src={icon} alt="" width="34" height="34" />
               {siteName}
             </a>
             <nav class="main-nav" aria-label="Menu chính">
@@ -115,12 +120,14 @@ export const Layout = (props: Props) => {
           <div class="container footer-grid">
             <div>
               <strong>{siteName}</strong>
-              <p>Thông tin và sản phẩm về mật ong và dược liệu Việt Nam.</p>
+              <div class="footer-about">{raw(site.footer_html)}</div>
+              {site.footer_contact === '1' && (
               <p>
                 Điện thoại / Zalo: <a href={`tel:${OWNER.phone}`}>{OWNER.phoneDisplay}</a>
                 <br />
                 Email: <a href={`mailto:${OWNER.email}`}>{OWNER.email}</a>
               </p>
+              )}
             </div>
             <div class="footer-links">
               <a href="/bai-viet">Tất cả bài viết</a>
@@ -133,7 +140,7 @@ export const Layout = (props: Props) => {
             </div>
           </div>
           <div class="container copyright">
-            © {new Date().getFullYear()} {siteName}. Nội dung chỉ mang tính tham khảo, không thay thế tư vấn y khoa.
+            {copyrightText(site)}
           </div>
         </footer>
       </body>

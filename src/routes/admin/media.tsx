@@ -50,15 +50,17 @@ app.post('/tai-len', async (c) => {
 // Ảnh đang được dùng ở đâu (để chặn xoá nhầm)
 async function findUsage(db: D1Database, key: string) {
   const like = `%${key}%`
-  const [posts, pages, products] = await Promise.all([
+  const [posts, pages, products, settings] = await Promise.all([
     db.prepare('SELECT title FROM posts WHERE cover_key = ? OR content_md LIKE ?').bind(key, like).all<{ title: string }>(),
     db.prepare('SELECT title FROM pages WHERE content_md LIKE ?').bind(like).all<{ title: string }>(),
     db.prepare('SELECT name AS title FROM products WHERE image_key = ?').bind(key).all<{ title: string }>(),
+    db.prepare("SELECT key AS title FROM settings WHERE key LIKE 'site.%' AND value LIKE ?").bind(like).all<{ title: string }>(),
   ])
   return [
     ...posts.results.map((r) => `bài "${r.title}"`),
     ...pages.results.map((r) => `trang "${r.title}"`),
     ...products.results.map((r) => `sản phẩm "${r.title}"`),
+    ...(settings.results.length ? ['Cài đặt site'] : []),
   ]
 }
 

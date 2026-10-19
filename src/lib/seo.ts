@@ -17,13 +17,13 @@ const ownerJsonLd = (siteUrl: string) => ({
   url: absoluteUrl(siteUrl, '/gioi-thieu#tac-gia'),
 })
 
-export const organizationJsonLd = (siteUrl: string, siteName: string) => ({
+export const organizationJsonLd = (siteUrl: string, siteName: string, logo: string) => ({
   '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': `${siteUrl}/#organization`,
   name: siteName,
   url: siteUrl,
-  logo: absoluteUrl(siteUrl, '/favicon.svg'),
+  logo: absoluteUrl(siteUrl, logo),
   email: OWNER.email,
   telephone: OWNER.phoneIntl,
   founder: ownerJsonLd(siteUrl),

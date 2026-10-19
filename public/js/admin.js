@@ -5,24 +5,33 @@
 
   // Thu nhỏ ảnh về rộng tối đa MAX_WIDTH và mã hoá WebP (JPEG nếu trình duyệt không hỗ trợ WebP).
   // GIF giữ nguyên để không mất hiệu ứng động.
-  async function prepareImage(file) {
-    if (file.type === 'image/gif') return { blob: file, width: '', height: '' }
+  // format "png-square" (favicon): cắt giữa thành hình vuông cạnh tối đa maxWidth, lưu PNG.
+  async function prepareImage(file, { maxWidth = MAX_WIDTH, format } = {}) {
+    if (file.type === 'image/gif' && !format) return { blob: file, width: '', height: '' }
     const bitmap = await createImageBitmap(file)
-    const scale = Math.min(1, MAX_WIDTH / bitmap.width)
-    const width = Math.round(bitmap.width * scale)
-    const height = Math.round(bitmap.height * scale)
+    const square = format === 'png-square'
+    const side = Math.min(bitmap.width, bitmap.height)
+    const sw = square ? side : bitmap.width
+    const sh = square ? side : bitmap.height
+    const scale = Math.min(1, maxWidth / sw)
+    const width = Math.round(sw * scale)
+    const height = Math.round(sh * scale)
     const canvas = document.createElement('canvas')
     canvas.width = width
     canvas.height = height
-    canvas.getContext('2d').drawImage(bitmap, 0, 0, width, height)
+    canvas.getContext('2d').drawImage(bitmap, (bitmap.width - sw) / 2, (bitmap.height - sh) / 2, sw, sh, 0, 0, width, height)
     bitmap.close?.()
+    if (square) {
+      const blob = await new Promise((r) => canvas.toBlob(r, 'image/png'))
+      return { blob, width: String(width), height: String(height) }
+    }
     let blob = await new Promise((r) => canvas.toBlob(r, 'image/webp', QUALITY))
     if (!blob || blob.type !== 'image/webp') blob = await new Promise((r) => canvas.toBlob(r, 'image/jpeg', 0.85))
     return { blob, width: String(width), height: String(height) }
   }
 
-  async function upload(file) {
-    const { blob, width, height } = await prepareImage(file)
+  async function upload(file, options) {
+    const { blob, width, height } = await prepareImage(file, options)
     const data = new FormData()
     data.append('file', blob, file.name)
     data.append('name', file.name)
@@ -50,7 +59,8 @@
     const status = widget.querySelector('.upload-status')
     const mode = widget.dataset.mode
     const target = widget.dataset.target && document.querySelector(`[name="${widget.dataset.target}"]`)
-    const preview = widget.querySelector('.upload-preview')
+    const preview = widget.querySelector('.upload-preview') || (widget.nextElementSibling?.classList.contains('upload-preview') ? widget.nextElementSibling : null)
+    const options = { maxWidth: Number(widget.dataset.max) || undefined, format: widget.dataset.format }
 
     input.addEventListener('change', async () => {
       const files = [...input.files]
@@ -59,7 +69,7 @@
       try {
         for (const [i, file] of files.entries()) {
           status.textContent = `Đang xử lý ${files.length > 1 ? `${i + 1}/${files.length}: ` : ''}${file.name}...`
-          const result = await upload(file)
+          const result = await upload(file, options)
           if (mode === 'key' && target) target.value = result.key
           if (mode === 'url' && target) target.value = result.url
           if (mode === 'markdown' && target) insertAtCursor(target, result.snippet)

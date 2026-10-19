@@ -10,6 +10,7 @@ import postsAdmin from './posts'
 import productCategoriesAdmin from './product-categories'
 import mediaAdmin from './media'
 import productsAdmin from './products'
+import settingsAdmin from './settings'
 import { AdminShell } from './ui'
 
 type Env = { Bindings: CloudflareBindings }
@@ -196,5 +197,6 @@ app.route('/san-pham', productsAdmin)
 app.route('/danh-muc-san-pham', productCategoriesAdmin)
 app.route('/trang', pagesAdmin)
 app.route('/anh', mediaAdmin)
+app.route('/cai-dat', settingsAdmin)
 
 export default app

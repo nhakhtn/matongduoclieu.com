@@ -1,6 +1,8 @@
 import { Hono } from 'hono'
 import { secureHeaders } from 'hono/secure-headers'
 import { listPostCategories, listPosts, listPublishedPages, recordProductClick } from './lib/db'
+import { getSetting } from './lib/auth'
+import { mediaUrl } from './lib/format'
 import { isoDate } from './lib/seo'
 import { loadNav, renderer } from './renderer'
 import admin from './routes/admin'
@@ -50,7 +52,12 @@ app.get('/mua/:slug', async (c) => {
   return c.redirect(url, 302)
 })
 
-app.get('/favicon.ico', (c) => c.redirect('/favicon.svg', 301))
+// Favicon có thể đổi trong trang quản trị nên không chuyển hướng vĩnh viễn
+app.get('/favicon.ico', async (c) => {
+  const key = await getSetting(c.env.DB, 'site.favicon_key')
+  c.header('Cache-Control', 'public, max-age=86400')
+  return c.redirect(key ? mediaUrl(key) : '/favicon.svg', 302)
+})
 
 app.get('/sitemap.xml', async (c) => {
   const base = c.env.SITE_URL

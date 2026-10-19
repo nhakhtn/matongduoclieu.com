@@ -4,6 +4,7 @@ import type { SeoProps } from './components/Layout'
 import { Layout } from './components/Layout'
 import { listNavPages, listPostCategories } from './lib/db'
 import { breadcrumbJsonLd, organizationJsonLd, websiteJsonLd } from './lib/seo'
+import { DEFAULT_SITE_CONFIG, faviconUrl, getSiteConfig } from './lib/site-config'
 import type { AppEnv } from './types'
 
 declare module 'hono' {
@@ -12,19 +13,25 @@ declare module 'hono' {
   }
 }
 
-// Nạp chuyên mục và trang tĩnh cho menu/footer
+// Nạp cấu hình site, chuyên mục và trang tĩnh cho menu/footer
 export const loadNav: MiddlewareHandler<AppEnv> = async (c, next) => {
-  const [postCategories, pages] = await Promise.all([listPostCategories(c.env.DB), listNavPages(c.env.DB)])
+  const [site, postCategories, pages] = await Promise.all([
+    getSiteConfig(c.env.DB, c.env.SITE_NAME),
+    listPostCategories(c.env.DB),
+    listNavPages(c.env.DB),
+  ])
+  c.set('site', site)
   c.set('nav', { postCategories, pages })
   await next()
 }
 
 export const renderer = jsxRenderer<AppEnv>(
   ({ children, ...seo }, c) => {
-    const { SITE_URL, SITE_NAME } = c.env
+    const { SITE_URL } = c.env
+    const site = c.get('site') ?? { ...DEFAULT_SITE_CONFIG, name: c.env.SITE_NAME }
     const jsonLd = [
-      organizationJsonLd(SITE_URL, SITE_NAME),
-      websiteJsonLd(SITE_URL, SITE_NAME),
+      organizationJsonLd(SITE_URL, site.name, faviconUrl(site)),
+      websiteJsonLd(SITE_URL, site.name),
       ...(seo.breadcrumbs ? [breadcrumbJsonLd(SITE_URL, seo.breadcrumbs)] : []),
       ...(seo.jsonLd ?? []),
     ]
@@ -32,7 +39,7 @@ export const renderer = jsxRenderer<AppEnv>(
       <Layout
         {...seo}
         jsonLd={jsonLd}
-        siteName={SITE_NAME}
+        site={site}
         siteUrl={SITE_URL}
         path={new URL(c.req.url).pathname}
         googleVerification={c.env.GOOGLE_SITE_VERIFICATION}

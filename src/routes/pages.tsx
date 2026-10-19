@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import { FeaturedPost, PostList, ProductGrid } from '../components/Cards'
 import { listPosts, listProductCategories, listProducts } from '../lib/db'
+import { mediaUrl } from '../lib/format'
 import type { AppEnv } from '../types'
 
 const app = new Hono<AppEnv>()
@@ -10,6 +11,8 @@ const AFFILIATE_NOTE =
 
 app.get('/', async (c) => {
   const categories = c.get('nav').postCategories
+  const site = c.get('site')
+  const productCount = Math.max(0, Number.parseInt(site.home_products, 10) || 0)
   const [latest, products, ...byCategory] = await Promise.all([
     listPosts(c.env.DB, 1),
     listProducts(c.env.DB),
@@ -21,12 +24,9 @@ app.get('/', async (c) => {
     <>
       <section class="hero">
         <div class="hero-text">
-          <p class="eyebrow">Lịch sử · Văn hoá · Đông y · Khoa học</p>
-          <h1>{c.env.SITE_NAME}</h1>
-          <p class="hero-lead">
-            Những câu chuyện chuyên sâu về mật ong và các vị dược liệu quý của Việt Nam: từ nguồn gốc, văn hoá, đến
-            cách dùng đúng theo y học cổ truyền và khoa học hiện đại.
-          </p>
+          {site.hero_eyebrow && <p class="eyebrow">{site.hero_eyebrow}</p>}
+          <h1>{site.hero_title || site.name}</h1>
+          {site.hero_lead && <p class="hero-lead">{site.hero_lead}</p>}
           <div class="hero-actions">
             {first && (
               <a class="btn" href={`/chu-de/${first.slug}`}>
@@ -40,9 +40,11 @@ app.get('/', async (c) => {
             )}
           </div>
         </div>
-        <div class="hero-image">
-          <img src="/media/posts/mat-ong/02-comb.webp" width="1200" height="900" alt="Cầu ong với các lỗ tổ chứa mật đã được bịt nắp sáp" />
-        </div>
+        {site.hero_image_key && (
+          <div class="hero-image">
+            <img src={mediaUrl(site.hero_image_key)} alt={site.hero_image_alt} />
+          </div>
+        )}
       </section>
 
       {featured && (
@@ -66,17 +68,17 @@ app.get('/', async (c) => {
         ))}
       </section>
 
-      {products.length > 0 && (
+      {productCount > 0 && products.length > 0 && (
         <section>
           <div class="section-head">
             <h2>Sản phẩm</h2>
             <a href="/san-pham">Xem tất cả ›</a>
           </div>
-          <ProductGrid products={products.slice(0, 4)} />
+          <ProductGrid products={products.slice(0, productCount)} />
         </section>
       )}
     </>,
-    { description: 'Kiến thức chuyên sâu và sản phẩm về mật ong và dược liệu Việt Nam: nhân sâm, nhung hươu, quế, linh chi…' }
+    { description: site.home_description, image: site.hero_image_key ? mediaUrl(site.hero_image_key) : undefined }
   )
 })
 
