@@ -5,7 +5,7 @@ Website thông tin và sản phẩm về mật ong và dược liệu (Mật Ong
 - **Hono + JSX** render HTML phía server (tốt cho SEO)
 - **D1**: bài viết, sản phẩm, liên hệ
 - **R2**: ảnh (`/media/<key>`)
-- **KV**: cache HTML trang (TTL 5 phút)
+- **KV**: bộ đếm đăng nhập sai của trang quản trị (không dùng làm cache trang, vì gói miễn phí chỉ cho ~1.000 lượt ghi/ngày)
 - **Static assets**: `public/` (CSS, robots.txt)
 
 ## Cấu trúc
@@ -66,7 +66,8 @@ author:                      # tên tác giả (tuỳ chọn)
 
 ```bash
 npm run post:local   -- content/posts/mat-ong.md   # thử trên D1 local
-npm run post:publish -- content/posts/mat-ong.md   # đăng lên D1 thật + xoá cache
+npm run post:publish -- content/posts/mat-ong.md   # đăng lên D1 thật
+npm run post:publish -- --all                      # đăng lại mọi bài
 ```
 
 ## Ghi chú
@@ -75,4 +76,5 @@ npm run post:publish -- content/posts/mat-ong.md   # đăng lên D1 thật + xo�
 - Sau khi sửa `wrangler.jsonc`, chạy `npm run cf-typegen` để cập nhật kiểu binding.
 - Upload ảnh: `npx wrangler r2 object put matongduoclieu-media/posts/<slug>/anh.webp --file=anh.webp --content-type=image/webp --remote`.
 - Sản phẩm Shopee: điền `buy_url` trong bảng `products`; nút mua đi qua `/mua/<slug>` để đếm lượt bấm (cột `clicks`).
-- Cache KV: trang tự cập nhật sau tối đa 5 phút (hoặc xoá key `page:<path>`).
+- Markdown được render sẵn thành HTML lúc đăng (cột `content_html`) để mỗi request nhẹ CPU (gói Workers miễn phí). Trang không cache nên bài/sản phẩm mới hiện ngay.
+- Sản phẩm: sửa `db/products.sql` rồi `npx wrangler d1 execute matongduoclieu-db --remote --file=db/products.sql`.

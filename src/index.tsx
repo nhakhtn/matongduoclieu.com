@@ -1,6 +1,5 @@
 import { Hono } from 'hono'
 import { secureHeaders } from 'hono/secure-headers'
-import { kvPageCache } from './lib/cache'
 import { CATEGORIES } from './lib/categories'
 import { listPosts, recordProductClick } from './lib/db'
 import { isoDate } from './lib/seo'
@@ -77,9 +76,6 @@ app.get('/sitemap.xml', async (c) => {
 })
 
 app.use('*', renderer)
-for (const path of ['/', '/san-pham', '/bai-viet', '/bai-viet/*', '/chu-de/*']) {
-  app.use(path, kvPageCache())
-}
 
 app.route('/', pages)
 app.route('/bai-viet', blog)

@@ -40,7 +40,8 @@ app.get('/:slug', async (c) => {
 
   // Nội dung do quản trị viên viết nên được tin cậy; nếu sau này cho người dùng
   // nhập Markdown thì cần lọc HTML trước khi render.
-  const html = await marked.parse(post.content_md)
+  // HTML được render sẵn lúc đăng; chỉ parse Markdown nếu bài chưa có content_html
+  const html = post.content_html ?? (await marked.parse(post.content_md))
   const updated = formatDate(post.updated_at) !== formatDate(post.published_at)
 
   return c.render(

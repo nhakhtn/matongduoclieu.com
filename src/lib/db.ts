@@ -1,14 +1,20 @@
+// Thông tin bài dùng cho danh sách (không kèm nội dung để truy vấn nhẹ)
 export type Post = {
   id: number
   slug: string
   title: string
   excerpt: string
-  content_md: string
   cover_key: string | null
   category: string
   author: string | null
   published_at: string | null
   updated_at: string
+}
+
+export type PostWithContent = Post & {
+  content_md: string
+  /** HTML render sẵn lúc đăng; null với bài đăng trước khi có cột này */
+  content_html: string | null
 }
 
 export type Product = {
@@ -24,7 +30,7 @@ export type Product = {
   category: string
 }
 
-const POST_COLUMNS = 'id, slug, title, excerpt, content_md, cover_key, category, author, published_at, updated_at'
+const POST_COLUMNS = 'id, slug, title, excerpt, cover_key, category, author, published_at, updated_at'
 const PRODUCT_COLUMNS = 'id, slug, name, summary, description_md, price, image_key, image_url, buy_url, category'
 
 export async function listPosts(db: D1Database, limit = 20, category?: string): Promise<Post[]> {
@@ -34,11 +40,11 @@ export async function listPosts(db: D1Database, limit = 20, category?: string): 
   return results
 }
 
-export function getPost(db: D1Database, slug: string): Promise<Post | null> {
+export function getPost(db: D1Database, slug: string): Promise<PostWithContent | null> {
   return db
-    .prepare(`SELECT ${POST_COLUMNS} FROM posts WHERE slug = ? AND published = 1`)
+    .prepare(`SELECT ${POST_COLUMNS}, content_md, content_html FROM posts WHERE slug = ? AND published = 1`)
     .bind(slug)
-    .first<Post>()
+    .first<PostWithContent>()
 }
 
 export async function listProducts(db: D1Database, category?: string): Promise<Product[]> {
