@@ -81,6 +81,16 @@ const SettingsForm = ({ site }: { site: SiteConfig }) => (
       </label>
       <div class="form-row">
         <label>
+          Tên nơi bán (vd. Shopee, Tiki, Lazada; để trống sẽ ghi "Mua ngay")
+          <input name="shop_name" maxlength={40} value={site.shop_name} />
+        </label>
+        <label>
+          Giới thiệu đầu trang Sản phẩm
+          <input name="products_intro" maxlength={200} value={site.products_intro} />
+        </label>
+      </div>
+      <div class="form-row">
+        <label>
           Số sản phẩm hiện ở trang chủ (0 để ẩn)
           <input name="home_products" type="number" min={0} max={20} value={site.home_products} />
         </label>
@@ -195,6 +205,8 @@ app.post('/', async (c) => {
     hero_image_alt: f.s('hero_image_alt'),
     home_products: String(homeProducts),
     products_enabled: f.bool('products_enabled') ? '1' : '0',
+    shop_name: f.s('shop_name'),
+    products_intro: f.s('products_intro'),
     home_description: f.text('home_description'),
     footer_md,
     footer_html: footer_md ? await marked.parse(footer_md) : '',

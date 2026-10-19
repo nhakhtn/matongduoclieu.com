@@ -48,6 +48,7 @@ main.container { padding-top: 28px; padding-bottom: 72px; min-height: 60vh; }
 .eyebrow { margin: 0 0 10px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--honey-dark); }
 .hero-lead { font-size: 1.08rem; color: var(--muted); margin: 0; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.hero:not(:has(.hero-image)) { grid-template-columns: 1fr; max-width: 760px; }
 .hero-image img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 16px; box-shadow: 0 12px 32px rgba(120, 80, 10, 0.18); }
 @media (max-width: 760px) {
   .hero { grid-template-columns: 1fr; gap: 24px; }

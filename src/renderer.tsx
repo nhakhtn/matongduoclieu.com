@@ -3,7 +3,7 @@ import { jsxRenderer } from 'hono/jsx-renderer'
 import type { SeoProps } from './components/Layout'
 import { Layout } from './components/Layout'
 import { listNavCategories, listNavPages } from './lib/db'
-import { breadcrumbJsonLd, organizationJsonLd, websiteJsonLd } from './lib/seo'
+import { breadcrumbJsonLd, organizationJsonLd, siteOrigin, websiteJsonLd } from './lib/seo'
 import { DEFAULT_SITE_CONFIG, faviconUrl, getSiteConfig } from './lib/site-config'
 import type { AppEnv } from './types'
 
@@ -27,7 +27,7 @@ export const loadNav: MiddlewareHandler<AppEnv> = async (c, next) => {
 
 export const renderer = jsxRenderer<AppEnv>(
   ({ children, ...seo }, c) => {
-    const { SITE_URL } = c.env
+    const SITE_URL = siteOrigin(c)
     const site = c.get('site') ?? { ...DEFAULT_SITE_CONFIG, name: c.env.SITE_NAME }
     const jsonLd = [
       organizationJsonLd(SITE_URL, site, faviconUrl(site)),

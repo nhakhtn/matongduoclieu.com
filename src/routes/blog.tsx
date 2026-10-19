@@ -6,7 +6,7 @@ import { getPost, listPosts, listProducts } from '../lib/db'
 import { productsEnabled } from '../lib/site-config'
 import type { AppEnv } from '../types'
 import { formatDate, mediaUrl, withMediaBase } from '../lib/format'
-import { articleJsonLd } from '../lib/seo'
+import { articleJsonLd, siteOrigin } from '../lib/seo'
 
 const app = new Hono<AppEnv>()
 
@@ -19,7 +19,7 @@ app.get('/', async (c) => {
     </>,
     {
       title: 'Bài viết',
-      description: 'Tất cả bài viết về mật ong và dược liệu.',
+      description: `Tất cả bài viết trên ${c.get('site').name}.`,
       breadcrumbs: [
         { name: 'Trang chủ', path: '/' },
         { name: 'Bài viết', path: '/bai-viet' },
@@ -55,13 +55,13 @@ app.get('/:slug', async (c) => {
         <header class="post-header">
           <h1>{post.title}</h1>
           <p class="post-meta">
-            Tác giả:{' '}
             {post.author && post.author !== c.get('site').owner_name ? (
-              post.author
-            ) : (
-              <a href="/gioi-thieu#tac-gia">{c.get('site').owner_name}</a>
-            )}{' '}
-            ·
+              <>Tác giả: {post.author} · </>
+            ) : c.get('site').owner_name ? (
+              <>
+                Tác giả: <a href="/gioi-thieu#tac-gia">{c.get('site').owner_name}</a> ·{' '}
+              </>
+            ) : null}
             Đăng ngày <time datetime={post.published_at ?? undefined}>{formatDate(post.published_at)}</time>
             {updated && <> · Cập nhật {formatDate(post.updated_at)}</>}
           </p>
@@ -72,7 +72,7 @@ app.get('/:slug', async (c) => {
       {products.length > 0 && (
         <section class="related">
           <h2>Sản phẩm liên quan</h2>
-          <ProductGrid products={products.slice(0, 3)} />
+          <ProductGrid products={products.slice(0, 3)} shop={c.get('site').shop_name} />
         </section>
       )}
 
@@ -89,7 +89,7 @@ app.get('/:slug', async (c) => {
       type: 'article',
       section: `/chu-de/${post.category}`,
       image: post.cover_key ? mediaUrl(post.cover_key) : undefined,
-      jsonLd: [articleJsonLd(c.env.SITE_URL, post, c.get('site'))],
+      jsonLd: [articleJsonLd(siteOrigin(c), post, c.get('site'))],
       breadcrumbs: [
         { name: 'Trang chủ', path: '/' },
         ...(post.category_name ? [{ name: post.category_name, path: `/chu-de/${post.category}` }] : []),

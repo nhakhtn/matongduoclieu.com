@@ -1,5 +1,6 @@
 import type { Child } from 'hono/jsx'
 import { raw } from 'hono/html'
+import { mediaUrl } from '../lib/format'
 import type { Crumb } from '../lib/seo'
 import type { SiteConfig } from '../lib/site-config'
 import { copyrightText, faviconUrl, phoneDisplay, phoneIntl, productsEnabled } from '../lib/site-config'
@@ -38,7 +39,6 @@ const menuItems = (nav: SiteNav, site: SiteConfig) => [
   { href: '/lien-he', label: 'Liên hệ' },
 ]
 
-const DEFAULT_IMAGE = '/media/posts/mat-ong/01-nectar.webp'
 
 // Chặn chuỗi "</script>" trong JSON làm vỡ thẻ script
 const jsonScript = (data: object) =>
@@ -65,7 +65,8 @@ export const Layout = (props: Props) => {
   const icon = faviconUrl(site)
   const fullTitle = title ? `${title} | ${siteName}` : siteName
   const canonical = new URL(path, siteUrl).toString()
-  const image = new URL(props.image ?? DEFAULT_IMAGE, siteUrl).toString()
+  const shareImage = props.image ?? (site.hero_image_key ? mediaUrl(site.hero_image_key) : undefined)
+  const image = shareImage && new URL(shareImage, siteUrl).toString()
 
   return (
     <html lang="vi">
@@ -86,7 +87,7 @@ export const Layout = (props: Props) => {
         <meta property="og:title" content={title ?? siteName} />
         {description && <meta property="og:description" content={description} />}
         <meta property="og:url" content={canonical} />
-        <meta property="og:image" content={image} />
+        {image && <meta property="og:image" content={image} />}
         <meta name="twitter:card" content="summary_large_image" />
 
         {props.googleVerification && <meta name="google-site-verification" content={props.googleVerification} />}

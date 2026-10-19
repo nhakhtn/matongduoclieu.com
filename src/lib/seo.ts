@@ -5,6 +5,10 @@ import { phoneIntl } from './site-config'
 
 export type Crumb = { name: string; path: string }
 
+/** Địa chỉ gốc của site: biến SITE_URL, để trống thì lấy theo địa chỉ đang truy cập (vd. <tên>.workers.dev) */
+export const siteOrigin = (c: { env: { SITE_URL?: string }; req: { url: string } }) =>
+  c.env.SITE_URL ? c.env.SITE_URL.replace(/\/+$/, '') : new URL(c.req.url).origin
+
 export const absoluteUrl = (siteUrl: string, path: string) => new URL(path, siteUrl).toString()
 
 // D1 lưu "YYYY-MM-DD HH:MM:SS" theo UTC
@@ -72,6 +76,10 @@ export const articleJsonLd = (siteUrl: string, post: Post, site: SiteConfig) => 
   dateModified: isoDate(post.updated_at),
   image: post.cover_key ? [absoluteUrl(siteUrl, mediaUrl(post.cover_key))] : undefined,
   author:
-    post.author && post.author !== site.owner_name ? { '@type': 'Person', name: post.author } : ownerJsonLd(siteUrl, site),
+    post.author && post.author !== site.owner_name
+      ? { '@type': 'Person', name: post.author }
+      : site.owner_name
+        ? ownerJsonLd(siteUrl, site)
+        : undefined,
   publisher: { '@id': `${siteUrl}/#organization` },
 })

@@ -5,15 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy --minify",
+    "deploy": "wrangler d1 migrations apply DB --remote && wrangler deploy --minify",
     "typecheck": "tsc --noEmit",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings",
-    "db:migrate:local": "wrangler d1 migrations apply matongduoclieu-db --local",
-    "db:migrate:remote": "wrangler d1 migrations apply matongduoclieu-db --remote",
-    "db:seed:local": "wrangler d1 execute matongduoclieu-db --local --file=./db/seed.sql",
+    "db:migrate:local": "wrangler d1 migrations apply DB --local",
+    "db:migrate:remote": "wrangler d1 migrations apply DB --remote",
+    "db:seed:local": "wrangler d1 execute DB --local --file=./db/seed.sql",
     "post:local": "node scripts/publish-post.mjs",
     "post:publish": "node scripts/publish-post.mjs --remote",
-    "admin:password": "node scripts/set-admin-password.mjs"
+    "admin:password": "node scripts/set-admin-password.mjs",
+    "template:export": "node scripts/export-template.mjs"
   },
   "dependencies": {
     "hono": "^4.13.13",

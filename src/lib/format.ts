@@ -8,7 +8,7 @@ export const formatDate = (value: string | null) =>
     ? new Date(value.replace(' ', 'T') + 'Z').toLocaleDateString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })
     : ''
 
-// Ảnh đi thẳng từ R2 qua tên miền riêng (biến MEDIA_BASE, vd. https://anh.matongduoclieu.com):
+// Ảnh đi thẳng từ R2 qua tên miền riêng (biến MEDIA_BASE, vd. https://anh.tenmien.com):
 // được CDN Cloudflare cache và không tốn request Worker (gói miễn phí: 100.000 request/ngày).
 // MEDIA_BASE trống (wrangler dev, site chưa gắn tên miền ảnh) thì dùng /media/<key> qua Worker.
 let mediaBase = '/media'

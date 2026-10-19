@@ -4,7 +4,7 @@ import { listNavCategories, listPosts, listPublishedPages, recordProductClick } 
 import { getSetting } from './lib/auth'
 import { mediaUrl, setMediaBase } from './lib/format'
 import { pageCache } from './lib/page-cache'
-import { isoDate } from './lib/seo'
+import { isoDate, siteOrigin } from './lib/seo'
 import { loadNav, renderer } from './renderer'
 import admin from './routes/admin'
 import blog from './routes/blog'
@@ -26,6 +26,7 @@ app.use(async (c, next) => {
 // Giao thức của khách lấy từ header CF-Visitor do Cloudflare gắn; wrangler dev
 // không có header này nên không bị chuyển hướng.
 app.use(async (c, next) => {
+  if (!c.env.SITE_URL) return next()
   const url = new URL(c.req.url)
   const canonical = new URL(c.env.SITE_URL)
   const isHttp = c.req.header('cf-visitor')?.includes('"scheme":"http"') ?? false
@@ -52,7 +53,7 @@ app.use(async (c, next) => {
 app.use(pageCache)
 app.route('/media', media)
 
-// Link mua sản phẩm: đếm lượt bấm rồi chuyển sang Shopee
+// Link mua sản phẩm: đếm lượt bấm rồi chuyển sang trang bán hàng
 app.get('/mua/:slug', async (c) => {
   if ((await getSetting(c.env.DB, 'site.products_enabled')) === '0') return c.notFound()
   const url = await recordProductClick(c.env.DB, c.req.param('slug'))
@@ -68,8 +69,15 @@ app.get('/favicon.ico', async (c) => {
   return c.redirect(key ? mediaUrl(key) : '/favicon.svg', 302)
 })
 
+// robots.txt sinh theo địa chỉ site để dùng được cho mọi tên miền
+app.get('/robots.txt', (c) =>
+  c.text(
+    `User-agent: *\nAllow: /\nDisallow: /mua/\nDisallow: /quan-tri/\n\nSitemap: ${siteOrigin(c)}/sitemap.xml\n`
+  )
+)
+
 app.get('/sitemap.xml', async (c) => {
-  const base = c.env.SITE_URL
+  const base = siteOrigin(c)
   const [posts, categories, staticList, productsSetting] = await Promise.all([
     listPosts(c.env.DB, 5000),
     listNavCategories(c.env.DB),

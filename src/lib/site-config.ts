@@ -1,5 +1,4 @@
 import { mediaUrl } from './format'
-import { OWNER } from './site'
 
 // Cấu hình site sửa được trong /quan-tri/cai-dat, lưu ở bảng settings với key "site.<tên>".
 // Chỉ đọc các key "site.*" để không bao giờ lẫn mã băm mật khẩu / khoá phiên ra trang công khai.
@@ -28,34 +27,39 @@ export type SiteConfig = {
   contact_intro_md: string
   contact_intro_html: string
   contact_form: string
+  shop_name: string
+  products_intro: string
 }
 
 export const DEFAULT_SITE_CONFIG: Omit<SiteConfig, 'name'> = {
   favicon_key: '',
-  home_description:
-    'Kiến thức chuyên sâu và sản phẩm về mật ong và dược liệu Việt Nam: nhân sâm, nhung hươu, quế, linh chi…',
-  hero_eyebrow: 'Lịch sử · Văn hoá · Đông y · Khoa học',
+  home_description: 'Blog cá nhân: ghi chép, chia sẻ kinh nghiệm và những câu chuyện.',
+  hero_eyebrow: 'Ghi chép · Chia sẻ · Câu chuyện',
   hero_title: '',
   hero_lead:
-    'Những câu chuyện chuyên sâu về mật ong và các vị dược liệu quý của Việt Nam: từ nguồn gốc, văn hoá, đến cách dùng đúng theo y học cổ truyền và khoa học hiện đại.',
-  hero_image_key: 'posts/mat-ong/02-comb.webp',
-  hero_image_alt: 'Cầu ong với các lỗ tổ chứa mật đã được bịt nắp sáp',
+    'Chào mừng bạn! Đây là nơi chia sẻ bài viết, kinh nghiệm và câu chuyện. Sửa đoạn này trong Quản trị → Cài đặt site.',
+  hero_image_key: '',
+  hero_image_alt: '',
   home_products: '4',
-  products_enabled: '1',
-  footer_md: 'Thông tin và sản phẩm về mật ong và dược liệu Việt Nam.',
-  footer_html: '<p>Thông tin và sản phẩm về mật ong và dược liệu Việt Nam.</p>\n',
+  products_enabled: '0',
+  footer_md:
+    'Blog dựng bằng [MinhTri Blog Cloudflare](https://github.com/nhakhtn/minhtri-blog-cloudflare), chạy miễn phí trên Cloudflare.',
+  footer_html:
+    '<p>Blog dựng bằng <a href="https://github.com/nhakhtn/minhtri-blog-cloudflare">MinhTri Blog Cloudflare</a>, chạy miễn phí trên Cloudflare.</p>\n',
   footer_contact: '1',
-  copyright: '© {năm} {tên}. Nội dung chỉ mang tính tham khảo, không thay thế tư vấn y khoa.',
-  owner_name: OWNER.name,
-  owner_role: OWNER.role,
-  phone: OWNER.phone,
-  email: OWNER.email,
-  zalo: '1',
+  copyright: '© {năm} {tên}.',
+  owner_name: '',
+  owner_role: '',
+  phone: '',
+  email: '',
+  zalo: '0',
   address: '',
   facebook: '',
   contact_intro_md: '',
   contact_intro_html: '',
   contact_form: '1',
+  shop_name: '',
+  products_intro: 'Các sản phẩm được chúng tôi lựa chọn.',
 }
 
 export const SITE_CONFIG_KEYS = ['name', ...Object.keys(DEFAULT_SITE_CONFIG)] as (keyof SiteConfig)[]
@@ -81,13 +85,13 @@ export const productsEnabled = (config: Pick<SiteConfig, 'products_enabled'>) =>
 
 const phoneDigits = (phone: string) => phone.replace(/D/g, '')
 
-/** 0787767083 → "0787 767 083" */
+/** 0901234567 → "0901 234 567" */
 export const phoneDisplay = (phone: string) => {
   const d = phoneDigits(phone)
   return d.length === 10 ? `${d.slice(0, 4)} ${d.slice(4, 7)} ${d.slice(7)}` : phone
 }
 
-/** 0787767083 → "+84787767083" (dùng cho tel: và dữ liệu Google) */
+/** 0901234567 → "+84901234567" (dùng cho tel: và dữ liệu Google) */
 export const phoneIntl = (phone: string) => {
   const d = phoneDigits(phone)
   return d.startsWith('0') ? `+84${d.slice(1)}` : d ? `+${d}` : ''

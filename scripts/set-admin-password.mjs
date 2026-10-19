@@ -33,7 +33,7 @@ writeFileSync(
 ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = datetime('now');\n`
 )
 try {
-  execSync(`npx wrangler d1 execute matongduoclieu-db ${local ? '--local' : '--remote'} --file="${file}"`, {
+  execSync(`npx wrangler d1 execute DB ${local ? '--local' : '--remote'} --file="${file}"`, {
     stdio: ['ignore', 'ignore', 'inherit'],
   })
   console.log(`✔ Đã đặt mật khẩu quản trị (${local ? 'local' : 'site thật'}). Mọi phiên đăng nhập cũ đã bị huỷ.`)

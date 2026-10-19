@@ -77,7 +77,7 @@ export const PostList = ({ posts }: { posts: Post[] }) =>
 
 const productImage =(p: Product) => (p.image_key ? mediaUrl(p.image_key) : p.image_url)
 
-export const ProductCard = ({ product }: { product: Product }) => {
+export const ProductCard = ({ product, shop }: { product: Product; shop?: string }) => {
   const image = productImage(product)
   return (
     <article class="card product-card">
@@ -85,20 +85,20 @@ export const ProductCard = ({ product }: { product: Product }) => {
       <h3>{product.name}</h3>
       <p>{product.summary}</p>
       <strong class="price">{formatPrice(product.price)}</strong>
-      {product.buy_url && product.price != null && <small class="price-note">Giá tham khảo, có thể thay đổi trên Shopee</small>}
+      {product.buy_url && product.price != null && <small class="price-note">Giá tham khảo, có thể thay đổi{shop ? ` trên ${shop}` : ''}</small>}
       {product.buy_url && (
         <a class="btn btn-shopee" href={`/mua/${product.slug}`} target="_blank" rel="sponsored nofollow noopener">
-          Mua trên Shopee
+          {shop ? `Mua trên ${shop}` : 'Mua ngay'}
         </a>
       )}
     </article>
   )
 }
 
-export const ProductGrid = ({ products }: { products: Product[] }) => (
+export const ProductGrid = ({ products, shop }: { products: Product[]; shop?: string }) => (
   <div class="grid">
     {products.map((p) => (
-      <ProductCard product={p} />
+      <ProductCard product={p} shop={shop} />
     ))}
   </div>
 )

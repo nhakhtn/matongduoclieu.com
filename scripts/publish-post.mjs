@@ -1,7 +1,7 @@
 // Đăng/cập nhật bài viết từ file Markdown có front matter.
 //
-//   npm run post:local   -- content/posts/mat-ong.md   (D1 local)
-//   npm run post:publish -- content/posts/mat-ong.md   (D1 thật)
+//   npm run post:local   -- content/posts/ten-bai.md   (D1 local)
+//   npm run post:publish -- content/posts/ten-bai.md   (D1 thật)
 //   npm run post:publish -- --all                      (đăng lại mọi bài trong content/posts)
 //   thêm --force để ghi đè bài đã được sửa trên trang quản trị
 //
@@ -14,7 +14,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { marked } from 'marked'
 
-const DB = 'matongduoclieu-db'
+const DB = 'DB' // tên binding trong wrangler.jsonc
 const POSTS_DIR = 'content/posts'
 
 const args = process.argv.slice(2)

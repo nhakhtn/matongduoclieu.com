@@ -67,13 +67,89 @@ const LoginForm = ({ error }: { error?: string }) => (
   </section>
 )
 
+// Lần đầu (chưa có mật khẩu): đặt mật khẩu bằng "mã cài đặt" SETUP_TOKEN nhập lúc deploy,
+// để người lạ vào trước không chiếm được trang quản trị.
+const SetupForm = ({ error }: { error?: string }) => (
+  <section class="login-box">
+    <h1>Cài đặt lần đầu</h1>
+    <p class="muted">Nhập mã cài đặt (SETUP_TOKEN) bạn đã điền lúc deploy, rồi đặt mật khẩu quản trị.</p>
+    {error && <p class="notice error">{error}</p>}
+    <form method="post" action="/quan-tri/khoi-tao" class="form">
+      <label>
+        Mã cài đặt
+        <input type="password" name="token" required autofocus autocomplete="off" />
+      </label>
+      <label>
+        Mật khẩu quản trị (ít nhất {MIN_LENGTH} ký tự)
+        <input type="password" name="next" required minlength={MIN_LENGTH} autocomplete="new-password" />
+      </label>
+      <label>
+        Nhập lại mật khẩu
+        <input type="password" name="confirm" required minlength={MIN_LENGTH} autocomplete="new-password" />
+      </label>
+      <button class="btn" type="submit">
+        Đặt mật khẩu
+      </button>
+    </form>
+  </section>
+)
+
+const NOT_CONFIGURED =
+  'Chưa có mật khẩu quản trị. Đặt biến bí mật SETUP_TOKEN cho Worker rồi tải lại trang này, hoặc chạy: npm run admin:password'
+
+// So sánh chuỗi thời gian không đổi
+const sameText = (a: string, b: string) => {
+  const x = new TextEncoder().encode(a)
+  const y = new TextEncoder().encode(b)
+  let diff = x.length ^ y.length
+  for (let i = 0; i < Math.max(x.length, y.length); i++) diff |= (x[i] ?? 0) ^ (y[i] ?? 0)
+  return diff === 0
+}
+
 app.get('/dang-nhap', async (c) => {
   if (await isLoggedIn(c)) return c.redirect('/quan-tri/bai-viet')
   const configured = await getSetting(c.env.DB, 'admin_password_hash')
-  return c.render(<LoginForm error={configured ? undefined : 'Chưa cấu hình mật khẩu quản trị.'} />, {
+  if (!configured && c.env.SETUP_TOKEN) return c.render(<SetupForm />, { title: 'Cài đặt lần đầu', noindex: true })
+  return c.render(<LoginForm error={configured ? undefined : NOT_CONFIGURED} />, {
     title: 'Đăng nhập quản trị',
     noindex: true,
   })
+})
+
+app.post('/khoi-tao', async (c) => {
+  const render = (error: string, status: 400 | 401 | 429) => {
+    c.status(status)
+    return c.render(<SetupForm error={error} />, { title: 'Cài đặt lần đầu', noindex: true })
+  }
+  const token = c.env.SETUP_TOKEN
+  if (!token || (await getSetting(c.env.DB, 'admin_password_hash'))) return c.redirect('/quan-tri/dang-nhap', 303)
+
+  const key = failKey(c)
+  const fails = Number((await c.env.CACHE.get(key)) ?? 0)
+  if (fails >= MAX_FAILS) return render('Sai mã quá nhiều lần. Vui lòng thử lại sau 15 phút.', 429)
+
+  const form = await c.req.parseBody()
+  if (!sameText(String(form.token ?? ''), token)) {
+    await c.env.CACHE.put(key, String(fails + 1), { expirationTtl: LOCK_SECONDS })
+    return render('Mã cài đặt không đúng.', 401)
+  }
+  const next = String(form.next ?? '')
+  if (next.length < MIN_LENGTH) return render(`Mật khẩu phải có ít nhất ${MIN_LENGTH} ký tự.`, 400)
+  if (next !== String(form.confirm ?? '')) return render('Hai lần nhập mật khẩu không khớp.', 400)
+
+  // INSERT không ghi đè: nếu ai đó vừa đặt trước thì lệnh này lỗi và không đổi gì
+  const sessionKey = newSessionKey()
+  try {
+    await c.env.DB.batch([
+      c.env.DB.prepare("INSERT INTO settings (key, value) VALUES ('admin_password_hash', ?)").bind(await hashPassword(next)),
+      c.env.DB.prepare("INSERT INTO settings (key, value) VALUES ('session_key', ?)").bind(sessionKey),
+    ])
+  } catch {
+    return c.redirect('/quan-tri/dang-nhap', 303)
+  }
+  await c.env.CACHE.delete(key)
+  await startSession(c, sessionKey)
+  return c.redirect('/quan-tri/cai-dat', 303)
 })
 
 app.post('/dang-nhap', async (c) => {
@@ -85,7 +161,7 @@ app.post('/dang-nhap', async (c) => {
     getSetting(c.env.DB, 'admin_password_hash'),
     getSetting(c.env.DB, 'session_key'),
   ])
-  if (!hash || !sessionKey) return render('Chưa cấu hình mật khẩu quản trị.', 503)
+  if (!hash || !sessionKey) return render(NOT_CONFIGURED, 503)
 
   const key = failKey(c)
   const fails = Number((await c.env.CACHE.get(key)) ?? 0)

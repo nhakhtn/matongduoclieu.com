@@ -7,8 +7,8 @@ import type { AppEnv } from '../types'
 
 const app = new Hono<AppEnv>()
 
-const AFFILIATE_NOTE =
-  'Một số liên kết trên trang là liên kết tiếp thị Shopee: khi bạn mua qua liên kết này, chúng tôi có thể nhận hoa hồng mà giá bạn trả không thay đổi.'
+const affiliateNote = (shop: string) =>
+  `Một số liên kết trên trang là liên kết tiếp thị${shop ? ` ${shop}` : ''}: khi bạn mua qua liên kết này, chúng tôi có thể nhận hoa hồng mà giá bạn trả không thay đổi.`
 
 app.get('/', async (c) => {
   const categories = c.get('nav').postCategories
@@ -75,7 +75,7 @@ app.get('/', async (c) => {
             <h2>Sản phẩm</h2>
             <a href="/san-pham">Xem tất cả ›</a>
           </div>
-          <ProductGrid products={products.slice(0, productCount)} />
+          <ProductGrid products={products.slice(0, productCount)} shop={site.shop_name} />
         </section>
       )}
     </>,
@@ -84,7 +84,8 @@ app.get('/', async (c) => {
 })
 
 app.get('/san-pham', async (c) => {
-  if (!productsEnabled(c.get('site'))) return c.notFound()
+  const site = c.get('site')
+  if (!productsEnabled(site)) return c.notFound()
   const [products, categories] = await Promise.all([listProducts(c.env.DB), listProductCategories(c.env.DB)])
   // Nhóm theo danh mục; sản phẩm thuộc danh mục không còn tồn tại xếp vào "Khác"
   const known = new Set(categories.map((cat) => cat.slug))
@@ -96,22 +97,22 @@ app.get('/san-pham', async (c) => {
   return c.render(
     <>
       <h1>Sản phẩm</h1>
-      <p class="lead">Các sản phẩm mật ong và dược liệu được chúng tôi lựa chọn.</p>
+      {site.products_intro && <p class="lead">{site.products_intro}</p>}
       {groups.length ? (
         groups.map((g) => (
           <section class="product-group">
             <h2>{g.name}</h2>
-            <ProductGrid products={g.items} />
+            <ProductGrid products={g.items} shop={site.shop_name} />
           </section>
         ))
       ) : (
         <p class="empty">Sản phẩm đang được cập nhật.</p>
       )}
-      <p class="disclosure">{AFFILIATE_NOTE}</p>
+      <p class="disclosure">{affiliateNote(site.shop_name)}</p>
     </>,
     {
       title: 'Sản phẩm',
-      description: 'Sản phẩm mật ong và dược liệu chọn lọc.',
+      description: site.products_intro || `Sản phẩm trên ${site.name}.`,
       breadcrumbs: [
         { name: 'Trang chủ', path: '/' },
         { name: 'Sản phẩm', path: '/san-pham' },

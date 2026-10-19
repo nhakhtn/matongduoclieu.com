@@ -58,11 +58,11 @@ const ProductForm = ({ values, categories }: { values: FormValues; categories: P
       </label>
     </div>
     <label>
-      Link affiliate Shopee
+      Link mua (link affiliate tới trang bán hàng)
       <input name="buy_url" type="url" value={values.buy_url ?? ''} placeholder="https://s.shopee.vn/..." />
     </label>
     <label>
-      Link ảnh sản phẩm (ảnh trên Shopee)
+      Link ảnh sản phẩm (ảnh trên trang bán hàng)
       <input name="image_url" type="url" value={values.image_url ?? ''} placeholder="https://down-vn.img.susercontent.com/file/...@resize_w600_nl" />
     </label>
     <label>
@@ -131,7 +131,7 @@ app.get('/', async (c) => {
         </a>
       }
     >
-      <p class="muted">Tổng lượt bấm "Mua trên Shopee": {totalClicks}</p>
+      <p class="muted">Tổng lượt bấm nút mua: {totalClicks}</p>
       <table class="admin-table">
         <thead>
           <tr>
@@ -218,7 +218,7 @@ app.get('/:id', async (c) => {
       flash={c.req.query('ok')}
       actions={<DeleteButton action={`${BASE}/${product.id}/xoa`} label={`sản phẩm "${product.name}"`} />}
     >
-      <p class="muted">Lượt bấm "Mua trên Shopee": {product.clicks}</p>
+      <p class="muted">Lượt bấm nút mua: {product.clicks}</p>
       <ProductForm values={product} categories={categories} />
     </AdminShell>,
     { title: `Sửa: ${product.name}`, noindex: true }
