@@ -8,6 +8,7 @@ import pagesAdmin from './pages'
 import postCategoriesAdmin from './post-categories'
 import postsAdmin from './posts'
 import productCategoriesAdmin from './product-categories'
+import mediaAdmin from './media'
 import productsAdmin from './products'
 import { AdminShell } from './ui'
 
@@ -194,5 +195,6 @@ app.route('/chuyen-muc', postCategoriesAdmin)
 app.route('/san-pham', productsAdmin)
 app.route('/danh-muc-san-pham', productCategoriesAdmin)
 app.route('/trang', pagesAdmin)
+app.route('/anh', mediaAdmin)
 
 export default app

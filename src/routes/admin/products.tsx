@@ -62,10 +62,24 @@ const ProductForm = ({ values, categories }: { values: FormValues; categories: P
       <input name="buy_url" type="url" value={values.buy_url ?? ''} placeholder="https://s.shopee.vn/..." />
     </label>
     <label>
-      Link ảnh sản phẩm
+      Link ảnh sản phẩm (ảnh trên Shopee)
       <input name="image_url" type="url" value={values.image_url ?? ''} placeholder="https://down-vn.img.susercontent.com/file/...@resize_w600_nl" />
     </label>
-    {values.image_url && <img class="admin-thumb-lg" src={values.image_url} alt="" />}
+    <label>
+      Hoặc ảnh tự tải lên (key trong R2; được ưu tiên hơn link ảnh ở trên)
+      <input name="image_key" value={values.image_key ?? ''} data-preview-for="product-image-preview" />
+    </label>
+    <div class="upload-widget" data-mode="key" data-target="image_key">
+      <input type="file" accept="image/*" />
+      <span class="upload-status muted"></span>
+    </div>
+    <img
+      id="product-image-preview"
+      class="admin-thumb-lg upload-preview"
+      src={values.image_key ? mediaUrl(values.image_key) : (values.image_url ?? '')}
+      alt=""
+      hidden={!values.image_key && !values.image_url}
+    />
     <label class="checkbox">
       <input type="checkbox" name="active" checked={values.active === 1} /> Hiện trên site
     </label>
@@ -87,6 +101,7 @@ async function parseProductForm(req: Parameters<typeof readForm>[0]) {
     summary: f.s('summary'),
     price: f.intOrNull('price'),
     image_url: f.opt('image_url'),
+    image_key: f.opt('image_key'),
     buy_url: f.opt('buy_url'),
     category: f.s('category'),
     sort_order: f.int('sort_order'),

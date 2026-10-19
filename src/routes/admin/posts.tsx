@@ -11,7 +11,7 @@ import {
 } from '../../lib/admin-db'
 import type { PostCategory } from '../../lib/db'
 import { listPostCategories } from '../../lib/db'
-import { formatDate } from '../../lib/format'
+import { formatDate, mediaUrl } from '../../lib/format'
 import { OWNER } from '../../lib/site'
 import { isValidSlug, slugify } from '../../lib/slug'
 import { AdminShell, Badge, DeleteButton, parseId, readForm } from './ui'
@@ -52,19 +52,36 @@ const PostForm = ({ values, categories }: { values: FormValues; categories: Post
     <div class="form-row">
       <label>
         Ảnh bìa (key trong R2, vd. posts/mat-ong/01-nectar.webp)
-        <input name="cover_key" value={values.cover_key ?? ''} />
+        <input name="cover_key" value={values.cover_key ?? ''} data-preview-for="cover-preview" />
       </label>
       <label>
         Tác giả
         <input name="author" value={values.author ?? OWNER.name} />
       </label>
     </div>
+    <div class="upload-widget" data-mode="key" data-target="cover_key">
+      <span>Tải ảnh bìa lên:</span>
+      <input type="file" accept="image/*" />
+      <span class="upload-status muted"></span>
+    </div>
+    <img
+      id="cover-preview"
+      class="admin-thumb-lg upload-preview"
+      src={values.cover_key ? mediaUrl(values.cover_key) : ''}
+      alt=""
+      hidden={!values.cover_key}
+    />
     <label>
       Nội dung (Markdown)
       <textarea name="content_md" rows={28} class="markdown-input" required>
         {values.content_md ?? ''}
       </textarea>
     </label>
+    <div class="upload-widget" data-mode="markdown" data-target="content_md">
+      <span>Chèn ảnh vào nội dung (tại vị trí con trỏ):</span>
+      <input type="file" accept="image/*" multiple />
+      <span class="upload-status muted"></span>
+    </div>
     <label class="checkbox">
       <input type="checkbox" name="published" checked={values.published === 1} /> Đăng lên site (bỏ chọn để lưu nháp)
     </label>

@@ -153,6 +153,7 @@ export type ProductInput = {
   summary: string
   price: number | null
   image_url: string | null
+  image_key: string | null
   buy_url: string | null
   category: string
   sort_order: number
@@ -162,20 +163,20 @@ export type ProductInput = {
 export async function adminCreateProduct(db: D1Database, p: ProductInput) {
   await db
     .prepare(
-      `INSERT INTO products (slug, name, summary, price, image_url, buy_url, category, sort_order, active)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      `INSERT INTO products (slug, name, summary, price, image_url, image_key, buy_url, category, sort_order, active)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     )
-    .bind(p.slug, p.name, p.summary, p.price, p.image_url, p.buy_url, p.category, p.sort_order, p.active)
+    .bind(p.slug, p.name, p.summary, p.price, p.image_url, p.image_key, p.buy_url, p.category, p.sort_order, p.active)
     .run()
 }
 
 export async function adminUpdateProduct(db: D1Database, id: number, p: ProductInput) {
   await db
     .prepare(
-      `UPDATE products SET slug = ?, name = ?, summary = ?, price = ?, image_url = ?, buy_url = ?,
+      `UPDATE products SET slug = ?, name = ?, summary = ?, price = ?, image_url = ?, image_key = ?, buy_url = ?,
          category = ?, sort_order = ?, active = ? WHERE id = ?`
     )
-    .bind(p.slug, p.name, p.summary, p.price, p.image_url, p.buy_url, p.category, p.sort_order, p.active, id)
+    .bind(p.slug, p.name, p.summary, p.price, p.image_url, p.image_key, p.buy_url, p.category, p.sort_order, p.active, id)
     .run()
 }
 

@@ -6,6 +6,7 @@ const SECTIONS = [
   { href: '/quan-tri/san-pham', label: 'Sản phẩm' },
   { href: '/quan-tri/danh-muc-san-pham', label: 'Danh mục sản phẩm' },
   { href: '/quan-tri/trang', label: 'Trang' },
+  { href: '/quan-tri/anh', label: 'Thư viện ảnh' },
   { href: '/quan-tri/lien-he', label: 'Lời nhắn' },
   { href: '/quan-tri/doi-mat-khau', label: 'Đổi mật khẩu' },
 ]
@@ -49,6 +50,7 @@ export const AdminShell = (props: {
       {props.error && <p class="notice error">{props.error}</p>}
       {props.children}
     </section>
+    <script src="/js/admin.js" defer></script>
   </div>
 )
 

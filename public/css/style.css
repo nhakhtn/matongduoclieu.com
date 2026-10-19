@@ -200,3 +200,16 @@ time { color: var(--muted); font-size: 0.88rem; }
 .contact-list { list-style: none; padding: 0; font-size: 1.05rem; }
 .contact-list li { margin-bottom: 6px; }
 .copyright { margin-top: 16px; font-size: 0.82rem; }
+
+/* Tải ảnh & thư viện ảnh (quản trị) */
+.upload-widget { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin: -.25rem 0 1rem; font-size: .9rem; }
+.upload-widget input[type=file] { max-width: 100%; }
+.upload-preview[hidden] { display: none; }
+.upload-panel { margin-bottom: 1rem; }
+.btn-sm { padding: .3rem .6rem; font-size: .8rem; }
+.media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+.media-item { margin: 0; border: 1px solid #e5dccb; border-radius: 8px; overflow: hidden; background: #fff; display: flex; flex-direction: column; }
+.media-item img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; background: #f4efe6; }
+.media-item figcaption { padding: .5rem; display: flex; flex-direction: column; gap: .35rem; font-size: .8rem; }
+.media-item code { word-break: break-all; }
+.media-actions { display: flex; flex-wrap: wrap; gap: .35rem; }
