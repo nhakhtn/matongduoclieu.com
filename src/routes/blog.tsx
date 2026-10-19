@@ -2,7 +2,6 @@ import { Hono } from 'hono'
 import { raw } from 'hono/html'
 import { marked } from 'marked'
 import { PostGrid, ProductGrid } from '../components/Cards'
-import { getCategory } from '../lib/categories'
 import { getPost, listPosts, listProducts } from '../lib/db'
 import { formatDate, mediaUrl } from '../lib/format'
 import { articleJsonLd } from '../lib/seo'
@@ -32,7 +31,6 @@ app.get('/:slug', async (c) => {
   const post = await getPost(c.env.DB, c.req.param('slug'))
   if (!post) return c.notFound()
 
-  const category = getCategory(post.category)
   const [related, products] = await Promise.all([
     listPosts(c.env.DB, 4, post.category),
     listProducts(c.env.DB, post.category),
@@ -40,8 +38,14 @@ app.get('/:slug', async (c) => {
 
   // Nội dung do quản trị viên viết nên được tin cậy; nếu sau này cho người dùng
   // nhập Markdown thì cần lọc HTML trước khi render.
-  // HTML được render sẵn lúc đăng; chỉ parse Markdown nếu bài chưa có content_html
-  const html = post.content_html ?? (await marked.parse(post.content_md))
+  // HTML được render sẵn lúc lưu; nếu còn trống thì render một lần rồi lưu lại
+  let html = post.content_html
+  if (html == null) {
+    html = await marked.parse(post.content_md)
+    c.executionCtx.waitUntil(
+      c.env.DB.prepare('UPDATE posts SET content_html = ? WHERE id = ?').bind(html, post.id).run()
+    )
+  }
   const updated = formatDate(post.updated_at) !== formatDate(post.published_at)
 
   return c.render(
@@ -87,7 +91,7 @@ app.get('/:slug', async (c) => {
       jsonLd: [articleJsonLd(c.env.SITE_URL, post)],
       breadcrumbs: [
         { name: 'Trang chủ', path: '/' },
-        ...(category ? [{ name: category.name, path: `/chu-de/${category.slug}` }] : []),
+        ...(post.category_name ? [{ name: post.category_name, path: `/chu-de/${post.category}` }] : []),
         { name: post.title, path: `/bai-viet/${post.slug}` },
       ],
     }

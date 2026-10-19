@@ -3,22 +3,23 @@
 //   npm run post:local   -- content/posts/mat-ong.md   (D1 local)
 //   npm run post:publish -- content/posts/mat-ong.md   (D1 thật)
 //   npm run post:publish -- --all                      (đăng lại mọi bài trong content/posts)
+//   thêm --force để ghi đè bài đã được sửa trên trang quản trị
 //
 // Front matter (giữa hai dòng ---): slug, title, excerpt, category, cover, author
 // Markdown được render sẵn thành HTML ở đây (cột content_html) để Worker không
 // phải parse lúc phục vụ, giữ CPU mỗi request dưới giới hạn gói miễn phí.
 import { execSync } from 'node:child_process'
-import { mkdtempSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { mkdtempSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { marked } from 'marked'
 
 const DB = 'matongduoclieu-db'
-const CATEGORIES = ['mat-ong', 'duoc-lieu']
 const POSTS_DIR = 'content/posts'
 
 const args = process.argv.slice(2)
 const remote = args.includes('--remote')
+const force = args.includes('--force')
 const files = args.includes('--all')
   ? readdirSync(POSTS_DIR).filter((f) => f.endsWith('.md')).map((f) => join(POSTS_DIR, f))
   : args.filter((a) => !a.startsWith('--'))
@@ -46,7 +47,6 @@ function toSql(file) {
   for (const key of ['slug', 'title', 'excerpt', 'category']) {
     if (!meta[key]) throw new Error(`${file}: thiếu "${key}" trong front matter`)
   }
-  if (!CATEGORIES.includes(meta.category)) throw new Error(`category phải là một trong: ${CATEGORIES.join(', ')}`)
 
   const content = match[2].trim()
   const html = marked.parse(content)
@@ -66,7 +66,7 @@ ON CONFLICT(slug) DO UPDATE SET
       OR posts.excerpt IS NOT excluded.excerpt THEN datetime('now')
     ELSE posts.updated_at END;
 `
-  return { title: meta.title, sql }
+  return { title: meta.title, slug: meta.slug, content, sql }
 }
 
 // D1 thỉnh thoảng trả lỗi tạm thời: thử lại vài lần
@@ -82,9 +82,26 @@ function execute(sqlFile) {
   }
 }
 
+// Bài có thể đã được sửa trên trang quản trị: không ghi đè nếu bản trong DB
+// khác file và mới hơn lần sửa file gần nhất (trừ khi có --force)
+function editedOnline(file, slug, content) {
+  const out = execSync(
+    `npx wrangler d1 execute ${DB} ${remote ? '--remote' : '--local'} --json --command "SELECT content_md, updated_at FROM posts WHERE slug = '${slug}'"`,
+    { stdio: ['ignore', 'pipe', 'pipe'] }
+  ).toString()
+  const row = JSON.parse(out)[0]?.results?.[0]
+  if (!row || row.content_md === content) return false
+  const dbTime = new Date(row.updated_at.replace(' ', 'T') + 'Z').getTime()
+  return dbTime > statSync(file).mtimeMs
+}
+
 const dir = mkdtempSync(join(tmpdir(), 'post-'))
 for (const file of files) {
-  const { title, sql } = toSql(file)
+  const { title, slug, content, sql } = toSql(file)
+  if (!force && editedOnline(file, slug, content)) {
+    console.warn(`⚠ Bỏ qua "${title}": bài trên site đã được sửa sau file ${file}. Dùng --force để ghi đè.`)
+    continue
+  }
   const sqlFile = join(dir, 'post.sql')
   writeFileSync(sqlFile, sql)
   execute(sqlFile)

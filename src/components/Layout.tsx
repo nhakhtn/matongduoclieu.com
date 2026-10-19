@@ -2,6 +2,7 @@ import type { Child } from 'hono/jsx'
 import { raw } from 'hono/html'
 import type { Crumb } from '../lib/seo'
 import { OWNER } from '../lib/site'
+import type { SiteNav } from '../types'
 
 export type SeoProps = {
   title?: string
@@ -21,15 +22,16 @@ type Props = SeoProps & {
   siteUrl: string
   path: string
   googleVerification?: string
+  nav: SiteNav
   children?: Child
 }
 
-const nav = [
+// Menu: Trang chủ, các chuyên mục bài viết, Sản phẩm, các trang tĩnh bật "hiện ở menu", Liên hệ
+const menuItems = (nav: SiteNav) => [
   { href: '/', label: 'Trang chủ' },
-  { href: '/chu-de/mat-ong', label: 'Mật ong' },
-  { href: '/chu-de/duoc-lieu', label: 'Dược liệu' },
+  ...nav.postCategories.map((c) => ({ href: `/chu-de/${c.slug}`, label: c.name })),
   { href: '/san-pham', label: 'Sản phẩm' },
-  { href: '/gioi-thieu', label: 'Giới thiệu' },
+  ...nav.pages.filter((p) => p.show_in_menu).map((p) => ({ href: `/${p.slug}`, label: p.title })),
   { href: '/lien-he', label: 'Liên hệ' },
 ]
 
@@ -93,7 +95,7 @@ export const Layout = (props: Props) => {
               {siteName}
             </a>
             <nav class="main-nav" aria-label="Menu chính">
-              {nav.map((item) => {
+              {menuItems(props.nav).map((item) => {
                 const active =
                   item.href === props.section || (item.href === '/' ? path === '/' : path.startsWith(item.href))
                 return (
@@ -122,8 +124,11 @@ export const Layout = (props: Props) => {
             </div>
             <div class="footer-links">
               <a href="/bai-viet">Tất cả bài viết</a>
-              <a href="/chinh-sach-bien-tap">Chính sách biên tập</a>
-              <a href="/mien-tru-trach-nhiem">Miễn trừ trách nhiệm</a>
+              {props.nav.pages
+                .filter((p) => p.show_in_footer)
+                .map((p) => (
+                  <a href={`/${p.slug}`}>{p.title}</a>
+                ))}
               <a href="/lien-he">Liên hệ</a>
             </div>
           </div>

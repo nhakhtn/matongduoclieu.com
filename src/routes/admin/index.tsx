@@ -1,9 +1,15 @@
 import { Hono } from 'hono'
 import type { Context } from 'hono'
 import { deleteCookie, getSignedCookie, setSignedCookie } from 'hono/cookie'
-import { getSetting, hashPassword, newSessionKey, setSettings, verifyPassword } from '../lib/auth'
-import { listContacts } from '../lib/db'
-import { formatDate } from '../lib/format'
+import { getSetting, hashPassword, newSessionKey, setSettings, verifyPassword } from '../../lib/auth'
+import { listContacts } from '../../lib/db'
+import { formatDate } from '../../lib/format'
+import pagesAdmin from './pages'
+import postCategoriesAdmin from './post-categories'
+import postsAdmin from './posts'
+import productCategoriesAdmin from './product-categories'
+import productsAdmin from './products'
+import { AdminShell } from './ui'
 
 type Env = { Bindings: CloudflareBindings }
 
@@ -58,27 +64,8 @@ const LoginForm = ({ error }: { error?: string }) => (
   </section>
 )
 
-const AdminBar = ({ title }: { title: string }) => (
-  <div class="admin-bar">
-    <h1>{title}</h1>
-    <div class="admin-actions">
-      <a class="btn btn-outline" href="/quan-tri/lien-he">
-        Lời nhắn
-      </a>
-      <a class="btn btn-outline" href="/quan-tri/doi-mat-khau">
-        Đổi mật khẩu
-      </a>
-      <form method="post" action="/quan-tri/dang-xuat">
-        <button class="btn" type="submit">
-          Đăng xuất
-        </button>
-      </form>
-    </div>
-  </div>
-)
-
 app.get('/dang-nhap', async (c) => {
-  if (await isLoggedIn(c)) return c.redirect('/quan-tri/lien-he')
+  if (await isLoggedIn(c)) return c.redirect('/quan-tri/bai-viet')
   const configured = await getSetting(c.env.DB, 'admin_password_hash')
   return c.render(<LoginForm error={configured ? undefined : 'Chưa cấu hình mật khẩu quản trị.'} />, {
     title: 'Đăng nhập quản trị',
@@ -109,7 +96,7 @@ app.post('/dang-nhap', async (c) => {
 
   await c.env.CACHE.delete(key)
   await startSession(c, sessionKey)
-  return c.redirect('/quan-tri/lien-he', 303)
+  return c.redirect('/quan-tri/bai-viet', 303)
 })
 
 app.post('/dang-xuat', (c) => {
@@ -123,13 +110,12 @@ app.use('*', async (c, next) => {
   await next()
 })
 
-app.get('/', (c) => c.redirect('/quan-tri/lien-he'))
+app.get('/', (c) => c.redirect('/quan-tri/bai-viet'))
 
 app.get('/lien-he', async (c) => {
   const contacts = await listContacts(c.env.DB, 200)
   return c.render(
-    <>
-      <AdminBar title="Lời nhắn liên hệ" />
+    <AdminShell title="Lời nhắn liên hệ" active="/quan-tri/lien-he">
       <p class="lead">{contacts.length ? `${contacts.length} lời nhắn gần nhất.` : 'Chưa có lời nhắn nào.'}</p>
       <div class="contact-table">
         {contacts.map((m) => (
@@ -148,15 +134,14 @@ app.get('/lien-he', async (c) => {
           </article>
         ))}
       </div>
-    </>,
+    </AdminShell>,
     { title: 'Quản trị: Liên hệ', noindex: true }
   )
 })
 
 const PasswordPage = ({ error, ok }: { error?: string; ok?: boolean }) => (
-  <>
-    <AdminBar title="Đổi mật khẩu" />
-    <section class="login-box admin-form">
+  <AdminShell title="Đổi mật khẩu" active="/quan-tri/doi-mat-khau">
+    <section class="admin-form">
       {ok && <p class="notice success">Đã đổi mật khẩu. Các thiết bị khác đã bị đăng xuất.</p>}
       {error && <p class="notice error">{error}</p>}
       <form method="post" action="/quan-tri/doi-mat-khau" class="form">
@@ -177,7 +162,7 @@ const PasswordPage = ({ error, ok }: { error?: string; ok?: boolean }) => (
         </button>
       </form>
     </section>
-  </>
+  </AdminShell>
 )
 
 app.get('/doi-mat-khau', (c) =>
@@ -203,5 +188,11 @@ app.post('/doi-mat-khau', async (c) => {
   await startSession(c, sessionKey) // giữ đăng nhập trên thiết bị đang dùng
   return c.redirect('/quan-tri/doi-mat-khau?ok=1', 303)
 })
+
+app.route('/bai-viet', postsAdmin)
+app.route('/chuyen-muc', postCategoriesAdmin)
+app.route('/san-pham', productsAdmin)
+app.route('/danh-muc-san-pham', productCategoriesAdmin)
+app.route('/trang', pagesAdmin)
 
 export default app

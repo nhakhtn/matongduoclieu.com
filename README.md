@@ -49,7 +49,19 @@ npm run deploy
 
 Sau đó bật `routes` (custom domain) trong `wrangler.jsonc` để gắn tên miền matongduoclieu.com.
 
-## Viết và đăng bài
+## Trang quản trị
+
+`/quan-tri` (đăng nhập bằng mật khẩu, quên thì đặt lại bằng `npm run admin:password`):
+
+- **Bài viết**: viết, sửa, xoá, lưu nháp / đăng; nội dung Markdown được render HTML khi lưu
+- **Chuyên mục bài viết**: tự hiện trên menu và trang chủ
+- **Sản phẩm** (link affiliate Shopee, lượt bấm) và **Danh mục sản phẩm**
+- **Trang** tĩnh `/<slug>` (Giới thiệu, Chính sách...), chọn hiện ở menu / chân trang
+- **Lời nhắn** liên hệ, **Đổi mật khẩu**
+
+**Database là nơi lưu chính.** File trong `content/posts/` là bản lưu trữ; script đăng bài sẽ không ghi đè bài đã được sửa trên trang quản trị (trừ khi thêm `--force`).
+
+## Viết và đăng bài bằng file
 
 Bài viết là file Markdown trong `content/posts/`, đầu file có front matter:
 

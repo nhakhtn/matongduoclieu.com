@@ -69,6 +69,10 @@ Mô hình **cụm chủ đề**: mỗi chủ đề lớn có một bài trụ c�
 | 4.3 | Gắn sản phẩm liên quan vào cuối từng bài viết | ✅ |
 | 4.4 | Thống kê lượt bấm mua theo sản phẩm | 🔄 Đã đếm lượt bấm trong D1, chưa có trang xem thống kê |
 
+## Giai đoạn 4b: Trang quản trị nội dung ✅
+
+Bài viết, chuyên mục, sản phẩm, danh mục sản phẩm, trang tĩnh, lời nhắn, đổi mật khẩu (`/quan-tri`). Database là nơi lưu chính.
+
 ## Giai đoạn 5: Đưa lên Google và đo lường
 
 | # | Việc | Trạng thái |

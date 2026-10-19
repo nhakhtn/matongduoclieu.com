@@ -1,3 +1,5 @@
+// Truy vấn cho các trang công khai. Thêm/sửa/xoá cho trang quản trị: admin-db.ts
+
 // Thông tin bài dùng cho danh sách (không kèm nội dung để truy vấn nhẹ)
 export type Post = {
   id: number
@@ -6,6 +8,8 @@ export type Post = {
   excerpt: string
   cover_key: string | null
   category: string
+  /** Tên chuyên mục (JOIN post_categories), null nếu chuyên mục không còn */
+  category_name: string | null
   author: string | null
   published_at: string | null
   updated_at: string
@@ -13,7 +17,7 @@ export type Post = {
 
 export type PostWithContent = Post & {
   content_md: string
-  /** HTML render sẵn lúc đăng; null với bài đăng trước khi có cột này */
+  /** HTML render sẵn lúc lưu; null thì render lúc xem lần đầu */
   content_html: string | null
 }
 
@@ -30,19 +34,49 @@ export type Product = {
   category: string
 }
 
-const POST_COLUMNS = 'id, slug, title, excerpt, cover_key, category, author, published_at, updated_at'
-const PRODUCT_COLUMNS = 'id, slug, name, summary, description_md, price, image_key, image_url, buy_url, category'
+export type PostCategory = {
+  id: number
+  slug: string
+  name: string
+  description: string
+  sort_order: number
+}
+
+export type ProductCategory = {
+  id: number
+  slug: string
+  name: string
+  sort_order: number
+}
+
+export type PageLink = { slug: string; title: string; show_in_menu: number; show_in_footer: number }
+
+export type Page = PageLink & {
+  id: number
+  description: string
+  content_md: string
+  content_html: string | null
+  published: number
+  sort_order: number
+  updated_at: string
+}
+
+export const POST_COLUMNS =
+  'p.id, p.slug, p.title, p.excerpt, p.cover_key, p.category, c.name AS category_name, p.author, p.published_at, p.updated_at'
+const POST_FROM = 'posts p LEFT JOIN post_categories c ON c.slug = p.category'
+export const PRODUCT_COLUMNS =
+  'id, slug, name, summary, description_md, price, image_key, image_url, buy_url, category'
 
 export async function listPosts(db: D1Database, limit = 20, category?: string): Promise<Post[]> {
-  const where = category ? 'published = 1 AND category = ?' : 'published = 1'
-  const stmt = db.prepare(`SELECT ${POST_COLUMNS} FROM posts WHERE ${where} ORDER BY published_at DESC LIMIT ?`)
+  const where = category ? 'p.published = 1 AND p.category = ?' : 'p.published = 1'
+  const stmt = db.prepare(`SELECT ${POST_COLUMNS} FROM ${POST_FROM} WHERE ${where} ORDER BY p.published_at DESC LIMIT ?`)
   const { results } = await (category ? stmt.bind(category, limit) : stmt.bind(limit)).all<Post>()
   return results
 }
 
 export function getPost(db: D1Database, slug: string): Promise<PostWithContent | null> {
   return db
-    .prepare(`SELECT ${POST_COLUMNS}, content_md, content_html FROM posts WHERE slug = ? AND published = 1`)
+    .prepare(`SELECT ${POST_COLUMNS}, p.content_md, p.content_html FROM ${POST_FROM} WHERE p.slug = ? AND p.published = 1`)
     .bind(slug)
     .first<PostWithContent>()
 }
@@ -52,6 +86,49 @@ export async function listProducts(db: D1Database, category?: string): Promise<P
   const stmt = db.prepare(`SELECT ${PRODUCT_COLUMNS} FROM products WHERE ${where} ORDER BY sort_order, id`)
   const { results } = await (category ? stmt.bind(category) : stmt).all<Product>()
   return results
+}
+
+export async function listPostCategories(db: D1Database): Promise<PostCategory[]> {
+  const { results } = await db
+    .prepare('SELECT id, slug, name, description, sort_order FROM post_categories ORDER BY sort_order, id')
+    .all<PostCategory>()
+  return results
+}
+
+export function getPostCategory(db: D1Database, slug: string): Promise<PostCategory | null> {
+  return db
+    .prepare('SELECT id, slug, name, description, sort_order FROM post_categories WHERE slug = ?')
+    .bind(slug)
+    .first<PostCategory>()
+}
+
+export async function listProductCategories(db: D1Database): Promise<ProductCategory[]> {
+  const { results } = await db
+    .prepare('SELECT id, slug, name, sort_order FROM product_categories ORDER BY sort_order, id')
+    .all<ProductCategory>()
+  return results
+}
+
+/** Các trang đã xuất bản cần hiện ở menu hoặc footer */
+export async function listNavPages(db: D1Database): Promise<PageLink[]> {
+  const { results } = await db
+    .prepare(
+      `SELECT slug, title, show_in_menu, show_in_footer FROM pages
+       WHERE published = 1 AND (show_in_menu = 1 OR show_in_footer = 1) ORDER BY sort_order, id`
+    )
+    .all<PageLink>()
+  return results
+}
+
+export async function listPublishedPages(db: D1Database): Promise<{ slug: string; updated_at: string }[]> {
+  const { results } = await db
+    .prepare('SELECT slug, updated_at FROM pages WHERE published = 1 ORDER BY sort_order, id')
+    .all<{ slug: string; updated_at: string }>()
+  return results
+}
+
+export function getPage(db: D1Database, slug: string): Promise<Page | null> {
+  return db.prepare('SELECT * FROM pages WHERE slug = ? AND published = 1').bind(slug).first<Page>()
 }
 
 /** Tăng lượt bấm và trả về link mua của sản phẩm. */

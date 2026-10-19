@@ -1,17 +1,18 @@
 import { Hono } from 'hono'
 import { secureHeaders } from 'hono/secure-headers'
-import { CATEGORIES } from './lib/categories'
-import { listPosts, recordProductClick } from './lib/db'
+import { listPostCategories, listPosts, listPublishedPages, recordProductClick } from './lib/db'
 import { isoDate } from './lib/seo'
-import { renderer } from './renderer'
+import { loadNav, renderer } from './renderer'
 import admin from './routes/admin'
 import blog from './routes/blog'
 import contact from './routes/contact'
 import media from './routes/media'
 import pages from './routes/pages'
+import staticPages from './routes/static-pages'
 import topics from './routes/topics'
+import type { AppEnv } from './types'
 
-const app = new Hono<{ Bindings: CloudflareBindings }>()
+const app = new Hono<AppEnv>()
 
 // Chuẩn hoá về một địa chỉ duy nhất: https + tên miền chính (không www).
 // Giao thức của khách lấy từ header CF-Visitor do Cloudflare gắn; wrangler dev
@@ -53,15 +54,17 @@ app.get('/favicon.ico', (c) => c.redirect('/favicon.svg', 301))
 
 app.get('/sitemap.xml', async (c) => {
   const base = c.env.SITE_URL
-  const posts = await listPosts(c.env.DB, 5000)
+  const [posts, categories, staticList] = await Promise.all([
+    listPosts(c.env.DB, 5000),
+    listPostCategories(c.env.DB),
+    listPublishedPages(c.env.DB),
+  ])
   const entries: { path: string; lastmod?: string }[] = [
     { path: '/' },
-    ...CATEGORIES.map((cat) => ({ path: `/chu-de/${cat.slug}` })),
+    ...categories.map((cat) => ({ path: `/chu-de/${cat.slug}` })),
     { path: '/bai-viet' },
     { path: '/san-pham' },
-    { path: '/gioi-thieu' },
-    { path: '/chinh-sach-bien-tap' },
-    { path: '/mien-tru-trach-nhiem' },
+    ...staticList.map((p) => ({ path: `/${p.slug}`, lastmod: isoDate(p.updated_at) })),
     { path: '/lien-he' },
     ...posts.map((p) => ({ path: `/bai-viet/${p.slug}`, lastmod: isoDate(p.updated_at) })),
   ]
@@ -75,13 +78,15 @@ app.get('/sitemap.xml', async (c) => {
   return c.body(body, 200, { 'Content-Type': 'application/xml; charset=utf-8' })
 })
 
-app.use('*', renderer)
+app.use('*', loadNav, renderer)
 
 app.route('/', pages)
 app.route('/bai-viet', blog)
 app.route('/chu-de', topics)
 app.route('/lien-he', contact)
 app.route('/quan-tri', admin)
+// Trang tĩnh /<slug> đăng ký sau cùng
+app.route('/', staticPages)
 
 app.notFound((c) => {
   c.status(404)

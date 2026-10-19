@@ -1,5 +1,4 @@
 import type { Post, Product } from '../lib/db'
-import { getCategory } from '../lib/categories'
 import { formatDate, formatPrice, mediaUrl } from '../lib/format'
 
 export const PostCard = ({ post }: { post: Post }) => (
@@ -11,7 +10,7 @@ export const PostCard = ({ post }: { post: Post }) => (
     )}
     <div class="post-card-body">
       <a class="tag" href={`/chu-de/${post.category}`}>
-        {getCategory(post.category)?.name ?? post.category}
+        {post.category_name ?? post.category}
       </a>
       <h3>
         <a href={`/bai-viet/${post.slug}`}>{post.title}</a>
@@ -43,7 +42,7 @@ export const FeaturedPost = ({ post }: { post: Post }) => (
     )}
     <div class="featured-body">
       <a class="tag" href={`/chu-de/${post.category}`}>
-        {getCategory(post.category)?.name ?? post.category}
+        {post.category_name ?? post.category}
       </a>
       <h3>
         <a href={`/bai-viet/${post.slug}`}>{post.title}</a>
