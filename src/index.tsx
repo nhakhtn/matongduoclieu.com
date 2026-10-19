@@ -2,7 +2,7 @@ import { Hono } from 'hono'
 import { secureHeaders } from 'hono/secure-headers'
 import { listNavCategories, listPosts, listPublishedPages, recordProductClick } from './lib/db'
 import { getSetting } from './lib/auth'
-import { mediaUrl } from './lib/format'
+import { mediaUrl, setMediaBase } from './lib/format'
 import { pageCache } from './lib/page-cache'
 import { isoDate } from './lib/seo'
 import { loadNav, renderer } from './renderer'
@@ -16,6 +16,11 @@ import topics from './routes/topics'
 import type { AppEnv } from './types'
 
 const app = new Hono<AppEnv>()
+
+app.use(async (c, next) => {
+  setMediaBase(c.env.MEDIA_BASE)
+  await next()
+})
 
 // Chuẩn hoá về một địa chỉ duy nhất: https + tên miền chính (không www).
 // Giao thức của khách lấy từ header CF-Visitor do Cloudflare gắn; wrangler dev

@@ -15,6 +15,8 @@
   "vars": {
     "SITE_NAME": "Mật Ong & Dược Liệu",
     "SITE_URL": "https://matongduoclieu.com",
+    // Tên miền gắn với kho ảnh R2 (npx wrangler r2 bucket domain add ...); để trống thì ảnh đi qua /media của Worker
+    "MEDIA_BASE": "https://anh.matongduoclieu.com",
     // Mã xác minh Google Search Console (thẻ meta), để trống nếu xác minh qua DNS
     "GOOGLE_SITE_VERIFICATION": ""
   },

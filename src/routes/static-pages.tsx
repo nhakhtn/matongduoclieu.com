@@ -1,4 +1,5 @@
 import { Hono } from 'hono'
+import { withMediaBase } from '../lib/format'
 import { raw } from 'hono/html'
 import { marked } from 'marked'
 import { getPage } from '../lib/db'
@@ -22,7 +23,7 @@ app.get('/:slug', async (c, next) => {
   return c.render(
     <article class="prose">
       <h1>{page.title}</h1>
-      {raw(html)}
+      {raw(withMediaBase(html))}
     </article>,
     {
       title: page.title,

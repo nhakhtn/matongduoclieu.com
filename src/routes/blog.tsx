@@ -5,7 +5,7 @@ import { PostGrid, ProductGrid } from '../components/Cards'
 import { getPost, listPosts, listProducts } from '../lib/db'
 import { productsEnabled } from '../lib/site-config'
 import type { AppEnv } from '../types'
-import { formatDate, mediaUrl } from '../lib/format'
+import { formatDate, mediaUrl, withMediaBase } from '../lib/format'
 import { articleJsonLd } from '../lib/seo'
 
 const app = new Hono<AppEnv>()
@@ -66,7 +66,7 @@ app.get('/:slug', async (c) => {
             {updated && <> · Cập nhật {formatDate(post.updated_at)}</>}
           </p>
         </header>
-        <div class="prose">{raw(html)}</div>
+        <div class="prose">{raw(withMediaBase(html))}</div>
       </article>
 
       {products.length > 0 && (

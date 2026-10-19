@@ -19,9 +19,11 @@ const MAX_BYTES = 8 * 1024 * 1024
 const formatSize = (bytes: number) =>
   bytes >= 1024 * 1024 ? `${(bytes / 1024 / 1024).toFixed(1)} MB` : `${Math.round(bytes / 1024)} KB`
 
-/** Snippet Markdown/HTML để chèn ảnh vào bài */
+/** Snippet Markdown/HTML để chèn ảnh vào bài; luôn lưu dạng /media/... (lúc hiển thị mới đổi sang tên miền ảnh) */
+const contentPath = (key: string) => `/media/${key.split('/').map(encodeURIComponent).join('/')}`
+
 export const figureSnippet = (key: string, width?: string, height?: string) =>
-  `<figure>\n  <img src="${mediaUrl(key)}"${width ? ` width="${width}"` : ''}${height ? ` height="${height}"` : ''} alt="" loading="lazy">\n  <figcaption>Chú thích ảnh</figcaption>\n</figure>`
+  `<figure>\n  <img src="${contentPath(key)}"${width ? ` width="${width}"` : ''}${height ? ` height="${height}"` : ''} alt="" loading="lazy">\n  <figcaption>Chú thích ảnh</figcaption>\n</figure>`
 
 // Tải ảnh lên R2: uploads/<năm>/<tháng>/<tên-file>-<ngẫu nhiên>.<đuôi>
 app.post('/tai-len', async (c) => {
@@ -41,7 +43,7 @@ app.post('/tai-len', async (c) => {
   const height = typeof form.height === 'string' ? form.height.replace(/\D/g, '') : ''
 
   await c.env.MEDIA.put(key, file.stream(), {
-    httpMetadata: { contentType: file.type },
+    httpMetadata: { contentType: file.type, cacheControl: 'public, max-age=31536000, immutable' },
     customMetadata: { width, height, originalName: original.slice(0, 200) },
   })
   return c.json({ key, url: mediaUrl(key), width, height, snippet: figureSnippet(key, width, height) })
