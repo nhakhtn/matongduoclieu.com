@@ -43,7 +43,7 @@ Mô hình **cụm chủ đề**: mỗi chủ đề lớn có một bài trụ c�
 - ✅ Mật ong bạc hà Hà Giang (`content/posts/mat-ong-bac-ha.md`)
 - ✅ Mật ong hoa vải (`content/posts/mat-ong-hoa-vai.md`)
 - ✅ Mật ong kết tinh có phải mật giả? (`content/posts/mat-ong-ket-tinh.md`)
-- Mật ong U Minh và nghề gác kèo ong (nhãn hiệu tập thể "Mật ong U Minh Hạ")
+- ✅ Gác kèo ong: nghề ăn ong ở rừng tràm U Minh (`content/posts/mat-ong-u-minh.md`)
 - Mật ong hoa nhãn, hoa cà phê: khác nhau thế nào
 - Các mẹo thử mật ong thật giả: mẹo nào đúng, mẹo nào sai (góc nhìn khoa học)
 - Mật ong và trẻ dưới 1 tuổi

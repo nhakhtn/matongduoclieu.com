@@ -165,7 +165,7 @@ Việt Nam có nhiều loài ong mật: **ong nội** (*Apis cerana*) là loài 
 
 ### Bản đồ mùa hoa
 
-Mỗi vùng đất có một loại mật riêng: **mật hoa cà phê** của Tây Nguyên, **mật hoa nhãn** của Hưng Yên, [**mật hoa vải**](/bai-viet/mat-ong-hoa-vai) của Bắc Giang, **mật hoa cao su** của miền Đông Nam Bộ, **mật hoa tràm** của rừng U Minh, và [**mật hoa bạc hà**](/bai-viet/mat-ong-bac-ha-ha-giang) của cao nguyên đá. Người nuôi ong ngoại thường di chuyển đàn ong theo mùa hoa, đi khắp đất nước, một nghề vất vả mà ít người thấy.
+Mỗi vùng đất có một loại mật riêng: **mật hoa cà phê** của Tây Nguyên, **mật hoa nhãn** của Hưng Yên, [**mật hoa vải**](/bai-viet/mat-ong-hoa-vai) của Bắc Giang, **mật hoa cao su** của miền Đông Nam Bộ, [**mật hoa tràm**](/bai-viet/mat-ong-u-minh) của rừng U Minh, và [**mật hoa bạc hà**](/bai-viet/mat-ong-bac-ha-ha-giang) của cao nguyên đá. Người nuôi ong ngoại thường di chuyển đàn ong theo mùa hoa, đi khắp đất nước, một nghề vất vả mà ít người thấy.
 
 ### Gác kèo ong U Minh Hạ
 
