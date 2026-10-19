@@ -43,6 +43,7 @@ export const renderer = jsxRenderer<AppEnv>(
         siteUrl={SITE_URL}
         path={new URL(c.req.url).pathname}
         googleVerification={c.env.GOOGLE_SITE_VERIFICATION}
+        assetVersion={c.env.CF_VERSION_METADATA?.id.slice(0, 8) ?? 'dev'}
         nav={c.get('nav') ?? { postCategories: [], pages: [] }}
       >
         {children}

@@ -65,6 +65,9 @@ ON CONFLICT(slug) DO UPDATE SET
     WHEN posts.content_md IS NOT excluded.content_md OR posts.title IS NOT excluded.title
       OR posts.excerpt IS NOT excluded.excerpt THEN datetime('now')
     ELSE posts.updated_at END;
+-- Khách thấy ngay bản mới (xem src/lib/page-cache.ts)
+INSERT INTO settings (key, value) VALUES ('cache_version', '1')
+  ON CONFLICT(key) DO UPDATE SET value = CAST(CAST(value AS INTEGER) + 1 AS TEXT), updated_at = datetime('now');
 `
   return { title: meta.title, slug: meta.slug, content, sql }
 }

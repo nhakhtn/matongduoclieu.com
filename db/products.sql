@@ -54,3 +54,7 @@ ON CONFLICT(slug) DO UPDATE SET
   name = excluded.name, summary = excluded.summary, price = excluded.price,
   image_url = excluded.image_url, buy_url = excluded.buy_url,
   category = excluded.category, sort_order = excluded.sort_order, active = excluded.active;
+
+-- Khách thấy ngay bản mới (xem src/lib/page-cache.ts)
+INSERT INTO settings (key, value) VALUES ('cache_version', '1')
+  ON CONFLICT(key) DO UPDATE SET value = CAST(CAST(value AS INTEGER) + 1 AS TEXT), updated_at = datetime('now');

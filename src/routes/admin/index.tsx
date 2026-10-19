@@ -4,6 +4,7 @@ import { deleteCookie, getSignedCookie, setSignedCookie } from 'hono/cookie'
 import { getSetting, hashPassword, newSessionKey, setSettings, verifyPassword } from '../../lib/auth'
 import { listContacts } from '../../lib/db'
 import { formatDate } from '../../lib/format'
+import { bumpCacheVersion } from '../../lib/page-cache'
 import pagesAdmin from './pages'
 import postCategoriesAdmin from './post-categories'
 import postsAdmin from './posts'
@@ -110,6 +111,8 @@ app.post('/dang-xuat', (c) => {
 app.use('*', async (c, next) => {
   if (!(await isLoggedIn(c))) return c.redirect('/quan-tri/dang-nhap')
   await next()
+  // Mọi thay đổi thành công trong quản trị → khách thấy ngay bản mới (xem lib/page-cache.ts)
+  if (c.req.method === 'POST' && c.res.status < 400) await bumpCacheVersion(c.env.DB)
 })
 
 app.get('/', (c) => c.redirect('/quan-tri/bai-viet'))

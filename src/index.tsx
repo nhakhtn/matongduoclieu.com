@@ -3,6 +3,7 @@ import { secureHeaders } from 'hono/secure-headers'
 import { listNavCategories, listPosts, listPublishedPages, recordProductClick } from './lib/db'
 import { getSetting } from './lib/auth'
 import { mediaUrl } from './lib/format'
+import { pageCache } from './lib/page-cache'
 import { isoDate } from './lib/seo'
 import { loadNav, renderer } from './renderer'
 import admin from './routes/admin'
@@ -42,6 +43,8 @@ app.use(async (c, next) => {
   }
   await next()
 })
+
+app.use(pageCache)
 app.route('/media', media)
 
 // Link mua sản phẩm: đếm lượt bấm rồi chuyển sang Shopee

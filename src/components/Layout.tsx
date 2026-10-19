@@ -23,6 +23,8 @@ type Props = SeoProps & {
   siteUrl: string
   path: string
   googleVerification?: string
+  /** Gắn vào link CSS để trình duyệt cache lâu dài, đổi mỗi lần deploy */
+  assetVersion: string
   nav: SiteNav
   children?: Child
 }
@@ -88,7 +90,7 @@ export const Layout = (props: Props) => {
         <meta name="twitter:card" content="summary_large_image" />
 
         {props.googleVerification && <meta name="google-site-verification" content={props.googleVerification} />}
-        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href={`/css/style.css?v=${props.assetVersion}`} />
         {(props.jsonLd ?? []).map(jsonScript)}
       </head>
       <body>
