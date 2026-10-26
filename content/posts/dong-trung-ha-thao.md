@@ -4,7 +4,7 @@ title: Đông Trùng Hạ Thảo: Con Sâu Đắt Hơn Vàng Và Những Điều
 excerpt: Đông trùng hạ thảo là gì, vì sao "mùa đông là sâu, mùa hè là cỏ"? Lịch sử từ cao nguyên Tây Tạng tới Paris thế kỷ XVIII, sự khác nhau giữa trùng thảo Tây Tạng và đông trùng hạ thảo nuôi cấy, Đông y nói gì, khoa học nói gì và cách mua cho đúng.
 category: duoc-lieu
 cover: posts/dong-trung-ha-thao/01-trung-thao-tay-tang.webp
-products: dong-trung-ha-thao-say-thang-hoa-thai-tuyet-40g
+products: dong-trung-ha-thao-say-thang-hoa-thai-tuyet-40g, sam-cat-lam-thai-lat-anh-duong
 author: Nguyễn Đoàn Đức Nhã
 ---
 
