@@ -49,6 +49,7 @@ Mô hình **cụm chủ đề**: mỗi chủ đề lớn có một bài trụ c�
 - Các mẹo thử mật ong thật giả: mẹo nào đúng, mẹo nào sai (góc nhìn khoa học)
 - Mật ong và trẻ dưới 1 tuổi
 - Mật ong cho người tiểu đường
+- ✅ Ong dú: nuôi ong không kim làm cảnh, mật ong dú (`content/posts/ong-du.md`)
 - Sữa ong chúa, phấn hoa, keo ong: là gì, khác gì mật ong
 
 ### Cụm Dược liệu (mỗi vị một bài trụ cột)
