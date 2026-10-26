@@ -44,7 +44,8 @@ Mô hình **cụm chủ đề**: mỗi chủ đề lớn có một bài trụ c�
 - ✅ Mật ong hoa vải (`content/posts/mat-ong-hoa-vai.md`)
 - ✅ Mật ong kết tinh có phải mật giả? (`content/posts/mat-ong-ket-tinh.md`)
 - ✅ Gác kèo ong: nghề ăn ong ở rừng tràm U Minh (`content/posts/mat-ong-u-minh.md`)
-- Mật ong hoa nhãn, hoa cà phê: khác nhau thế nào
+- ✅ Mật ong hoa nhãn Hưng Yên (`content/posts/mat-ong-hoa-nhan.md`)
+- Mật ong hoa cà phê Tây Nguyên
 - Các mẹo thử mật ong thật giả: mẹo nào đúng, mẹo nào sai (góc nhìn khoa học)
 - Mật ong và trẻ dưới 1 tuổi
 - Mật ong cho người tiểu đường
@@ -79,7 +80,7 @@ Bài viết, chuyên mục, sản phẩm, danh mục sản phẩm, trang tĩnh, 
 | # | Việc | Trạng thái |
 |---|---|---|
 | 5.1 | Xác minh site trong Google Search Console, gửi sitemap | 🙋 |
-| 5.2 | Theo dõi từ khoá, số lần hiển thị và lượt bấm từ Google mỗi tháng | ⬜ |
+| 5.2 | Theo dõi từ khoá, số lần hiển thị và lượt bấm từ Google mỗi tháng | 🔄 Đã gắn Google Analytics (G-FGW7899KE4, 26/10/2026) |
 | 5.3 | Fanpage, nhóm Zalo, chia sẻ bài viết để có người đọc và backlink đầu tiên | 🙋 |
 
 ## Kỳ vọng thời gian
