@@ -69,6 +69,20 @@ ON CONFLICT(slug) DO UPDATE SET
   image_url = excluded.image_url, buy_url = excluded.buy_url,
   category = excluded.category, sort_order = excluded.sort_order, active = excluded.active;
 
+-- Đông trùng hạ thảo sấy thăng hoa (Dược thảo Thái Tuyết): thêm ngày 26/10/2026
+INSERT INTO products (slug, name, summary, price, image_url, buy_url, category, sort_order, active) VALUES
+('dong-trung-ha-thao-say-thang-hoa-thai-tuyet-40g',
+ 'Đông trùng hạ thảo sấy thăng hoa 40g – Dược thảo Thái Tuyết',
+ 'Cordyceps militaris nuôi trên nhộng tằm và gạo lứt, sấy thăng hoa, nguyên sợi. Lọ 40g. Sản phẩm OCOP 4 sao của Hà Nội (theo giấy chứng nhận shop công bố).',
+ 189150,
+ 'https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mnn1rp3rkrnp88@resize_w600_nl',
+ 'https://s.shopee.vn/4LKRge63A0',
+ 'duoc-lieu', 5, 1)
+ON CONFLICT(slug) DO UPDATE SET
+  name = excluded.name, summary = excluded.summary, price = excluded.price,
+  image_url = excluded.image_url, buy_url = excluded.buy_url,
+  category = excluded.category, sort_order = excluded.sort_order, active = excluded.active;
+
 -- Khách thấy ngay bản mới (xem src/lib/page-cache.ts)
 INSERT INTO settings (key, value) VALUES ('cache_version', '1')
   ON CONFLICT(key) DO UPDATE SET value = CAST(CAST(value AS INTEGER) + 1 AS TEXT), updated_at = datetime('now');
