@@ -80,9 +80,16 @@ Nếu gia đình vẫn muốn giữ tục cho trọn tình, có thể **thấm c
 
 ## "Đau bụng uống nhân sâm"
 
-Câu này nghe như một lời khuyên, nhưng thật ra là một lời **chê**: chê kiểu chữa bệnh **sai thuốc**, thấy thuốc quý là dùng, bất kể bệnh gì.
+Ít ai biết câu cửa miệng này thật ra chỉ là **nửa đầu** của một câu răn trong y học cổ truyền. Câu đầy đủ bằng chữ Hán là:
 
-Theo Đông y, nhân sâm là vị thuốc **bổ khí**, dùng cho người **hư nhược**: mệt mỏi, hụt hơi, ăn kém, người yếu sau bệnh. Còn nhiều kiểu đau bụng lại là **chứng thực**, tức là có "tà khí" ở trong: đầy bụng, chướng hơi, ăn uống không tiêu, nhiễm trùng đường ruột. Với những chứng này, thầy thuốc phải tìm cách "tả" (đuổi cái xấu ra), chứ không thể "bổ". Dùng sâm lúc ấy chẳng khác gì **đóng cửa nhốt kẻ trộm trong nhà**: bệnh không lui mà còn nặng thêm. Bài [hồng sâm](/bai-viet/hong-sam) cũng nhắc người đang đau bụng, tiêu chảy, đầy hơi nên tạm ngưng dùng sâm.
+> **"Phúc thống phục nhân sâm tắc tử."**
+> (腹痛服人參則死: Đau bụng mà uống nhân sâm thì chết.)
+
+GS.TS. Phạm Xuân Sinh, trong một bài viết trên báo Dân trí năm 2010, kể lại một giai thoại: có một thầy thuốc đọc sách chỉ nhớ được mấy chữ "đau bụng uống nhân sâm", tưởng đó là lời khuyên, liền cho người bệnh đau bụng uống sâm. Người bệnh tử vong. Ông thầy đã **bỏ sót hai chữ cuối "tắc tử"**, tức "thì chết".
+
+Theo GS. Phạm Xuân Sinh, "đau bụng" trong câu này **không phải mọi kiểu đau bụng**, mà là kiểu đau bụng kèm **tiêu chảy, đầy bụng, chướng bụng**. Ông cũng ghi nhận nhiều người đau bụng vì viêm gan, viêm dạ dày, đại tràng co thắt hay táo bón mà dùng nhân sâm vẫn khoẻ mạnh. Nghĩa là câu răn không nên hiểu cứng nhắc, nhưng lời nhắc phía sau nó thì rất đáng nhớ: **thuốc quý mà dùng sai bệnh thì thành thuốc độc**.
+
+Theo Đông y, nhân sâm là vị thuốc **bổ khí**, dùng cho người **hư nhược**: mệt mỏi, hụt hơi, ăn kém, người yếu sau bệnh. Còn đầy bụng, chướng hơi, ăn uống không tiêu, nhiễm trùng đường ruột lại là những chứng có "tà khí" ở trong (Đông y gọi là **chứng thực**). Với những chứng này, thầy thuốc phải tìm cách "tả" (đuổi cái xấu ra), chứ không thể "bổ". Dùng sâm lúc ấy chẳng khác gì **đóng cửa nhốt kẻ trộm trong nhà**: bệnh không lui mà còn nặng thêm. Bài [hồng sâm](/bai-viet/hong-sam) cũng nhắc người đang đau bụng, tiêu chảy, đầy hơi nên tạm ngưng dùng sâm.
 
 Giới thầy thuốc Trung Hoa xưa có một câu còn sâu cay hơn:
 
@@ -132,7 +139,7 @@ Có hai điều ít người để ý:
 
 ## Mạnh thật, nên càng phải dè chừng
 
-Vậy sâm có "mạnh" không? Trong Đông y, câu trả lời là **có**: nhân sâm là vị đứng đầu nhóm bổ khí, được giao việc cứu người lúc nguy cấp. Nhưng chính vì mạnh, nên sâm **không phải thứ uống tuỳ tiện**.
+Vậy sâm có "mạnh" không? Trong Đông y, câu trả lời là **có**: nhân sâm là vị đứng đầu nhóm bổ khí, được giao việc cứu người lúc nguy cấp. Người xưa còn xếp sâm đứng đầu **"tứ đại danh dược"**: **sâm, nhung, quế, phụ** (nhân sâm, [nhung hươu](/bai-viet/nhung-huou), [quế](/bai-viet/que), phụ tử). Nhưng chính vì mạnh, nên sâm **không phải thứ uống tuỳ tiện**.
 
 Năm 1979, bác sĩ Ronald Siegel đăng trên tạp chí *JAMA* (Mỹ) một bài mô tả cái mà ông gọi là **"hội chứng lạm dụng nhân sâm"**: theo dõi 133 người dùng sâm kéo dài, ông ghi nhận một số người bị **mất ngủ, bồn chồn, tiêu chảy buổi sáng, nổi mẩn, tăng huyết áp**. Nghiên cứu này về sau bị phê bình nhiều, vì người tham gia dùng đủ loại sản phẩm không rõ thành phần và hầu hết đều uống thêm cà phê. Dù vậy, nó vẫn là một lời nhắc rằng **"bổ" không có nghĩa là "càng nhiều càng tốt"**.
 
@@ -143,6 +150,8 @@ Theo Trung tâm Quốc gia về Y học Bổ sung và Tích hợp của Mỹ (NC
 - Sâm có thể **ảnh hưởng tới quá trình đông máu**. Người đang dùng thuốc chống đông cần thận trọng.
 - **Phụ nữ có thai, cho con bú và trẻ em** không nên dùng.
 - Dùng ngắn hạn (tới khoảng 6 tháng) với liều khuyến cáo có vẻ an toàn với đa số người. Độ an toàn khi dùng lâu dài **chưa rõ**.
+
+GS. Phạm Xuân Sinh cũng lưu ý thêm hai điều khi dùng sâm củ: nên **cắt bỏ phần đầu củ** (lô sâm) vì phần này không có tác dụng bổ mà còn gây buồn nôn, và người hay mất ngủ **không nên uống sâm vào buổi chiều, buổi tối**.
 
 Theo Đông y, người đang **sốt, viêm cấp, huyết áp cao, mất ngủ, nóng trong** hoặc đang có **chứng thực** như đầy bụng, táo bón cũng không nên dùng sâm, hoặc phải có thầy thuốc chỉ định.
 
@@ -159,6 +168,7 @@ Nhưng cũng từ y học cổ truyền mà ra lời cảnh tỉnh "nhân sâm g
 ### Tài liệu tham khảo
 
 - Tục cắt lát sâm cho người thập tử nhất sinh ngậm, sâm núi Dành (Bắc Giang): [VietNamNet (2015)](https://vietnamnet.vn/noi-cu-sam-to-bang-cu-san-221026.html)
+- "Phúc thống phục nhân sâm tắc tử", giai thoại ông thầy bỏ sót chữ "tắc tử", "tứ đại danh dược", lô sâm: GS.TS. Phạm Xuân Sinh, *Những lưu ý khi sử dụng nhân sâm*, [Dân trí (2010)](https://dantri.com.vn/suc-khoe/nhung-luu-y-khi-su-dung-nhan-sam-1264282830.htm)
 - Độc sâm thang (*Thập dược thần thư*, 1348), Sâm phụ thang: [Me & Qi: Du Shen Tang](https://www.meandqi.com/knowledge-base/formulas/du-shen-tang)
 - Đảng sâm có thể dùng thay nhân sâm: GS. Đỗ Tất Lợi, *Những cây thuốc và vị thuốc Việt Nam*, bản trực tuyến tại [vnras.com](https://vnras.com/?p=24171)
 - Nhân sâm: GS. Đỗ Tất Lợi, *Những cây thuốc và vị thuốc Việt Nam*, bản trực tuyến tại [vnras.com](https://vnras.com/?p=24141)
