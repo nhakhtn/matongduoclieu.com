@@ -100,7 +100,7 @@ Giới thầy thuốc Trung Hoa xưa có một câu còn sâu cay hơn:
 
 ## Vì sao thang thuốc bổ nào cũng có sâm?
 
-Bạn quan sát đúng: rất nhiều bài thuốc bổ có sâm. Lý do nằm ở một bài thuốc "gốc" có từ thời nhà Tống, được ghi trong sách *Thái bình huệ dân hoà tễ cục phương*: **Tứ quân tử thang** (四君子湯), tức "thang bốn vị quân tử":
+Ai từng đi bốc thuốc bổ chắc cũng để ý: mở thang thuốc ra, rất hay thấy có sâm. Đó không phải chuyện ngẫu nhiên. Lý do nằm ở một bài thuốc "gốc" có từ thời nhà Tống, được ghi trong sách *Thái bình huệ dân hoà tễ cục phương*: **Tứ quân tử thang** (四君子湯), tức "thang bốn vị quân tử":
 
 1. **Nhân sâm**: bổ khí, là vị chủ lực (vị "quân").
 2. **Bạch truật**: kiện tỳ (giúp tiêu hoá).
