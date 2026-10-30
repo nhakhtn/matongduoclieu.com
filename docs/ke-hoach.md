@@ -56,6 +56,7 @@ Mô hình **cụm chủ đề**: mỗi chủ đề lớn có một bài trụ c�
 ### Cụm Dược liệu (mỗi vị một bài trụ cột)
 - ✅ **Nhân sâm**: "Nhân Sâm: Huyền Thoại Của Rễ Cây Hình Người" (`content/posts/nhan-sam.md`)
   - ✅ Vệ tinh: Hồng sâm và bạch sâm (`content/posts/hong-sam.md`)
+  - ✅ Vệ tinh: Ngậm sâm giữ hơi, thang bổ nào cũng có sâm (`content/posts/sam-trong-dan-gian.md`)
 - ✅ **Nhung hươu**: "Nhung Hươu: Báu Vật Từ Chiếc Sừng Mùa Xuân" (`content/posts/nhung-huou.md`)
 - ✅ **Quế**: "Quế: Hương Thơm Của Những Con Đường Gia Vị" (`content/posts/que.md`)
 - ✅ **Đông trùng hạ thảo**: "Đông Trùng Hạ Thảo: Con Sâu Đắt Hơn Vàng Và Những Điều Ít Ai Kể" (`content/posts/dong-trung-ha-thao.md`)
