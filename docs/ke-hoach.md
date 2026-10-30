@@ -58,7 +58,8 @@ Mô hình **cụm chủ đề**: mỗi chủ đề lớn có một bài trụ c�
 - ✅ **Nhung hươu**: "Nhung Hươu: Báu Vật Từ Chiếc Sừng Mùa Xuân" (`content/posts/nhung-huou.md`)
 - ✅ **Quế**: "Quế: Hương Thơm Của Những Con Đường Gia Vị" (`content/posts/que.md`)
 - ✅ **Đông trùng hạ thảo**: "Đông Trùng Hạ Thảo: Con Sâu Đắt Hơn Vàng Và Những Điều Ít Ai Kể" (`content/posts/dong-trung-ha-thao.md`)
-- Linh chi, tam thất, hà thủ ô đỏ, cam thảo, gừng, nghệ, táo đỏ, kỷ tử
+- ✅ **Linh chi**: "Nấm Linh Chi: Từ Tiên Thảo Trong Truyền Thuyết Tới Chiếc Nấm Trồng Trên Mùn Cưa" (`content/posts/linh-chi.md`)
+- Tam thất, hà thủ ô đỏ, cam thảo, gừng, nghệ, táo đỏ, kỷ tử
 - Bài nối hai cụm: "Mật ong trong bào chế dược liệu" (luyện mật làm hoàn, chích mật), "Sâm ngâm mật ong", "Gừng mật ong"…
 
 ## Giai đoạn 4: Sản phẩm Shopee
