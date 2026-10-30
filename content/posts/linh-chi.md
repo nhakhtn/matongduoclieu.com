@@ -4,6 +4,7 @@ title: Nấm Linh Chi: Từ Tiên Thảo Trong Truyền Thuyết Tới Chiếc N
 excerpt: Linh chi là gì, vì sao được gọi là "nấm trường thọ"? Sáu màu linh chi trong sách cổ, biểu tượng như ý, nghề trồng linh chi ở Việt Nam, khoa học hiện đại nói gì, ai cần cẩn thận và cách dùng, cách mua cho đúng.
 category: duoc-lieu
 cover: posts/linh-chi/01-linh-chi-do.webp
+products: linh-chi-do-da-lat-thai-lat-dalat-cordyceps
 author: Nguyễn Đoàn Đức Nhã
 ---
 

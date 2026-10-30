@@ -83,6 +83,20 @@ ON CONFLICT(slug) DO UPDATE SET
   image_url = excluded.image_url, buy_url = excluded.buy_url,
   category = excluded.category, sort_order = excluded.sort_order, active = excluded.active;
 
+-- Linh chi đỏ Đà Lạt thái lát (Dalat Cordyceps): thêm ngày 30/10/2026
+INSERT INTO products (slug, name, summary, price, image_url, buy_url, category, sort_order, active) VALUES
+('linh-chi-do-da-lat-thai-lat-dalat-cordyceps',
+ 'Nấm linh chi đỏ Đà Lạt thái lát – Dalat Cordyceps',
+ 'Linh chi đỏ trồng ở Lâm Đồng, thái lát sẵn để sắc nước uống, có hai loại hồng chi và xích chi, gói 250g hoặc 500g. Vị đắng, sắc 2–5 g mỗi ngày, có thể thêm chút mật ong cho dễ uống.',
+ 352600,
+ 'https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mrfozd6appmvc5@resize_w600_nl',
+ 'https://s.shopee.vn/4VdyBcah01',
+ 'duoc-lieu', 6, 1)
+ON CONFLICT(slug) DO UPDATE SET
+  name = excluded.name, summary = excluded.summary, price = excluded.price,
+  image_url = excluded.image_url, buy_url = excluded.buy_url,
+  category = excluded.category, sort_order = excluded.sort_order, active = excluded.active;
+
 -- Khách thấy ngay bản mới (xem src/lib/page-cache.ts)
 INSERT INTO settings (key, value) VALUES ('cache_version', '1')
   ON CONFLICT(key) DO UPDATE SET value = CAST(CAST(value AS INTEGER) + 1 AS TEXT), updated_at = datetime('now');
