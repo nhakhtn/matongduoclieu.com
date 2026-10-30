@@ -10,7 +10,9 @@ author: Nguyễn Đoàn Đức Nhã
 
 Đi chợ, lên mạng hay về quê, câu chào hàng mình nghe nhiều nhất là: **"Mật ong rừng nguyên chất đây!"** Giá thường cao gấp đôi, gấp ba mật ong nuôi. Và người mua cũng sẵn lòng trả, vì trong đầu ai cũng có một ý nghĩ rất tự nhiên: cái gì "của rừng" thì quý hơn, sạch hơn, bổ hơn.
 
-Mình từng nghĩ như vậy. Nhưng càng tìm hiểu về con ong, về cách người ta lấy mật và về những gì khoa học đo được trong hũ mật, mình càng nghiêng hẳn về phía **mật ong nuôi**, với một ngoại lệ đáng quý là **mật tràm U Minh gác kèo**.
+Riêng mình thì đã ăn mật "rừng" từ nhỏ. Hồi bé, mình được ăn mật lấy từ những tổ ong trên mấy cái cây quanh nhà, và lớn lên cũng dùng mật "rừng" không ít lần. Nói thật lòng, mình chưa bao giờ thấy nó **hơn gì mật ong nuôi**. Có lần mình dùng thử một hũ mật ong của Mỹ, loại rẻ nhất trên kệ, mà thấy vẫn rất ổn.
+
+Rồi càng tìm hiểu về con ong, về cách người ta lấy mật và về những gì khoa học đo được trong hũ mật, mình càng hiểu vì sao, và càng nghiêng hẳn về phía **mật ong nuôi**, với một ngoại lệ đáng quý là **mật tràm U Minh gác kèo**.
 
 Bài viết này giải thích vì sao.
 
