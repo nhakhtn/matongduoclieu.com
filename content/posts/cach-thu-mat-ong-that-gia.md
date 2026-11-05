@@ -141,7 +141,7 @@ Nếu không tự kiểm tra được, cách tốt nhất là **chọn người 
 
 1. **Biết rõ nguồn.** Ưu tiên người nuôi ong, hợp tác xã hoặc thương hiệu cho biết rõ vùng nuôi, loại hoa, mùa thu hoạch.
 2. **Tỉnh táo với giá.** Mật rẻ hơn hẳn giá thị trường là điều đáng ngờ. Mật đắt cũng chưa chắc là mật thật, nhất là khi đi kèm chữ "rừng". Xem thêm bài [Mật ong rừng hay mật ong nuôi](/bai-viet/mat-ong-rung-va-mat-ong-nuoi).
-3. **Đọc nhãn.** Có tên, địa chỉ cơ sở, hạn dùng, nơi sản xuất rõ ràng. Hũ mật không nhãn mua trên mạng là rủi ro lớn nhất.
+3. **Đọc nhãn.** Có tên, địa chỉ cơ sở, hạn dùng, nơi sản xuất rõ ràng. Hũ mật không nhãn mua trên mạng là rủi ro lớn nhất. Hàng bán dạo ven đường cũng vậy, xem bài [Những chiêu bán mật ong giả ven đường](/bai-viet/chieu-ban-mat-ong-gia-ven-duong).
 4. **Hỏi giấy kiểm nghiệm** khi mua số lượng nhiều, và để ý xem giấy đó có đúng lô hàng và có kiểm tra đường lạ không.
 5. **Mua thử lượng nhỏ** trước khi mua nhiều.
 
