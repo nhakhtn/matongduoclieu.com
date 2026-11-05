@@ -45,9 +45,9 @@ Mô hình **cụm chủ đề**: mỗi chủ đề lớn có một bài trụ c�
 - ✅ Mật ong kết tinh có phải mật giả? (`content/posts/mat-ong-ket-tinh.md`)
 - ✅ Gác kèo ong: nghề ăn ong ở rừng tràm U Minh (`content/posts/mat-ong-u-minh.md`)
 - ✅ Mật ong hoa nhãn Hưng Yên (`content/posts/mat-ong-hoa-nhan.md`)
-- Mật ong hoa cà phê Tây Nguyên
-- Các mẹo thử mật ong thật giả: mẹo nào đúng, mẹo nào sai (góc nhìn khoa học)
-- Mật ong và trẻ dưới 1 tuổi
+- ✅ Mật ong hoa cà phê Tây Nguyên (`content/posts/mat-ong-hoa-ca-phe.md`)
+- ✅ Các mẹo thử mật ong thật giả: mẹo nào đúng, mẹo nào sai (`content/posts/cach-thu-mat-ong-that-gia.md`)
+- ✅ Mật ong và trẻ dưới 1 tuổi (`content/posts/tre-duoi-1-tuoi-khong-an-mat-ong.md`)
 - Mật ong cho người tiểu đường
 - ✅ Ong dú: nuôi ong không kim làm cảnh, mật ong dú (`content/posts/ong-du.md`)
 - ✅ Mật ong rừng hay mật ong nuôi (`content/posts/mat-ong-rung-va-mat-ong-nuoi.md`)

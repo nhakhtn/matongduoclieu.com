@@ -53,7 +53,7 @@ Tinh thể cần một điểm bắt đầu: hạt phấn hoa, mẩu sáp ong li
 - **Mật thật có thể không kết tinh**, hoặc kết tinh rất chậm, như mật hoa nhãn, hoặc mật để ở nơi ấm.
 - **Mật giả cũng có thể kết tinh.** Theo nhiều bài báo trong nước, có nơi đã trộn mạch nha, đường và các chất khác vào mật để tạo hiện tượng "đóng đường" giống mật thật, đánh vào niềm tin của người mua.
 
-Dân gian có một số kinh nghiệm phân biệt: mật thật kết tinh thành hạt nhỏ mịn, tan nhanh khi ngâm nước ấm, còn mật pha đường thường đóng thành mảng cứng ở đáy. Những dấu hiệu này có thể tham khảo nhưng **không đủ để kết luận**.
+Dân gian có một số kinh nghiệm phân biệt: mật thật kết tinh thành hạt nhỏ mịn, tan nhanh khi ngâm nước ấm, còn mật pha đường thường đóng thành mảng cứng ở đáy. Những dấu hiệu này có thể tham khảo nhưng **không đủ để kết luận**. Xem thêm bài [Các mẹo thử mật ong thật giả](/bai-viet/cach-thu-mat-ong-that-gia).
 
 Muốn biết chắc chắn, phải kiểm nghiệm trong phòng thí nghiệm, chẳng hạn đo tỷ lệ đồng vị carbon để phát hiện đường mía, đường ngô pha vào. Ngay cả ở châu Âu, một đợt kiểm tra năm 2021–2022 phát hiện **46%** mẫu mật ong nhập khẩu bị nghi pha trộn siro (xem bài [Mật Ong!](/bai-viet/mat-ong)). Vì vậy, cách tốt nhất vẫn là **chọn mật có nguồn gốc rõ ràng**: cơ sở nuôi ong cụ thể, vùng hoa, mùa vụ, có kiểm nghiệm.
 

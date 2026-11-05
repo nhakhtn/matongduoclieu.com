@@ -155,7 +155,7 @@ Lời khuyên của mình:
 2. **Mật nuôi ở vùng núi, vùng rừng nhiều hoa dại**, lấy mật chín, không cho ăn đường lúc lấy mật là lựa chọn tuyệt vời, chất lượng không thua gì mật rừng.
 3. Nếu thích hương vị mật ong khoái, hãy chọn **mật tràm U Minh gác kèo**: vừa là mật ong khoái thật, vừa được lấy theo cách giữ được đàn ong và giữ được rừng.
 4. **Cẩn thận với lời chào "mật ong rừng nguyên chất"** giá rẻ, không rõ ai lấy, lấy ở đâu.
-5. **Đừng tin các mẹo thử mật dân gian** như thả vào nước, đốt bấc, xem kiến có bu không. Chúng không phân biệt được mật thật, mật giả. Mật kết tinh (đóng đường) cũng không phải là mật giả, xem bài [Mật ong kết tinh có phải mật giả?](/bai-viet/mat-ong-ket-tinh).
+5. **Đừng tin các mẹo thử mật dân gian** như thả vào nước, đốt bấc, xem kiến có bu không. Chúng không phân biệt được mật thật, mật giả (xem bài [Các mẹo thử mật ong thật giả](/bai-viet/cach-thu-mat-ong-that-gia)). Mật kết tinh (đóng đường) cũng không phải là mật giả, xem bài [Mật ong kết tinh có phải mật giả?](/bai-viet/mat-ong-ket-tinh).
 6. **Hỏi giấy kiểm nghiệm** nếu mua số lượng nhiều, đặc biệt các chỉ tiêu độ ẩm, HMF và đường lạ.
 
 ## Lời kết
