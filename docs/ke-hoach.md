@@ -49,6 +49,8 @@ Mô hình **cụm chủ đề**: mỗi chủ đề lớn có một bài trụ c�
 - ✅ Các mẹo thử mật ong thật giả: mẹo nào đúng, mẹo nào sai (`content/posts/cach-thu-mat-ong-that-gia.md`)
 - ✅ Mật ong và trẻ dưới 1 tuổi (`content/posts/tre-duoi-1-tuoi-khong-an-mat-ong.md`)
 - ✅ Những chiêu bán mật ong giả ven đường (`content/posts/chieu-ban-mat-ong-gia-ven-duong.md`)
+- ✅ Các bài thuốc dân gian từ mật ong (`content/posts/bai-thuoc-dan-gian-tu-mat-ong.md`)
+- ✅ Mật ong kỵ gì? (`content/posts/mat-ong-ky-gi.md`)
 - Mật ong cho người tiểu đường
 - ✅ Ong dú: nuôi ong không kim làm cảnh, mật ong dú (`content/posts/ong-du.md`)
 - ✅ Mật ong rừng hay mật ong nuôi (`content/posts/mat-ong-rung-va-mat-ong-nuoi.md`)

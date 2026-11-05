@@ -12,7 +12,7 @@ Hôm trước mình đi chơi Đà Lạt với một người bạn. Giữa đư
 
 Bạn mình tin ngay. Một lít cả triệu bạc, và bạn mua luôn hai lít. Mình chỉ biết bó tay.
 
-Mình không biết hai lít mật đó thật hay giả, vì muốn biết chắc thì phải đưa đi kiểm nghiệm. Nhưng cách bán thì mình nhận ra ngay. Hồi xưa, mình còn nhớ có người mang cả mật mía đi bán mà cứ nói đó là mật ong. Có người thấy khách đi tới ven rừng thì mang mật ra, trong mật có đủ sáp ong, tổ ong, mà thật ra vẫn là mật giả.
+Mình không biết hai lít mật đó thật hay giả, vì muốn biết chắc thì phải đưa đi kiểm nghiệm. Nhưng cách bán thì mình nhận ra ngay. Hồi xưa, mình còn nhớ có người mang cả mật mía đi bán mà cứ nói đó là mật ong. Có người thấy khách đi tới ven rừng thì mang mật ra, trong mật có đủ sáp ong, tổ ong, mà thật ra vẫn là mật giả. Chiêu dùng mật mía cũng không mới: sách của [GS. Đỗ Tất Lợi](https://vnras.com/mat-ong-nhung-cay-thuoc-va-vi-thuoc-viet-nam-do-tat-loi/) đã ghi người ta thường làm giả mật ong bằng mật mía, nước thuỷ phân tinh bột hoặc siro.
 
 Mình đi lục lại báo chí xem người ta đã ghi nhận những chiêu gì. Danh sách khá dài, và điều đáng chú ý là hầu hết không đánh vào hũ mật, mà **đánh vào đầu người mua**.
 
