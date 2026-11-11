@@ -54,7 +54,7 @@ Mô hình **cụm chủ đề**: mỗi chủ đề lớn có một bài trụ c�
 - ✅ Sâm ngâm mật ong (`content/posts/sam-ngam-mat-ong.md`)
 - ✅ Quế và mật ong (`content/posts/que-va-mat-ong.md`)
 - ✅ Mật ong trong bào chế Đông y, viên nghệ mật ong (`content/posts/mat-ong-trong-bao-che-dong-y.md`)
-- Mật ong cho người tiểu đường
+- ✅ Mật ong cho người tiểu đường (`content/posts/mat-ong-cho-nguoi-tieu-duong.md`)
 - ✅ Ong dú: nuôi ong không kim làm cảnh, mật ong dú (`content/posts/ong-du.md`)
 - ✅ Mật ong rừng hay mật ong nuôi (`content/posts/mat-ong-rung-va-mat-ong-nuoi.md`)
 - Sữa ong chúa, phấn hoa, keo ong: là gì, khác gì mật ong

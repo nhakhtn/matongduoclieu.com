@@ -14,7 +14,7 @@ Có bài rất đáng dùng. Có bài vô hại nhưng không có tác dụng nh
 
 Bài viết này xem lại từng bài thuốc theo cùng một cách: Đông y nói gì, nghiên cứu hiện đại đo được gì, và ai không nên dùng. Về Đông y, mình dựa chủ yếu vào mục [Mật ong trong sách của GS. Đỗ Tất Lợi](https://vnras.com/mat-ong-nhung-cay-thuoc-va-vi-thuoc-viet-nam-do-tat-loi/).
 
-**Nguyên tắc chung:** không cho trẻ dưới 1 tuổi dùng bất kỳ bài nào ở đây, vì [lý do này](/bai-viet/tre-duoi-1-tuoi-khong-an-mat-ong). Mật ong vẫn là đường, nên người tiểu đường cần hỏi bác sĩ trước khi dùng đều đặn.
+**Nguyên tắc chung:** không cho trẻ dưới 1 tuổi dùng bất kỳ bài nào ở đây, vì [lý do này](/bai-viet/tre-duoi-1-tuoi-khong-an-mat-ong). Mật ong vẫn là đường, nên người tiểu đường cần hỏi bác sĩ trước khi dùng đều đặn (xem bài [Mật ong cho người tiểu đường](/bai-viet/mat-ong-cho-nguoi-tieu-duong)).
 
 <figure>
   <img src="/media/posts/bai-thuoc-dan-gian-tu-mat-ong/01-tra-gung-mat-ong.webp" width="1200" height="675" alt="Hai ly trà gừng vàng óng pha mật ong đặt trên chiếc khay đầy củ gừng vàng tươi" loading="lazy">

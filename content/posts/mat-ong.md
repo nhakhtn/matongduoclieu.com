@@ -144,7 +144,7 @@ Khoa học hiện đại đã kiểm chứng một phần kinh nghiệm cổ tru
 
 - **Ho ở trẻ em** (xem thêm [Các bài thuốc dân gian từ mật ong](/bai-viet/bai-thuoc-dan-gian-tu-mat-ong)). Tổng quan Cochrane năm 2018 (6 thử nghiệm, 899 trẻ từ 12 tháng đến 18 tuổi) cho thấy mật ong có thể giúp giảm triệu chứng ho cấp tính tốt hơn so với không điều trị hoặc giả dược. Tuy vậy, chất lượng bằng chứng chưa cao.
 - **Vết thương và vết bỏng.** Mật ong y tế (đã tiệt trùng, đạt chuẩn dùng cho y khoa) được dùng trong một số loại băng gạc. Đây là sản phẩm chuyên dụng, khác với mật ong ăn hằng ngày.
-- **Mật ong vẫn là đường.** Dù có thêm enzyme và chất chống oxy hoá, thành phần chính của mật ong vẫn là fructose và glucose. Người bệnh tiểu đường hoặc đang kiểm soát cân nặng cần dùng có chừng mực và hỏi ý kiến bác sĩ.
+- **Mật ong vẫn là đường** (xem bài [Người tiểu đường có ăn được mật ong không?](/bai-viet/mat-ong-cho-nguoi-tieu-duong)). Dù có thêm enzyme và chất chống oxy hoá, thành phần chính của mật ong vẫn là fructose và glucose. Người bệnh tiểu đường hoặc đang kiểm soát cân nặng cần dùng có chừng mực và hỏi ý kiến bác sĩ.
 - **Không cho trẻ dưới 12 tháng tuổi ăn mật ong** (xem bài [Vì sao trẻ dưới 1 tuổi không được ăn mật ong?](/bai-viet/tre-duoi-1-tuoi-khong-an-mat-ong)). Mật ong có thể chứa bào tử vi khuẩn *Clostridium botulinum*. Hệ tiêu hoá non nớt của trẻ chưa đủ sức ngăn bào tử phát triển và tiết độc tố, gây bệnh ngộ độc botulinum ở trẻ sơ sinh, một tình trạng cấp cứu. Đây là khuyến cáo thống nhất của các cơ quan y tế lớn trên thế giới.
 
 ## Mật ong Việt Nam: từ rừng tràm đến cao nguyên đá
