@@ -86,7 +86,7 @@ Nhiệt độ cao làm giảm enzyme và làm tăng HMF trong mật. [Một nghi
 
 ### Đựng mật trong bình sắt: nên tránh, nhưng không phải vì "đại kỵ"
 
-Mật ong có tính axit, [độ pH khoảng 3,1–6,1](https://extension.oregonstate.edu/sites/extd8/files/catalog/auto/EM9885.pdf). Để lâu trong bình sắt không tráng có thể làm mật ám mùi kim loại và kém ngon. Dùng thìa inox múc mật thì không có vấn đề gì. Cách đơn giản nhất là đựng mật trong **hũ thuỷ tinh hoặc nhựa thực phẩm, đậy kín**.
+Mật ong có tính axit, [độ pH khoảng 3,1–6,1](https://extension.oregonstate.edu/catalog/em-9885-infusing-honey-safely). Để lâu trong bình sắt không tráng có thể làm mật ám mùi kim loại và kém ngon. Dùng thìa inox múc mật thì không có vấn đề gì. Cách đơn giản nhất là đựng mật trong **hũ thuỷ tinh hoặc nhựa thực phẩm, đậy kín**.
 
 ### Phụ nữ mang thai "tuyệt đối không dùng": không đúng như vậy
 
@@ -133,4 +133,4 @@ Một bữa bánh mì mật ong với sữa đậu nành không làm bạn đạ
 - Những "đại kỵ" khi dùng mật ong: [Tiền Phong (2020)](https://tienphong.vn/nhung-dai-ky-khi-dung-mat-ong-khong-phai-ai-cung-biet-post1235430.tpo)
 - Uống chung bột sắn dây kèm mật ong có sao không?: [Vinmec](https://www.vinmec.com/vie/bai-viet/uong-chung-bot-san-day-kem-mat-ong-co-sao-khong-vi)
 - Diastase Enzyme Activity and Hydroxymethylfurfural Production During Thermal Processing of Honey: [Diyala Agricultural Sciences Journal](https://journal.djas.uodiyala.edu.iq/index.php/dasj/article/view/7109)
-- Oregon State University Extension (EM 9885), đặc tính của mật ong: [PDF](https://extension.oregonstate.edu/sites/extd8/files/catalog/auto/EM9885.pdf)
+- Hibbard-Swanson J., Waite-Cusic J. (2026). *Infusing honey safely* (EM 9885). Oregon State University Extension: [extension.oregonstate.edu](https://extension.oregonstate.edu/catalog/em-9885-infusing-honey-safely)

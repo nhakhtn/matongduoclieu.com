@@ -70,7 +70,7 @@ Theo sách của GS. Đỗ Tất Lợi, liều dùng dân gian là khoảng **2�
 - **Ngậm lát mỏng:** ngậm cho đến khi lát sâm mềm rồi nhai nuốt. Đây là cách đơn giản nhất.
 - **Hãm trà:** cho vài lát hồng sâm vào cốc, rót nước nóng, ủ 10–15 phút. Có thể hãm lại nhiều lần đến khi nhạt.
 - **Sắc uống:** sắc 5–10 g sâm với nước.
-- **Hồng sâm ngâm mật ong:** lát sâm ngâm trong mật ong, vừa dễ ăn, vừa giữ được lâu. Đọc thêm về chọn mật ong tốt trong bài [Mật Ong!](/bai-viet/mat-ong).
+- **Hồng sâm ngâm mật ong:** lát sâm ngâm trong mật ong, vừa dễ ăn, vừa giữ được lâu (xem cách ngâm trong bài [Sâm ngâm mật ong](/bai-viet/sam-ngam-mat-ong)). Đọc thêm về chọn mật ong tốt trong bài [Mật Ong!](/bai-viet/mat-ong).
 
 Nên dùng hồng sâm vào **buổi sáng hoặc buổi trưa**, tránh dùng buổi tối vì sâm có thể gây khó ngủ.
 

@@ -180,7 +180,7 @@ Về an toàn, dùng đường uống ngắn hạn (đến 6 tháng) với liề
 - **Cảnh giác với sâm giả.** Từ thế kỷ 17 người ta đã làm sâm giả từ rễ cát cánh; ngày nay nạn sâm Ngọc Linh giả cũng rất phức tạp. Hãy chọn sản phẩm có nguồn gốc rõ ràng, tem chỉ dẫn địa lý, giấy kiểm định.
 - **Dùng vào buổi sáng hoặc trưa,** tránh dùng buổi tối vì sâm có thể gây khó ngủ.
 - **Bắt đầu với liều thấp** và theo dõi phản ứng của cơ thể.
-- **Sâm ngâm mật ong** là cách dùng phổ biến ở Việt Nam: mật ong vừa giúp bảo quản, vừa dịu vị đắng của sâm. Tìm hiểu thêm về mật ong trong bài viết [Mật Ong!](/bai-viet/mat-ong).
+- **Sâm ngâm mật ong** là cách dùng phổ biến ở Việt Nam: mật ong vừa giúp bảo quản, vừa dịu vị đắng của sâm. Sâm tươi cần ngâm khác sâm khô, xem bài [Sâm ngâm mật ong](/bai-viet/sam-ngam-mat-ong). Tìm hiểu thêm về mật ong trong bài viết [Mật Ong!](/bai-viet/mat-ong).
 - **Hỏi ý kiến thầy thuốc hoặc bác sĩ** nếu bạn đang mang thai, cho con bú, có bệnh mạn tính (huyết áp, tiểu đường, bệnh tự miễn) hoặc đang dùng thuốc, đặc biệt là thuốc chống đông.
 
 ## Lời kết

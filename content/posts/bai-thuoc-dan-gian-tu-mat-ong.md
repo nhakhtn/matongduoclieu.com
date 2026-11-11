@@ -81,13 +81,13 @@ Nghệ dùng làm gia vị thì không có gì đáng ngại. Nhưng **viên b�
 
 Đây là bài mình muốn nhắc nhiều nhất. Tỏi ngâm mật ong lan truyền rất mạnh trên mạng như một cách tăng đề kháng, nhưng nó có **một nguy cơ thật: ngộ độc botulinum**.
 
-Mật ong giữ được lâu vì có rất ít nước tự do. Khi ngâm tỏi, nước từ tỏi đi vào mật. [Đại học bang Oregon](https://extension.oregonstate.edu/sites/extd8/files/catalog/auto/EM9885.pdf) giải thích rằng thêm nguyên liệu tươi có thể làm tăng hoạt độ nước, tới mức vi sinh vật hoạt động được, và tỏi, ớt, thảo mộc tươi đều thuộc nhóm nhiều nước.
+Mật ong giữ được lâu vì có rất ít nước tự do. Khi ngâm tỏi, nước từ tỏi đi vào mật. [Đại học bang Oregon](https://extension.oregonstate.edu/catalog/em-9885-infusing-honey-safely) giải thích rằng thêm nguyên liệu tươi có thể làm tăng hoạt độ nước, tới mức vi sinh vật hoạt động được, và tỏi, ớt, thảo mộc tươi đều thuộc nhóm nhiều nước.
 
 Tháng 9/2026, [tạp chí Scientific American](https://www.scientificamerican.com/article/tiktok-influencers-are-promoting-a-home-remedy-to-boost-the-immune-system-that-could-cause-botulism/) đưa tin về trào lưu này. Đại diện Bộ Y tế Canada cho biết ngâm tỏi trong mật ong chưa thanh trùng ở nhiệt độ phòng có thể gây nguy cơ ngộ độc botulinum, và để ở nhiệt độ phòng có thể làm nguy cơ tăng thêm. [Đại học bang Kansas](https://www.k-state.edu/news/you-asked-it/articles/2020/10/honey-fermented-garlic-may-be-risky.html) cũng xếp cách làm này vào nhóm rủi ro.
 
 Điều đáng lo là độc tố botulinum không thể nhận ra bằng mắt, mũi hay lưỡi.
 
-**Cách an toàn hơn:** nếu thích vị tỏi và mật ong, hãy trộn một ít rồi dùng ngay, đừng ngâm thành hũ để dành. Cùng lý do đó, với **gừng tươi, nghệ tươi, ớt, thảo mộc tươi ngâm mật**, mình cũng không tìm thấy công thức nào đã được kiểm chứng an toàn khi để ngoài lâu ngày. Bạn nên làm ít, để tủ lạnh, dùng sớm. Hũ nào phồng nắp, sủi bọt, có mùi lạ thì bỏ đi, đừng nếm thử.
+**Cách an toàn hơn:** nếu thích vị tỏi và mật ong, hãy trộn một ít rồi dùng ngay, đừng ngâm thành hũ để dành. Cùng lý do đó, với **gừng tươi, nghệ tươi, ớt, thảo mộc tươi**, hướng dẫn của Oregon chỉ cho phép ngâm **nóng** (giữ mật từ 60°C trở lên) và lượng nguyên liệu tươi **không quá 15%** khối lượng. Kiểu ngâm nguội để cả năm trên kệ thì không nằm trong hướng dẫn. Nếu không làm được như vậy, bạn nên làm ít, để tủ lạnh, dùng sớm, hoặc dùng nguyên liệu đã phơi khô. Với sâm, xem bài [Sâm ngâm mật ong](/bai-viet/sam-ngam-mat-ong). Hũ nào phồng nắp, sủi bọt, có mùi lạ thì bỏ đi, đừng nếm thử.
 
 Những người hay thấy hũ tỏi mật "lên men" và nghĩ đó là dấu hiệu tốt thì nên biết: lên men nghĩa là mật đã không còn là môi trường khô như lúc đầu.
 
@@ -161,7 +161,7 @@ Muốn dùng mật an toàn, bạn cũng nên biết [những điều mật ong 
 - Curcumin so với omeprazole trong khó tiêu chức năng (2023): [BMJ Group](https://bmjgroup.com/turmeric-may-be-as-good-for-treating-indigestion-as-drug-to-curb-excess-stomach-acid)
 - *Curcuma longa* kết hợp omeprazole trong loét dạ dày tá tràng: [Srinagarind Medical Journal](https://li01.tci-thaijo.org/index.php/SRIMEDJ/article/view/13058)
 - Halegoua-DeMarzio D. và cộng sự (2023). Liver Injury Associated with Turmeric: Ten Cases from DILIN: [PubMed](https://pubmed.ncbi.nlm.nih.gov/36252717/)
-- Oregon State University Extension. Hướng dẫn về mật ong ngâm (EM 9885): [PDF](https://extension.oregonstate.edu/sites/extd8/files/catalog/auto/EM9885.pdf)
+- Hibbard-Swanson J., Waite-Cusic J. (2026). *Infusing honey safely* (EM 9885). Oregon State University Extension: [extension.oregonstate.edu](https://extension.oregonstate.edu/catalog/em-9885-infusing-honey-safely)
 - Tỏi ngâm mật ong có thể gây ngộ độc botulinum: [Scientific American (2026)](https://www.scientificamerican.com/article/tiktok-influencers-are-promoting-a-home-remedy-to-boost-the-immune-system-that-could-cause-botulism/); [Kansas State University (2020)](https://www.k-state.edu/news/you-asked-it/articles/2020/10/honey-fermented-garlic-may-be-risky.html)
 - Tổng hợp 18 thử nghiệm về mật ong và chỉ số tim mạch, chuyển hoá: [Sci.News](https://www.sci.news/medicine/honey-cardiometabolic-risks-11401.html)
 - Gừng, chanh, sả có phải "thần dược" trị Covid-19?: [VnExpress (2021)](https://vnexpress.net/gung-chanh-sa-co-phai-than-duoc-tri-covid-19-4349192.html)
