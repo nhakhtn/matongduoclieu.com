@@ -57,7 +57,7 @@ Mô hình **cụm chủ đề**: mỗi chủ đề lớn có một bài trụ c�
 - ✅ Mật ong cho người tiểu đường (`content/posts/mat-ong-cho-nguoi-tieu-duong.md`)
 - ✅ Ong dú: nuôi ong không kim làm cảnh, mật ong dú (`content/posts/ong-du.md`)
 - ✅ Mật ong rừng hay mật ong nuôi (`content/posts/mat-ong-rung-va-mat-ong-nuoi.md`)
-- Sữa ong chúa, phấn hoa, keo ong: là gì, khác gì mật ong
+- ✅ Sữa ong chúa, phấn hoa, keo ong (`content/posts/sua-ong-chua-phan-hoa-keo-ong.md`)
 
 ### Cụm Dược liệu (mỗi vị một bài trụ cột)
 - ✅ **Nhân sâm**: "Nhân Sâm: Huyền Thoại Của Rễ Cây Hình Người" (`content/posts/nhan-sam.md`)

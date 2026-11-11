@@ -178,7 +178,7 @@ Trehalulose là một loại đường đôi hiếm, gần như không có mặt
 
 ### Keo ong dú
 
-Ngoài mật, ong dú còn tạo ra rất nhiều **keo ong** (propolis), thứ nhựa ong dùng để xây và bảo vệ tổ. Năm 2022, một nhóm nhà khoa học Bulgaria và Việt Nam đã phân tích keo ong của 6 loài ong dú thu ở nhiều tỉnh nước ta, từ Hoà Bình, Quảng Ninh, Cao Bằng tới Đà Nẵng, Đắk Lắk, Đắk Nông. Họ tìm thấy hơn 70 hợp chất, và thành phần keo ong thay đổi theo loài và theo loại cây mà ong lấy nhựa, như cây xoài hay cây thành ngạnh.
+Ngoài mật, ong dú còn tạo ra rất nhiều **keo ong** (propolis), thứ nhựa ong dùng để xây và bảo vệ tổ (xem thêm bài [Sữa ong chúa, phấn hoa, keo ong](/bai-viet/sua-ong-chua-phan-hoa-keo-ong)). Năm 2022, một nhóm nhà khoa học Bulgaria và Việt Nam đã phân tích keo ong của 6 loài ong dú thu ở nhiều tỉnh nước ta, từ Hoà Bình, Quảng Ninh, Cao Bằng tới Đà Nẵng, Đắk Lắk, Đắk Nông. Họ tìm thấy hơn 70 hợp chất, và thành phần keo ong thay đổi theo loài và theo loại cây mà ong lấy nhựa, như cây xoài hay cây thành ngạnh.
 
 <figure class="video">
   <a class="yt-lite" href="https://www.youtube.com/watch?v=Ztk1lynPvdc" data-yt="Ztk1lynPvdc" target="_blank" rel="noopener">
