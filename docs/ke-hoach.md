@@ -52,6 +52,7 @@ Mô hình **cụm chủ đề**: mỗi chủ đề lớn có một bài trụ c�
 - ✅ Các bài thuốc dân gian từ mật ong (`content/posts/bai-thuoc-dan-gian-tu-mat-ong.md`)
 - ✅ Mật ong kỵ gì? (`content/posts/mat-ong-ky-gi.md`)
 - ✅ Sâm ngâm mật ong (`content/posts/sam-ngam-mat-ong.md`)
+- ✅ Quế và mật ong (`content/posts/que-va-mat-ong.md`)
 - Mật ong cho người tiểu đường
 - ✅ Ong dú: nuôi ong không kim làm cảnh, mật ong dú (`content/posts/ong-du.md`)
 - ✅ Mật ong rừng hay mật ong nuôi (`content/posts/mat-ong-rung-va-mat-ong-nuoi.md`)

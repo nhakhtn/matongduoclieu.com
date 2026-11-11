@@ -149,7 +149,7 @@ Quế được nghiên cứu nhiều, nhất là về khả năng hạ đường
 ## Dùng quế cho đúng
 
 - **Trong bếp, cứ yên tâm dùng quế.** Một thanh quế trong nồi nước dùng phở, bò kho, hay một chút bột quế trong ngũ vị hương đều nằm trong mức an toàn.
-- **Trà quế mật ong** là cách dùng ấm áp cho ngày lạnh: hãm một mẩu vỏ quế với nước nóng, để bớt nóng rồi mới thêm mật ong.
+- **Trà quế mật ong** là cách dùng ấm áp cho ngày lạnh: hãm một mẩu vỏ quế với nước nóng, để bớt nóng rồi mới thêm mật ong. Xem thêm bài [Quế và mật ong](/bai-viet/que-va-mat-ong).
 - **Thận trọng với viên uống, bột quế liều cao** dùng kéo dài, đặc biệt với người có bệnh gan, trẻ nhỏ và phụ nữ có thai.
 - **Dùng quế như vị thuốc** (nhục quế, quế chi) cần có chỉ định của thầy thuốc, vì đây là vị thuốc tính đại nhiệt, không hợp với người thể nhiệt, âm hư.
 - **Chọn quế có nguồn gốc rõ ràng**, ưu tiên sản phẩm mang chỉ dẫn địa lý (Văn Yên, Trà My, Trà Bồng): vừa yên tâm về chất lượng, vừa góp phần giữ nghề trồng quế của bà con vùng cao.
