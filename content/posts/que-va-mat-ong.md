@@ -1,6 +1,6 @@
 ---
 slug: que-va-mat-ong
-title: Quế Và Mật Ong: Cặp Đôi Từ Hộp Quế Tiến Vua Đến Lời Đồn Chữa Bách Bệnh
+title: Quế Và Mật Ong: Từ Chiếc Hộp Quế Xưa Đến Lời Đồn Chữa Bách Bệnh
 excerpt: Người xưa giữ quế quý bằng sáp ong và một chậu mật ong. Ngày nay quế mật ong được đồn chữa đủ thứ bệnh, từ viêm khớp tới ung thư. Lời đồn đó từ đâu ra, quế và mật ong thật sự làm được gì, và vì sao uống bột quế mỗi ngày lại không nên với quế Việt Nam.
 category: mat-ong
 cover: posts/que-va-mat-ong/01-bot-que-thanh-que.webp
