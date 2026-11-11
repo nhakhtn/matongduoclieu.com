@@ -133,7 +133,7 @@ Theo cuốn *Những cây thuốc và vị thuốc Việt Nam* của GS. Đỗ T
 Điều thú vị nhất là mối quan hệ giữa mật ong và các vị dược liệu khác. Mật ong không chỉ là một vị thuốc, mà còn là **người bạn đồng hành** trong bào chế:
 
 - **Luyện mật làm hoàn.** Mật ong được đun cho cô đặc ("luyện mật") rồi trộn với bột dược liệu để vê thành viên hoàn. Mật vừa là chất kết dính, vừa giúp bảo quản, vừa làm thuốc dễ uống và dịu vị đắng.
-- **Chích mật (tẩm mật sao).** Nhiều vị thuốc được tẩm mật ong rồi sao, ví dụ **cam thảo chích mật** (chích cam thảo), **hoàng kỳ chích mật** hay **tỳ bà diệp chích mật**. Theo lý luận Đông y, tẩm mật giúp tăng tác dụng bổ và nhuận phế, giảm tính khô ráo của vị thuốc.
+- **Chích mật (tẩm mật sao)** (xem thêm [Mật ong trong thuốc Đông y](/bai-viet/mat-ong-trong-bao-che-dong-y)). Nhiều vị thuốc được tẩm mật ong rồi sao, ví dụ **cam thảo chích mật** (chích cam thảo), **hoàng kỳ chích mật** hay **tỳ bà diệp chích mật**. Theo lý luận Đông y, tẩm mật giúp tăng tác dụng bổ và nhuận phế, giảm tính khô ráo của vị thuốc.
 - **Dẫn thuốc và điều vị.** Mật ong giúp hoà hoãn tính mạnh của một số vị thuốc, đồng thời làm bài thuốc dễ dùng hơn.
 
 Chính GS. Đỗ Tất Lợi cũng lưu ý: mật ong có thể gây ngộ độc nếu ong hút mật từ các loài hoa có độc như phụ tử, cà độc dược hay thuốc lá. Đây là lý do nguồn gốc và vùng nuôi ong quan trọng đến vậy.
